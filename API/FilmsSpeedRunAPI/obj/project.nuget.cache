@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z5YXQXHChNrmB2DQCa0O+JCJDHJUWoZCMdOQgH8acU4RP5C4UASeqvEucQrcVVBcXX5M2JJQxM1hIkclvyaDSw==",
+  "dgSpecHash": "0kejHVb+oSxcDmFzmuV22M2/k/MTcRbPGvgaV1F2w47HCnBalIBPIZbhyXqaLbHPHuZHNKUHR4AozMcIr+Hxbg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj",
+  "projectFilePath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

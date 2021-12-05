@@ -15,5 +15,6 @@ namespace BLL.Services
         {
             Repository = new UserRepository(context);
         }
+        public List<Selection> GetSelections(int id) => ((UserRepository)Repository).GetSelections(id);
     }
 }

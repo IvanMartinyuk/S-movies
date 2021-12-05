@@ -15,5 +15,6 @@ namespace BLL.Services
         {
             Repository = new ProducerRepository(context);
         }
+        public List<Film> GetFilms(int id) => ((ProducerRepository)Repository).GetFilms(id);
     }
 }

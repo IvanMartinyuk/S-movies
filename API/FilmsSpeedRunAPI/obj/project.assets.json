@@ -5725,11 +5725,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj",
       "projectName": "FilmsSpeedRunAPI",
-      "projectPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj",
+      "projectPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj",
       "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI\\obj\\",
+      "outputPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\FilmsSpeedRunAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5746,8 +5746,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\DAL\\DAL.csproj"
+            "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\DAL\\DAL.csproj"
             }
           }
         }
