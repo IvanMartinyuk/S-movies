@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.DTO
 {
+    [Serializable]
     public class UserDTO
     {
         public int Id { get; set; }
@@ -13,6 +14,5 @@ namespace BLL.DTO
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public int RoleId { get; set; }
-        public int SelectionId { get; set; }
     }
 }

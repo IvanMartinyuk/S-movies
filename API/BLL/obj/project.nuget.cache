@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FAk8qW4YRgVm/QQehYbXFdK6HTagDvM3ucgZx36m8N/Eq7Vfg+VxyEJHhVr6+yMNaR2iDPM7rYbs4/KTMxwwzg==",
+  "dgSpecHash": "SSWmiSXiDdK3TJBzQJxLMzRlr3YDwlOHW0CULSF6RHl4B10exrYidVUtUiw9s+afhberrnikFF+U62ABLWjIkQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\BLL\\BLL.csproj",
+  "projectFilePath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ivan\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
