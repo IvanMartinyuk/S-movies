@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gXnzklohu4MaYX2q28hWwTI4MbZk9MW5XFSIF2sp4/qTxA15jDGTO5gFUjzcvAIiF7eA/Mws4eJ4Y8aoW/tKNg==",
+  "dgSpecHash": "szpenp6MV0rJPIi0yP82Fx6Cn5MtfylEcNjY7/SF+NwcnVmAHdNURvcSHLCZf7q+/tMC+ev1ncwsC/6GoCljfg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\DAL\\DAL.csproj",
+  "projectFilePath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\DAL\\DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.0\\microsoft.entityframeworkcore.5.0.0.nupkg.sha512",
     "C:\\Users\\Ivan\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.0\\microsoft.entityframeworkcore.abstractions.5.0.0.nupkg.sha512",

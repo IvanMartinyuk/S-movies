@@ -1,4 +1,5 @@
 ﻿using DAL.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,18 @@ namespace DAL.Repositories
         {
 
         }
-        public void GetFilms(int id)
+        public List<Film> GetFilms(int id)
         {
             FilmContext contx = (FilmContext)context;
-            
+            var list = contx.Actors.Include(x => x.Films)
+                                .ToList()
+                                .Where(x => x.Id == id)
+                                .Select(x => x.Films)
+                                .ToList()[0]
+                                .ToList();
+            foreach (Film film in list)
+                film.Actors = null;
+            return list;
         }
     }
 }

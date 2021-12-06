@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Context
 {
+    [Serializable]
     public class User
     {
         public int Id { get; set; }
@@ -14,7 +15,6 @@ namespace DAL.Context
         public string PasswordHash { get; set; }
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
-        public int SelectionId { get; set; }
-        public virtual Selection Selection { get; set; }
+        public virtual IEnumerable<Selection> Selections { get; set; }
     }
 }
