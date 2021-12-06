@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.DTO
 {
+    [Serializable]
     public class ProducerDTO
     {
         public int Id { get; set; }

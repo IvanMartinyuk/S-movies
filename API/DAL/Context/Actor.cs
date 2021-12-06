@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Context
 {
+    [Serializable]
     public class Actor
     {
         public int Id { get; set; }

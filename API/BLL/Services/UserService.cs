@@ -16,5 +16,19 @@ namespace BLL.Services
             Repository = new UserRepository(context);
         }
         public List<Selection> GetSelections(int id) => ((UserRepository)Repository).GetSelections(id);
+
+        public bool Login(string login, string passwordHash)
+        {
+            if (GetAll().Where(user => user.Login == login && user.PasswordHash == passwordHash) != null)
+                return true;
+            return false;
+        }
+
+        public bool ValidateUserName(string login)
+        {
+            if (GetAll().Where(user => user.Login == login) != null)
+                return false;
+            return true;
+        }
     }
 }

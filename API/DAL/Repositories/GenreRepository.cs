@@ -17,11 +17,15 @@ namespace DAL.Repositories
         public List<Film> GetFilms(int id)
         {
             FilmContext contx = (FilmContext)context;
-            return contx.Genres.Include(x => x.Films)
+            var list = contx.Genres.Include(x => x.Films)
+                                .ToList()
                                 .Where(x => x.Id == id)
                                 .Select(x => x.Films)
                                 .ToList()[0]
                                 .ToList();
+            foreach (Film film in list)
+                film.Genres = null;
+            return list;
         }
     }
 }

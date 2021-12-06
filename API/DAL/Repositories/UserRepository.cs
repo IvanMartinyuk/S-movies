@@ -13,11 +13,15 @@ namespace DAL.Repositories
         public List<Selection> GetSelections(int id)
         {
             FilmContext contx = (FilmContext)context;
-            return contx.Users.Include(x => x.Selections)
+            var list = contx.Users.Include(x => x.Selections)
+                              .ToList()
                               .Where(x => x.Id == id)
                               .Select(x => x.Selections)
                               .ToList()[0]
                               .ToList();
+            foreach (Selection selection in list)
+                selection.Films = null;
+            return list;
         }
     }
 }
