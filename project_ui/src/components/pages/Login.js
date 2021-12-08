@@ -1,6 +1,5 @@
 import React from "react";
 import { userService } from "../../services/userService";
-import { withRouter } from "react-router";
 
 class Login extends React.Component {
   constructor(props)
@@ -17,8 +16,10 @@ class Login extends React.Component {
     let service = new userService
     if(await service.login(this.state.login, this.state.password)){
       console.log('suka')
+       sessionStorage.setItem("isLogin",true)      
       this.props.history.push('/')
     }
+
   }
   render() {
     return (
