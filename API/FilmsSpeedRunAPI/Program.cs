@@ -20,7 +20,8 @@ namespace FilmsSpeedRunAPI
             using (var scope = host.Services.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<FilmContext>();
-                (new ActorRepository(context)).GetAll();
+                if(context.Roles.Count() == 0)
+                    FillingData.Fill(context);
             }
             host.Run();
         }

@@ -26,7 +26,7 @@ namespace BLL.Services
 
         public bool ValidateUserName(string login)
         {
-            if (GetAll().Where(user => user.Login == login) != null)
+            if (GetAll().Where(user => user.Login == login) == null)
                 return false;
             return true;
         }

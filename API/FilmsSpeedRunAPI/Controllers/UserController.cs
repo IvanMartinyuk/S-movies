@@ -60,6 +60,7 @@ namespace FilmsSpeedRunAPI.Controllers
                 return BadRequest(new { error = "Invalid login or password" });
             if (!service.ValidateUserName(user.Login))
                 return BadRequest(new { arror = "Login is not valid" });
+            user.RoleId = 1;
             await service.AddAsync(user);
             return Ok();
         }
@@ -70,8 +71,13 @@ namespace FilmsSpeedRunAPI.Controllers
                 {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, login)
                 };
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);            
             return claimsIdentity;
+        }
+        [HttpGet]
+        public async Task<IActionResult> User(string login)
+        {
+            return Json(service.GetAll().FirstOrDefault(x => x.Login == login));
         }
     }
 }
