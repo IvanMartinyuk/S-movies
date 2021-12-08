@@ -1,21 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj": {}
+    "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\BLL\\BLL.csproj": {
+    "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\BLL\\BLL.csproj",
-        "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\BLL\\obj\\",
+        "projectPath": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\chuev\\.nuget\\packages\\",
+        "outputPath": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\BLL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\chuev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -28,8 +34,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\DAL\\DAL.csproj"
+              "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\DAL\\DAL.csproj"
               }
             }
           }
@@ -64,22 +70,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\DAL\\DAL.csproj": {
+    "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\DAL\\obj\\",
+        "projectPath": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\chuev\\.nuget\\packages\\",
+        "outputPath": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\DAL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\chuev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -124,22 +136,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj": {
+    "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj",
+        "projectUniqueName": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj",
         "projectName": "FilmsSpeedRunAPI",
-        "projectPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj",
-        "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\FilmsSpeedRunAPI\\obj\\",
+        "projectPath": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\FilmsSpeedRunAPI\\FilmsSpeedRunAPI.csproj",
+        "packagesPath": "C:\\Users\\chuev\\.nuget\\packages\\",
+        "outputPath": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\FilmsSpeedRunAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\chuev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -152,11 +170,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\BLL\\BLL.csproj"
+              "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\BLL\\BLL.csproj"
               },
-              "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\Ivan\\source\\repos\\FilmsSpeedRunAPI\\FilmsSpeedRun\\API\\DAL\\DAL.csproj"
+              "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\22222228282888888888888888888888\\ркугшмфгмуфижмфкжимукфиж\\API\\DAL\\DAL.csproj"
               }
             }
           }
@@ -198,7 +216,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

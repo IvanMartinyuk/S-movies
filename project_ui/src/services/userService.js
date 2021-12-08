@@ -19,6 +19,7 @@ export default class userService {
             body: JSON.stringify(user)
         })
         userService.isLogin = response.ok
+        console.log(userService.isLogin)
         let data = await response.json()
         userService.login = data.username
         sessionStorage.setItem('access_token', data.access_token)

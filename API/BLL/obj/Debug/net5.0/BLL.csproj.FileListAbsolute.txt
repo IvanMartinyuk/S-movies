@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\bin\Debug\net5.0\BLL.deps.json
 C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\bin\Debug\net5.0\BLL.dll
 C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\bin\Debug\net5.0\ref\BLL.dll
@@ -13,3 +14,34 @@ C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5
 C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5.0\ref\BLL.dll
 C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5.0\BLL.pdb
 C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5.0\BLL.csproj.CopyComplete
+=======
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\bin\Debug\net5.0\BLL.deps.json
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\bin\Debug\net5.0\BLL.dll
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\bin\Debug\net5.0\ref\BLL.dll
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\bin\Debug\net5.0\BLL.pdb
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\bin\Debug\net5.0\DAL.dll
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\bin\Debug\net5.0\DAL.pdb
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5.0\BLL.csproj.AssemblyReference.cache
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5.0\BLL.AssemblyInfoInputs.cache
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5.0\BLL.AssemblyInfo.cs
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5.0\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5.0\BLL.dll
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5.0\ref\BLL.dll
+C:\Users\Ivan\source\repos\FilmsSpeedRunAPI\FilmsSpeedRun\API\BLL\obj\Debug\net5.0\BLL.pdb
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\bin\Debug\net5.0\BLL.deps.json
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\bin\Debug\net5.0\BLL.dll
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\bin\Debug\net5.0\ref\BLL.dll
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\bin\Debug\net5.0\BLL.pdb
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\bin\Debug\net5.0\DAL.dll
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\bin\Debug\net5.0\DAL.pdb
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\obj\Debug\net5.0\BLL.csproj.AssemblyReference.cache
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\obj\Debug\net5.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\obj\Debug\net5.0\BLL.AssemblyInfoInputs.cache
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\obj\Debug\net5.0\BLL.AssemblyInfo.cs
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\obj\Debug\net5.0\BLL.csproj.CoreCompileInputs.cache
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\obj\Debug\net5.0\BLL.csproj.CopyComplete
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\obj\Debug\net5.0\BLL.dll
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\obj\Debug\net5.0\ref\BLL.dll
+C:\22222228282888888888888888888888\ркугшмфгмуфижмфкжимукфиж\API\BLL\obj\Debug\net5.0\BLL.pdb
+>>>>>>> main
