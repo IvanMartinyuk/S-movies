@@ -14,6 +14,7 @@ namespace DAL.Context
         public double Rating { get; set; }
         public DateTime DateOfPublishing { get; set; }
         public string Description { get; set; }
+        public string Image { get; set; }
         public virtual IEnumerable<Actor> Actors { get; set; }
         public virtual IEnumerable<Genre> Genres { get; set; }
         public virtual IEnumerable<Producer> Producers { get; set; }
