@@ -3,6 +3,7 @@ import hash from "./passwordService"
 export class userService {
     static isLogin = false
     static login = ''
+    static isAdmin = false;
     baseUrl = 'https://localhost:44325/user/'
     async login(login, password) {
         let user = {
