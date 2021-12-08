@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { userService } from '../../services/userService'
+import userService from '../../services/userService'
 
 class Registration extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class Registration extends React.Component {
     if(document.getElementById('error').style.backgroundColor === 'green')
     {
       let service = new userService()
-      console.log(this.state)
+      // console.log(this.state)
       if(await service.registration(this.state.login, 
                           this.state.email,
                           this.state.password))

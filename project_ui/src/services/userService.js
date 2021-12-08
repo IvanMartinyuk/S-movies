@@ -1,6 +1,6 @@
 import hash from "./passwordService"
 
-export class userService {
+export default class userService {
     static isLogin = false
     static login = ''
     static isAdmin = false;
@@ -38,5 +38,9 @@ export class userService {
             body: JSON.stringify(user)
         })
         return response.ok
+    }
+    async setIsAdmin(login)
+    {
+        
     }
 }

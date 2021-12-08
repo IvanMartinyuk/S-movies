@@ -1,6 +1,6 @@
 import React from "react";
-import { userService } from "../../services/userService";
 import { withRouter } from "react-router";
+import userService from "../../services/userService";
 
 class Login extends React.Component {
   constructor(props)
