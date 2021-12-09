@@ -3,7 +3,6 @@ import React from "react";
 import { Route,  BrowserRouter as Router, Switch } from 'react-router-dom'
 import Home from "./components/Home";
 
-
 class App extends React.Component {
   
   constructor(props)

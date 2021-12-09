@@ -27,7 +27,7 @@ class Home extends React.Component {
             <Route path='/login' component={Login}></Route> 
             <Route path='/logout' component={Logout}></Route> 
             <Route path='/registration' component={Registration}></Route>
-            <Route exact path="/films/:id" component={Film}/> 
+            <Route path="/films/:id" component={Film}/> 
             </Switch>
       </Router></>
     );
