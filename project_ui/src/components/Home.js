@@ -10,7 +10,6 @@ import Logout from './pages/Logout';
 import Film from './pages/Film';
 import { simpleService } from '../services/simpleService';
 class Home extends React.Component {
-  
   constructor(props)
   {
     super(props)

@@ -22,6 +22,7 @@ export default class userService {
         let data = await response.json()
         userService.login = data.username
         sessionStorage.setItem('access_token', data.access_token)
+        sessionStorage.setItem("isLogin",true)
         return response.ok
     }
     async registration(login, email, password) {

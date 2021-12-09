@@ -24,23 +24,27 @@ export class simpleService {
         if(m === 'DELETE')
         {
             path = this.baseUrl + method + '?' + this.name + 'Id=' + entity
-            fetch(path, {
+            let response = await fetch(path, {
                 method: m,
                 header: {
                     'Content-Type': 'application/json',
                     'Authorization': 'bearer ' + token
                 }
             })
+            let data = await response.json()
+            return data
         }
         if(m !== 'POST' && m !== 'PUT' && m !== 'DELETE')
         {
             m = 'GET'
-            fetch(path, {
+            let response = await fetch(path, {
                 method: m,
                 header: {
                     'Content-Type': 'application/json'
                 }
             })
+            let data = await response.json()
+            return data
         }
         let response = await fetch(path, {
             method: m,

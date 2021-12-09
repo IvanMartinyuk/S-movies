@@ -1,27 +1,27 @@
-import { userService } from "../services/userService"
 import React from "react";
+
 class NavBar extends React.Component {
-  
   constructor(props)
   {
     super(props)
+    this.logout = this.logout.bind(this)
+    console.log(NavBar.check(this.logout))
     this.state = {
-        mas:this.check()
-     
-      }
-   
-     
+      items: NavBar.check(this.logout)
+    }
+
     
   }
-  c(){
-    sessionStorage.removeItem("isLogin")
-    sessionStorage.setItem("isLogin",false)
-    this.props.mas = this.check();
-   
+  logout() {
+    sessionStorage.setItem('isLogin', false)
+    sessionStorage.setItem('access_token', '')
+    this.setState({items: NavBar.check(this.logout)})
+    
   }
-  check(){
-    if(sessionStorage.getItem("isLogin")){
-     
+  static check(logout){
+    let b = '' + sessionStorage.getItem('isLogin')
+    if(b === 'true'){
+      console.log('vhodit')
         return (<div className=" dropdown dropstart" >
         <a className="nav-link  userb"style={{color:"white"}} href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           
@@ -30,13 +30,13 @@ class NavBar extends React.Component {
           <li><a className="dropdown-item" href="#">Profile</a></li>
           <li><a className="dropdown-item" href="#">Saved</a></li>
           <li><hr className="dropdown-divider"/></li>
-          <li><a className="dropdown-item" onClick={this.c}>Log out</a></li>
+          <li><button className="dropdown-item" onClick={() => logout()}>Log out</button></li>
         </ul>
       </div>)
       
     }
-    else{
-     return (<div className=" dropdown dropstart" >
+    console.log('i vhihodit')
+      return (<div className=" dropdown dropstart" >
         <a className="nav-link  userb"style={{color:"white"}} href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           
         </a>
@@ -45,9 +45,8 @@ class NavBar extends React.Component {
           <li><a className="dropdown-item" href="Registration">Register</a></li>
         </ul>
       </div>)
-      
      
-    }
+    
   }
   render() {
    
@@ -85,7 +84,7 @@ class NavBar extends React.Component {
             <input className="form-control "style={{'color':'white','background':"rgba(0, 0, 0, 0.3)",border:'none'}} type="search" placeholder="Type..." aria-label="Search"/>
             <button className=" animsearch" type="submit">Search</button>
           </form>
-           {this.props.mas}
+           {this.state.items}
         </div>
       </div>
     </nav>
