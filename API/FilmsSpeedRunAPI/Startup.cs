@@ -30,7 +30,6 @@ namespace FilmsSpeedRunAPI
         {
             services.AddControllersWithViews();
             services.AddDbContext<FilmContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
-            services.AddControllers();
 
             services.AddAuthentication(options =>
             {
@@ -51,6 +50,9 @@ namespace FilmsSpeedRunAPI
                         ValidateIssuerSigningKey = true
                     };
                 });
+
+            services.AddControllers();
+
             services.AddCors(c =>
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
@@ -72,7 +74,6 @@ namespace FilmsSpeedRunAPI
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -89,7 +90,8 @@ namespace FilmsSpeedRunAPI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "inedx.html");
+                    pattern: "/index.html");
+                endpoints.MapControllers();
             });
         }
     }

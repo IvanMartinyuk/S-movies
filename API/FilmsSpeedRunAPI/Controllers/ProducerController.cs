@@ -1,6 +1,7 @@
 ﻿using BLL.DTO;
 using BLL.Services;
 using DAL.Context;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,7 +21,14 @@ namespace FilmsSpeedRunAPI.Controllers
         {
             service = new ProducerService(context);
         }
+        [HttpDelete]
+        [Authorize]
+        public async Task<IActionResult> Test(int i)
+        {
+            return Ok();
+        }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] ProducerDTO producer)
         {
             if (producer == null)
@@ -29,6 +37,7 @@ namespace FilmsSpeedRunAPI.Controllers
             return Ok();
         }
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> Delete(int producerId)
         {
             if (producerId == null || producerId == 0)
@@ -37,6 +46,7 @@ namespace FilmsSpeedRunAPI.Controllers
             return Ok();
         }
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> Put([FromBody] ProducerDTO producer)
         {
             if (producer == null)

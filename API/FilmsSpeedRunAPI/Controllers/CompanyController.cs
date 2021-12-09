@@ -1,6 +1,7 @@
 ﻿using BLL.DTO;
 using BLL.Services;
 using DAL.Context;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,6 +22,7 @@ namespace FilmsSpeedRunAPI.Controllers
             service = new CompanyService(context);
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] CompanyDTO company)
         {
             if (company == null)
@@ -29,7 +31,8 @@ namespace FilmsSpeedRunAPI.Controllers
             return Ok();
         }
         [HttpDelete]
-        public async Task<IActionResult> Delete(int companyId)
+        [Authorize]
+        public async Task<IActionResult> Delete([FromBody] int companyId)
         {
             if (companyId == null || companyId == 0)
                 return BadRequest(new { error = "no company id" });
@@ -37,6 +40,7 @@ namespace FilmsSpeedRunAPI.Controllers
             return Ok();
         }
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> Put([FromBody] CompanyDTO company)
         {
             if (company == null)

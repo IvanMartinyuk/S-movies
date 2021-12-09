@@ -8,6 +8,7 @@ import NavBar from './NavBar';
 import { withRouter } from "react-router";
 import Logout from './pages/Logout';
 import Film from './pages/Film';
+import { simpleService } from '../services/simpleService';
 class Home extends React.Component {
   
   constructor(props)

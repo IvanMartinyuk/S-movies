@@ -1,6 +1,8 @@
 ﻿using BLL.DTO;
 using BLL.Services;
 using DAL.Context;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,6 +22,7 @@ namespace FilmsSpeedRunAPI.Controllers
         {
             service = new ActorService(context);
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]ActorDTO actor)
         {
@@ -28,6 +31,8 @@ namespace FilmsSpeedRunAPI.Controllers
             await service.AddAsync(actor);
             return Ok();
         }
+        [Authorize(AuthenticationSchemes =
+    JwtBearerDefaults.AuthenticationScheme)]
         [HttpDelete]
         public async Task<IActionResult> Delete(int actorId)
         {
@@ -37,6 +42,7 @@ namespace FilmsSpeedRunAPI.Controllers
             return Ok();
         }
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> Put([FromBody] ActorDTO actor)
         {
             if (actor == null)

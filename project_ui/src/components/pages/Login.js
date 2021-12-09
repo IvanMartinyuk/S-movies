@@ -13,9 +13,9 @@ class Login extends React.Component {
   async login()
   {
     let service = new userService
+    console.log('1')
     if(await service.login(this.state.login, this.state.password)){
-      console.log('suka')
-       sessionStorage.setItem("isLogin",true)      
+      sessionStorage.setItem("isLogin",true)
       this.props.history.push('/')
     }
 

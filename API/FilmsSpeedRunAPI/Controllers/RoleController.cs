@@ -1,5 +1,6 @@
 ﻿using BLL.Services;
 using DAL.Context;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,7 +25,8 @@ namespace FilmsSpeedRunAPI.Controllers
         {
             if (roleId == null || roleId == 0)
                 return BadRequest(new { error = "no role id" });
-            return Json(service.Get(roleId));
+            var role = await service.Get(roleId);
+            return Json(role);
         }
     }
 }

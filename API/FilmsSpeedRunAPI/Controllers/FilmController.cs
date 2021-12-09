@@ -13,7 +13,7 @@ namespace FilmsSpeedRunAPI.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
-    [EnableCors("AllowOrigin")]
+    [EnableCors("AllowOrigin")]    
     public class FilmController : Controller
     {
         FilmService service;
@@ -22,6 +22,7 @@ namespace FilmsSpeedRunAPI.Controllers
             service = new FilmService(context);
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] FilmDTO film)
         {
             if (film == null)
@@ -30,6 +31,7 @@ namespace FilmsSpeedRunAPI.Controllers
             return Ok();
         }
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> Delete(int filmId)
         {
             if (filmId == null || filmId == 0)
@@ -38,6 +40,7 @@ namespace FilmsSpeedRunAPI.Controllers
             return Ok();
         }
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> Put([FromBody] FilmDTO film)
         {
             if (film == null)
