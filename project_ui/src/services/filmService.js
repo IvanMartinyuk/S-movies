@@ -35,5 +35,10 @@ export default class filmService {
         let data = await response.json()
         return data
     } 
+    async getAll(id) {
+        let response = await fetch(this.baseUrl+'all' + '?filmId='+id)
+        let data = await response.json()
+        return data
+    } 
      
 }

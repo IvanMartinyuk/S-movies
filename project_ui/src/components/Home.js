@@ -36,7 +36,7 @@ class Home extends React.Component {
             <Route path='/actors/:id' component={Actor}></Route>
             <Route path='/directors/:id' component={Directors}></Route>
              <Route path='/producers/:id' component={Producer}></Route>
-             <Route path='/Populars/:id' component={Popular}></Route>
+             <Route path='/Populars' component={Popular}></Route>
             {/* <Route path='/selections/:id' component={Registration}></Route> */}
             <Route path="/films/:id" component={Film}/> 
             </Switch>
