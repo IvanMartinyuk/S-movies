@@ -18,7 +18,6 @@ export default function Index() {
         >
           Register
         </Link>
-        <Link to="/films/1">News</Link>
         <Link
           to={'/login'}
           className="butn"

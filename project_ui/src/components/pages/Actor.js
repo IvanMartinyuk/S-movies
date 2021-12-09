@@ -4,7 +4,7 @@ import userService from "../../services/userService";
 import filmService from "../../services/filmService";
 import { Link } from "react-router-dom";
 import { simpleService } from "../../services/simpleService";
-class Popular extends React.Component {
+class Actor extends React.Component {
   constructor(props) {
     super(props);
     this.id = 0;
@@ -22,7 +22,7 @@ class Popular extends React.Component {
     const id1 = this.props.match.params.id;
     this.id = id1;
 
-    let us = new simpleService('director');
+    let us = new simpleService('actor');
     us.response('get',id1).then((x) => {
       this.name = x.name;
       this.Image = x.image;
@@ -110,4 +110,4 @@ class Popular extends React.Component {
     );
   }
 }
-export default Popular;
+export default Actor;

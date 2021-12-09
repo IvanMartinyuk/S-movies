@@ -10,6 +10,10 @@ import Logout from './pages/Logout';
 import Film from './pages/Film';
 import { simpleService } from '../services/simpleService';
 import './css/index.css'
+import Actor from './pages/Actor';
+import Directors from './pages/Directors';
+import Producer from './pages/Producer';
+import Popular from './pages/Popular';
 class Home extends React.Component {
   
   constructor(props)
@@ -29,6 +33,11 @@ class Home extends React.Component {
             <Route path='/login' component={Login}></Route> 
             <Route path='/logout' component={Logout}></Route> 
             <Route path='/registration' component={Registration}></Route>
+            <Route path='/actors/:id' component={Actor}></Route>
+            <Route path='/directors/:id' component={Directors}></Route>
+             <Route path='/producers/:id' component={Producer}></Route>
+             <Route path='/Populars/:id' component={Popular}></Route>
+            {/* <Route path='/selections/:id' component={Registration}></Route> */}
             <Route path="/films/:id" component={Film}/> 
             </Switch>
       </Router></>

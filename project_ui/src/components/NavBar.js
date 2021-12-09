@@ -1,5 +1,6 @@
 import { userService } from "../services/userService"
 import React from "react";
+import { Link } from "react-router-dom";
 class NavBar extends React.Component {
   
   constructor(props)
@@ -66,19 +67,9 @@ class NavBar extends React.Component {
               <a className="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link txtlight" href="#">Popular</a>
+              <a className="nav-link txtlight" href="/populars/">Popular</a>
             </li>
-            <li className="nav-item dropdown ">
-              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Genres
-              </a>
-              <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                </ul>
-            </li>
+           
            
           </ul>
           <form className="d-flex "style={{'margin-right':"50px"}}>

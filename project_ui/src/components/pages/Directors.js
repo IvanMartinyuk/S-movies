@@ -4,7 +4,7 @@ import userService from "../../services/userService";
 import filmService from "../../services/filmService";
 import { Link } from "react-router-dom";
 import { simpleService } from "../../services/simpleService";
-class Popular extends React.Component {
+class Directors extends React.Component {
   constructor(props) {
     super(props);
     this.id = 0;
@@ -110,4 +110,4 @@ class Popular extends React.Component {
     );
   }
 }
-export default Popular;
+export default Directors;
