@@ -5,6 +5,7 @@ export default class userService {
     static login = ''
     static isAdmin = false;
     baseUrl = 'https://localhost:44325/user/'
+    baseUrl2 = 'https://localhost:44325/film/get?filmId='
     async login(login, password) {
         let user = {
             login: login,
@@ -39,6 +40,13 @@ export default class userService {
             body: JSON.stringify(user)
         })
         return response.ok
+    }
+    async getFilm(id) {
+        let response = await fetch(this.baseUrl2 + id)
+      
+        let data = await response.json()
+       
+        return data
     }
     async setIsAdmin(login)
     {
