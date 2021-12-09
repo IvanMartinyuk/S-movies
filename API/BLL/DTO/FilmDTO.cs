@@ -14,6 +14,7 @@ namespace BLL.DTO
         public DateTime DateOfPublishing { get; set; }
         public string Description { get; set; }
         public double Rating { get; set; }
+        public string Image { get; set; }
         public int CompanyId { get; set; }
     }
 }

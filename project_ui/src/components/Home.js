@@ -9,6 +9,7 @@ import { withRouter } from "react-router";
 import Logout from './pages/Logout';
 import Film from './pages/Film';
 import { simpleService } from '../services/simpleService';
+import './css/index.css'
 class Home extends React.Component {
   
   constructor(props)
