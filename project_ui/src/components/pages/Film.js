@@ -70,6 +70,9 @@ class Film extends React.Component {
     const id1 = this.props.match.params.id;
     this.id = id1;
     let uss = new simpleService("selection");
+    if(sessionStorage.getItem("id")){
+
+    
     uss.response("UsersSelections", sessionStorage.getItem("id")).then((x) => {
 
       this.Selections1 = x
@@ -123,7 +126,61 @@ class Film extends React.Component {
         });
       });
     });
+  }
+  else{
 
+      this.Selections1 = []
+     
+      let us = new filmService();
+      us.getFilm(id1).then((x) => {
+        this.Title = x.title;
+        this.Rating = x.rating;
+        this.DateOfPublishing = x.dateOfPublishing;
+        this.Description = x.description;
+        this.Image = x.image;
+  
+        this.CompanyId = x.CompanyId;
+  
+        this.Actors = [];
+        this.Genres = [];
+        this.Producers = [];
+        this.Selections = [];
+        this.Directors = [];
+  
+        us.getActors(id1).then((xx) => {
+          this.Actors = xx;
+          us.getGenres(id1).then((xxx) => {
+            this.Genres = xxx;
+            us.getProducers(id1).then((xxxx) => {
+              this.Producers = xxxx;
+  
+              us.getSelections(id1).then((xxxxc) => {
+                this.Selections = xxxxc;
+  
+                us.getDirectors(id1).then((xxxxcc) => {
+                  this.Directors = xxxxcc;
+                  this.setState({
+                    id: this.id,
+                    Title: this.Title,
+                    Rating: this.Rating,
+                    DateOfPublishing: this.DateOfPublishing.substr(0, 10),
+                    Description: this.Description,
+                    Image: this.Image,
+                    Actors: this.Actors,
+                    Genres: this.Genres,
+                    Producers: this.Producers,
+                    Selections: this.Selections,
+                    Directors: this.Directors,
+                    Selections1:this.Selections1
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    
+  }
  
   }
   Add(){

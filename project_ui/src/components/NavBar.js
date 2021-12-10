@@ -14,6 +14,7 @@ class NavBar extends React.Component {
   logout() {
     sessionStorage.setItem('isLogin', false)
     sessionStorage.setItem('access_token', '')
+    sessionStorage.removeItem("id")
     this.setState({items: NavBar.check(this.logout)})
     document.location.href = "/";
   }
