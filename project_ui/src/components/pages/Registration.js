@@ -8,7 +8,9 @@ class Registration extends React.Component {
     this.state = {
         login: '',
         email: '',
-        password: ''
+        password: '',
+        loginError: '',
+        passwordError: ''
     };
     this.changePasword = this.changePasword.bind(this);
     this.Register = this.Register.bind(this)
@@ -28,11 +30,26 @@ class Registration extends React.Component {
     if(document.getElementById('error').style.backgroundColor === 'green')
     {
       let service = new userService()
-      // console.log(this.state)
-      if(await service.registration(this.state.login, 
-                          this.state.email,
-                          this.state.password))
+      let response = await service.registration(this.state.login, 
+                                                this.state.email,
+                                                this.state.password)
+      let isreg = response.ok
+      if(isreg === true)
           this.props.history.push('/login')
+      else {
+        if (response.error === 'Login is not valid')
+         {
+            this.setState({loginError:response.error, passwordError: '' })
+            document.getElementById('logerr').style.display = "block"
+            document.getElementById('passerr').style.display = "none"
+         } 
+        else
+        {
+          this.setState({loginError:'', passwordError: response.error })
+          document.getElementById('logerr').style.display = "none"
+          document.getElementById('passerr').style.display = "block"
+       } 
+      }
     }
   }
 
@@ -50,6 +67,9 @@ class Registration extends React.Component {
       <div style={{ "margin-top": "100px" }}>
         <div className="d-flex justify-content-center mt-4">
           <div style={{ width: "200px", textAlign: "center" }}>
+            <div>
+              <labele className="error" id="logerr">{this.state.loginError}</labele>
+            </div>
             <div className="input-group mb-3">
               <input
                 onChange={event => {this.setState({login: event.target.value})}}
@@ -79,6 +99,9 @@ class Registration extends React.Component {
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
               ></input>
+            </div>
+            <div>
+              <labele className="error" id="passerr">{this.state.passwordError}</labele>
             </div>
             <div className="input-group mb-3">
               <input

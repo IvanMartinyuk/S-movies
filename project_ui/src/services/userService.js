@@ -10,7 +10,6 @@ export default class userService {
             login: login,
             passwordHash: hash(password)
         }
-        console.log(user)
         let response = await fetch(this.baseUrl + 'token', {
             method: 'POST',
             headers: {
@@ -18,12 +17,17 @@ export default class userService {
             },
             body: JSON.stringify(user)
         })
-        userService.isLogin = response.ok
+        console.log(1)
         let data = await response.json()
-        userService.login = data.username
-        sessionStorage.setItem('access_token', data.access_token)
-        sessionStorage.setItem("isLogin",true)
-        return response.ok
+        if(response.ok === true)
+        {
+            userService.isLogin = response.ok
+            userService.login = data.username
+            sessionStorage.setItem('access_token', data.access_token)
+            sessionStorage.setItem("isLogin",true)
+            this.setIsAdmin(data.username)
+        }
+        return {ok: response.ok, error: data.error}
     }
     async registration(login, email, password) {
         let user = {
@@ -38,10 +42,23 @@ export default class userService {
             },
             body: JSON.stringify(user)
         })
-        return response.ok
+        if(response.ok === false)
+        {
+            let data = await response.json()
+            return { ok: response.ok, error: data.error }
+        }
+        return { ok: response.ok, error: '' }
     }
     async setIsAdmin(login)
     {
-        
+        let res = await fetch(this.baseUrl + 'user?login=' + login)
+        let data = await res.json()
+        let response = await fetch('https://localhost:44325/role/get?roleId=' + data.roleId)
+        let role = await response.json()
+        console.log(role.name)
+        if(role.name === 'admin')
+            sessionStorage.setItem('isAdmin', true)
+        else
+            sessionStorage.setItem('isAdmin', false)
     }
 }

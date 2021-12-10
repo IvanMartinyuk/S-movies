@@ -14,7 +14,7 @@ namespace FilmsSpeedRunAPI
             context.Roles.Add(new Role() { Name = "admin" });
             context.SaveChanges();
 
-            context.Users.Add(new User() { Login = "admin", PasswordHash = "2af9b1ba42dc5eb01743e6b3759b6e4b", RoleId = 2 });
+            context.Users.Add(new User() { Login = "admin", PasswordHash = "a15bbc069bb0af781273e9d4021ec83c", RoleId = 2 });
             List<Film> films = new List<Film>() {
                 new Film()
                 {

@@ -123,5 +123,10 @@ namespace FilmsSpeedRunAPI.Controllers
                 return NotFound(new { error = "no data" });
             return Json(all);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetBy(int page, string prop = "base")
+        {
+            return Json(service.GetSortedPage(prop, page));
+        }
     }
 }

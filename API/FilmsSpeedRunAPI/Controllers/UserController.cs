@@ -57,9 +57,11 @@ namespace FilmsSpeedRunAPI.Controllers
         public async Task<IActionResult> Registration([FromBody] UserDTO user)
         {
             if (user == null)
-                return BadRequest(new { error = "Invalid login or password" });
+                return BadRequest(new { error = "Invalid data" });
             if (!service.ValidateUserName(user.Login))
-                return BadRequest(new { arror = "Login is not valid" });
+                return BadRequest(new { error = "Login is not valid" });
+            if (user.PasswordHash == "" || user.PasswordHash == null)
+                return BadRequest(new { error = "No password!" });
             user.RoleId = 1;
             await service.AddAsync(user);
             return Ok();

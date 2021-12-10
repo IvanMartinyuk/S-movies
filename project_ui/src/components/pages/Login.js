@@ -6,23 +6,32 @@ class Login extends React.Component {
     super(props)
     this.state = {
       login: '',
-      password: ''
+      password: '',
+      error: ''
     }
     this.login = this.login.bind(this)
   }
   async login()
   {
     let service = new userService()
-    if(await service.login(this.state.login, this.state.password)){
-      this.props.history.push('/')
+    let response = await service.login(this.state.login, this.state.password)
+    let islog = response.ok
+    if(islog === true){
+      document.location = '/'
     }
-
+    else {
+      document.getElementById('logerror').style.display = 'block'
+      this.setState({error: response.error})
+    }
   }
   render() {
     return (
       <div style={{ "margin-top": "100px" }}>
         <div className="d-flex justify-content-center mt-4">
           <div style={{ width: "200px", textAlign: "center" }}>
+            <div>
+            <label className="error" id="logerror">{this.state.error}</label>
+            </div>
             <div className="input-group mb-3">
               <input
                 onChange={event => this.setState({login: event.target.value})}

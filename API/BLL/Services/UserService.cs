@@ -19,14 +19,14 @@ namespace BLL.Services
 
         public bool Login(string login, string passwordHash)
         {
-            if (GetAll().Where(user => user.Login == login && user.PasswordHash == passwordHash) != null)
+            if (GetAll().Where(user => user.Login == login && user.PasswordHash == passwordHash).Count() > 0)
                 return true;
             return false;
         }
 
         public bool ValidateUserName(string login)
         {
-            if (GetAll().Where(user => user.Login == login) == null)
+            if (GetAll().Where(user => user.Login == login).Count() != 0)
                 return false;
             return true;
         }

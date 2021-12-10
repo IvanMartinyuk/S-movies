@@ -35,5 +35,5 @@ export default class filmService {
         let data = await response.json()
         return data
     } 
-     
+    
 }

@@ -159,3 +159,11 @@ input[type="color"]:focus,
     animation:lg 2s ;
     animation-iteration-count: infinite 
 }
+
+.error {
+    color: red;
+    background-color: rgba(0, 0, 0, 0.479);    
+    border-radius: 20px;
+    display: none;
+    height: min-content;
+}

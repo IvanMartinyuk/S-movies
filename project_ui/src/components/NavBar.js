@@ -5,7 +5,6 @@ class NavBar extends React.Component {
   {
     super(props)
     this.logout = this.logout.bind(this)
-    console.log(NavBar.check(this.logout))
     this.state = {
       items: NavBar.check(this.logout)
     }
@@ -18,10 +17,9 @@ class NavBar extends React.Component {
     this.setState({items: NavBar.check(this.logout)})
     
   }
-  static check(logout){
+  static check(logout) {
     let b = '' + sessionStorage.getItem('isLogin')
-    if(b === 'true'){
-      console.log('vhodit')
+    if(b === 'true'){      
         return (<div className=" dropdown dropstart" >
         <a className="nav-link  userb"style={{color:"white"}} href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           
@@ -35,7 +33,6 @@ class NavBar extends React.Component {
       </div>)
       
     }
-    console.log('i vhihodit')
       return (<div className=" dropdown dropstart" >
         <a className="nav-link  userb"style={{color:"white"}} href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           
