@@ -10,6 +10,7 @@ import Actor from './pages/Actor';
 import Directors from './pages/Directors';
 import Producer from './pages/Producer';
 import Popular from './pages/Popular';
+import Selection from './pages/Selections';
 class Home extends React.Component {
   constructor(props)
   {
@@ -31,7 +32,7 @@ class Home extends React.Component {
             <Route path='/directors/:id' component={Directors}></Route>
              <Route path='/producers/:id' component={Producer}></Route>
              <Route path='/Populars' component={Popular}></Route>
-            {/* <Route path='/selections/:id' component={Registration}></Route> */}
+             <Route path='/selections/:id' component={Selection}></Route> 
             <Route path="/films/:id" component={Film}/> 
             </Switch>
       </Router></>

@@ -18,7 +18,7 @@ namespace FilmsSpeedRunAPI
             List<Film> films = new List<Film>() {
                 new Film()
                 {
-                    Title = "Фильм Лига справедливости Зака Снайдера",
+                    Title = "Лига справедливости Зака Снайдера",
                     Image = "https://upload.wikimedia.org/wikipedia/ru/3/38/%D0%9B%D0%B8%D0%B3%D0%B0_%D1%81%D0%BF%D1%80%D0%B0%D0%B2%D0%B5%D0%B4%D0%BB%D0%B8%D0%B2%D0%BE%D1%81%D1%82%D0%B8_%D0%97%D0%B0%D0%BA%D0%B0_%D0%A1%D0%BD%D0%B0%D0%B9%D0%B4%D0%B5%D1%80%D0%B0.png",
                     Description = @"Долгожданная оригинальная версия фильма «Лига Справедливости» (2017), которую Зак Снайдер планировал снять до своего ухода с поста режиссёра. Режиссер принял решение смонтировать фильм в обожаемом им формате 4:3. После героического самопожертвования Супермена Брюс Уэйн заново обретает веру в людей. С помощью Чудо-женщины Бэтмен набирает супергероев в Лигу Справедливости, чтобы вместе сразиться с могущественным Степным волком.
                                     После смерти Супермена мир переживает не лучшие времена: в обществе царит напряжение, а богатым и властным людям, у которых есть влияние и сила, сходят с рук любые бесчинства. Луис Лейн, жена Супермена, больше не занимается громкими разоблачениями преступников и не пишет разгромные репортажи. Тем временем суперзлодей Степной волк, на стороне которого выступают летающие парадемоны, планирует превратить Землю в настоящий ад. Противостоять ему может лишь Бэтмен и его соратники. Вдохновлённый трагическим самопожертвованием Супермена, Брюс Уэйн вместе с Чудо-женщиной, Акваменом, бегуном Флэшем и компьютерным гением Киборгом выступают против Степного волка и его приспешников.
@@ -35,6 +35,11 @@ namespace FilmsSpeedRunAPI
                             new Actor() { Name = "Джейсон Момоа", Image = "https://m.media-amazon.com/images/M/MV5BODJlNWQ4ZjUtYjRhNi00NGQ1LWE3YTItYjRmZGI3YzI4YTEyXkEyXkFqcGdeQXVyMTA2MDIzMDE5._V1_UY317_CR130,0,214,317_AL_.jpg"}
                         },
                     Directors = new List<Director>() { new Director() { Name = "Зак Снайдер" } },
+                      Genres = new List<Genre>()
+                        {
+                            new Genre() { Name = "Фантастика" },
+                            new Genre() { Name = "Приключения" }
+                        },
                     Producers = new List<Producer>() 
                         {
                             new Producer() { Name = "Зак Снайдер", Image = "https://m.media-amazon.com/images/M/MV5BMTMzMjUyNjk1MV5BMl5BanBnXkFtZTcwMDc2Mzk3NA@@._V1_UY317_CR11,0,214,317_AL_.jpg" },
@@ -52,6 +57,12 @@ namespace FilmsSpeedRunAPI
                                     Тони разрабатывает уникальные железные доспехи, надев которые, ему удается вырваться из плена. После этого Старк возвращается на родину, чтобы найти заказчика похищения и расквитаться с ним. Теперь у него на вооружении находится суперсовременный бронированный костюм, а самого Тони называют не иначе, как Айронмен. В дальнейшем мужчина решает использовать свои доспехи на благо человечества и больше никогда не производить оружие.",
                     Rating = 7.6,
                     DateOfPublishing = new DateTime(2018, 4, 30),
+                      Genres = new List<Genre>()
+                        {
+                            new Genre() { Name = "Фантастика" },
+                            new Genre() { Name = "Боевики" },
+                            new Genre() { Name = "Приключения" }
+                        },
                     Actors = new List<Actor>()
                         {
                             new Actor() { Name = "Роберт Дауни мл.", Image = "https://www.google.com/search?q=%D0%A0%D0%BE%D0%B1%D0%B5%D1%80%D1%82+%D0%94%D0%B0%D1%83%D0%BD%D0%B8+%D0%BC%D0%BB.&rlz=1C1CHZN_ruUA957UA957&sxsrf=AOaemvJ-lcloU6IzsaMiD3FuFcmERNvNKQ:1638990653260&tbm=isch&source=iu&ictx=1&fir=1VLrpbMqSgzG0M%252Ci1XFQfkOhLUyrM%252C%252Fm%252F016z2j%253By3GTjTBLQfooTM%252CfZT_HSzu_3dQEM%252C_%253BAEWYSJC6JtwvaM%252Cb7tz75Sv5FltoM%252C_%253Bj1WXIuwnp0xSHM%252Cp7y05Va4M193vM%252C_%253BquGhu0KEe44zUM%252Cx64pWBbD8C4JGM%252C_%253BREacaKWTNI5IMM%252CDchhLpdn2Hci9M%252C_%253B1lVMtVUbS2SFnM%252C_FLfipWpxqNx0M%252C_%253B5-k8VM2mIDU3LM%252CD7zSBFYdc-35SM%252C_&vet=1&usg=AI4_-kTEs6MG05rOtrfcs12Vuon9M85N0Q&sa=X&ved=2ahUKEwiKz7X989T0AhWx8bsIHYWIDV0Q_B16BAhPEAE#imgrc=1VLrpbMqSgzG0M"},
@@ -73,7 +84,7 @@ namespace FilmsSpeedRunAPI
                     Description = @"Щедро начиненный спецэффектами приключенческий экшн про самого патриотичного супергероя марвеловскоских комиксов Капитана Америку от художника-концептуалиста первых «Звездных войн» и режиссера «Джуманджи» и «Человека-волка» Джо Джонстона. Тщедушный Стив Роджерс мечтает присоединиться к добровольцам, отправляющимся на фронт Второй мировой. Но раз за разом комиссия признает его негодным для службы по состоянию здоровья. При пятой попытке попасть в ряды защитников отечества настырного молодого человека замечает профессор Авраам Эрскин, работающий над секретной правительственной программой по созданию команды суперсолдат. Благодаря сыворотке и специальному облучению, разработанным Эрскиным при технической поддержке Говарда Старка, Стив превращается в практически неуязвимого человека, чьей униформой становится комбинезон в цвет американского флага и круглый щит, а главным противником – бесчеловечный Иоганн Шмитдт, приспешник Гитлера, который тоже мечтает о мировом господстве. Если вам интересно узнать, как сложится судьба главного героя, рекомендуем смотреть онлайн «Первый мститель».",
                     Rating = 8.3,
                     DateOfPublishing = new DateTime(1918, 7, 4),
-                    Genres = new List<Genre>() 
+                    Genres = new List<Genre>()
                         {
                             new Genre() { Name = "Фантастика" },
                             new Genre() { Name = "Боевики" },
@@ -92,11 +103,101 @@ namespace FilmsSpeedRunAPI
                             new Producer() { Name = "Кевин Файги", Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Kevin_Feige_%2848462887397%29_%28cropped%29.jpg/330px-Kevin_Feige_%2848462887397%29_%28cropped%29.jpg" }
                         },
                     Company = new Company() { Name = "Marvel Studios", Description = "Marvel Studios, LLC (первоначально известная как Marvel Films с 1993 до 1996 года) — американская киностудия, располагающаяся в The Walt Disney Studios, Бербанк, штат Калифорния. Является дочерней компанией Walt Disney Studios, которая принадлежит медиаконгломерату The Walt Disney Company. Президентом киностудии является кинопродюсер Кевин Файги. Ранее студия была дочерним предприятием Marvel Entertainment, пока The Walt Disney Company не реорганизовала компании в августе 2015 года."}
-                }
+                },
+                new Film()
+                {
+                    Title = "Соник в кино",
+                    Image = "https://kinogo.zone/uploads/posts/2021-06/1622997362_sonic-the-hedgehog-sonik-v-kino-2020.jpg",
+                    Description = @"Легендарная игра на приставке Сега -
+Соник появится в кино. И это будет просто красочный шедевр
+который ждали много поклонников. Приключения Соника икс
+и его лучшего друга Тейлза, Эми и Крим против злодея гения
+Эггмана вовлекут вас в мир фантазии всех искушенных
+зрителей этого жанра. Вы увидите как ваши любимые герои
+спасут мир",
+                    Rating = 7.5,
+                    DateOfPublishing = new DateTime(2020,1,1 ),
+                    Genres = new List<Genre>()
+                        {
+                            new Genre() { Name = "Боевики" },
+                            new Genre() { Name = "Мультфильмы" },
+                            new Genre() { Name = "Приключения" },
+                        },
+                    Actors = new List<Actor>()
+                        {
+                            new Actor() { Name = "Джеймс Марсден", Image = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/efae4ec1-ae0f-4944-89b1-8119c7947cd2/280x420" },
+                            new Actor() { Name = "Лиэнн Лэпп", Image = "https://www.film.ru/sites/default/files/persones/_imported/3060342.jpg" },
+                            new Actor() { Name = "Эльфина Люк ", Image = "https://www.kinonews.ru/insimgs/2019/persimg/persimg36696.jpg" },
+                            new Actor() { Name = "Дебс Ховард ", Image = "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/b7fcad05-7f47-4f2e-8a3e-ef88eb170daf/360" },
+                        },
+                    Directors = new List<Director>() {
+                        new Director() { Name = "Джефф Фаулер" }
+                    },
+                    Company = new Company() { Name = "Warner Bros. Pictures", Description = "Warner Bros. Entertainment, Inc. (ранее Warner Bros. Pictures), (обычно называется Warner Bros., по-русски Братья Уо́рнер) — один из крупнейших концернов по производству фильмов и телесериалов в США. В настоящее время подразделение группы компаний WarnerMedia с офисом в Калифорнии"}
+
+
+                },
+                new Film()
+                {
+                    Title = "Поиск",
+                    Image = "https://hd-1.videobox.cx/uploads/mini/poster/bd/970196_1607537778.webp",
+                    Description = @"16-летняя дочь Дэвида Кима пропадает без следа. Чтобы дать полиции зацепки, отчаявшийся отец взламывает компьютер девочки и понимает, что ничего не знает о собственной дочери.",
+                    Rating = 7.4,
+                    DateOfPublishing = new DateTime(2018,1,1 ),
+                    Genres = new List<Genre>()
+                        {
+                            new Genre() { Name = "Детектив" },
+                            new Genre() { Name = "Драма" },
+                        },
+                    Actors = new List<Actor>()
+                        {
+                            new Actor() { Name = "Джон Чо", Image = "https://kinoafisha.ua/upload/persons/3575/src_1yvf0xu5djon-co.jpg" },
+                            new Actor() { Name = "Сара Сон", Image = "https://www.film.ru/sites/default/files/people/02_sara-mibo-sohn-privy.jpg" },
+                            new Actor() { Name = "Алекс Джейн Гоу", Image = "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/1bb9e468-be9c-4f97-aa6f-8ee85c5638e8/360" },
+                            new Actor() { Name = "Меган Лью", Image = "https://images.kinorium.com/persona/180/3362960.jpg?1547639944" },
+                        },
+                    Directors = new List<Director>() {
+                        new Director() { Name = "Аниш Чаганти" }
+                    },
+                    Company = new Company() { Name = "Warner Bros. Pictures", Description = "Warner Bros. Entertainment, Inc. (ранее Warner Bros. Pictures), (обычно называется Warner Bros., по-русски Братья Уо́рнер) — один из крупнейших концернов по производству фильмов и телесериалов в США. В настоящее время подразделение группы компаний WarnerMedia с офисом в Калифорнии"}
+
+                },
             };
+
             foreach (var f in films)
                 context.Films.Add(f);
+            context.SaveChanges();
 
+            List<Selection> Selections = new List<Selection>() {
+                new Selection(){
+                    Name="Hot",UserId=1,
+                    Films = new List<Film>()
+                    {
+                        context.Films.FirstOrDefault(x=>x.Id==1),
+                        context.Films.FirstOrDefault(x=>x.Id==2),
+                        context.Films.FirstOrDefault(x=>x.Id==3),
+                    }
+                },
+                new Selection(){
+                    Name="New",UserId=1,
+                    Films = new List<Film>()
+                    {
+                        context.Films.FirstOrDefault(x=>x.Id==4),
+                        context.Films.FirstOrDefault(x=>x.Id==2),
+                        context.Films.FirstOrDefault(x=>x.Id==3),
+                    }
+                },
+                new Selection(){
+                    Name="Top-1",UserId=1,
+                    Films = new List<Film>()
+                    {
+                        context.Films.FirstOrDefault(x=>x.Id==5),
+                        context.Films.FirstOrDefault(x=>x.Id==3),
+                        context.Films.FirstOrDefault(x=>x.Id==4),
+                    }
+                },
+            };
+            context.Selections.AddRange(Selections);
             context.SaveChanges();
         }
     }

@@ -64,6 +64,14 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(all);
         }
         [HttpGet]
+        public async Task<IActionResult> AllAdmin()
+        {
+            var all = service.GetAll().Where(x=>x.UserId==1);
+            if (all == null)
+                return NotFound(new { error = "no data" });
+            return Json(all);
+        }
+        [HttpGet]
         public async Task<IActionResult> Films(int selectionId)
         {
             if (selectionId == null || selectionId == 0)

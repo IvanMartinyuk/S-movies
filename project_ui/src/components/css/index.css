@@ -120,7 +120,15 @@ input[type="color"]:focus,
     margin-left: 00px!important;
 }
 }
-
+#box {
+   
+    animation:pulse 0.5s infinite alternate;
+  }
+  
+  @keyframes pulse {
+    from { box-shadow:0px 0px 10px 3px #00cc33; }
+    to { box-shadow:0px 0px 20px 5px #00cc33; }
+  }
 .infodiv {
     position: absolute;
     bottom: -420px;
