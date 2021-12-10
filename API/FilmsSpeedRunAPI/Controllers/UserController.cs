@@ -82,5 +82,15 @@ namespace FilmsSpeedRunAPI.Controllers
         {
             return Json(service.GetAll().FirstOrDefault(x => x.Login == login));
         }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword([FromBody] UserDTO user)
+        {
+            var u = service.GetAll().Where(x => x.Login == user.Login).FirstOrDefault();
+            if (u == null)
+                return NotFound(new { error = "User not found" });
+            u.PasswordHash = user.PasswordHash;
+            return Ok();
+        }
     }
 }
