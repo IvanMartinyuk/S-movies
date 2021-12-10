@@ -6,6 +6,10 @@ import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Film from './pages/Film';
 import './css/index.css'
+import Actor from './pages/Actor';
+import Directors from './pages/Directors';
+import Producer from './pages/Producer';
+import Popular from './pages/Popular';
 class Home extends React.Component {
   constructor(props)
   {
@@ -23,6 +27,11 @@ class Home extends React.Component {
             <Route exact path='/' component={() =><Index ></Index>} ></Route>
             <Route path='/login' component={Login}></Route> 
             <Route path='/registration' component={Registration}></Route>
+            <Route path='/actors/:id' component={Actor}></Route>
+            <Route path='/directors/:id' component={Directors}></Route>
+             <Route path='/producers/:id' component={Producer}></Route>
+             <Route path='/Populars' component={Popular}></Route>
+            {/* <Route path='/selections/:id' component={Registration}></Route> */}
             <Route path="/films/:id" component={Film}/> 
             </Switch>
       </Router></>

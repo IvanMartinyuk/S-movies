@@ -19,7 +19,7 @@ export class simpleService {
     }
     async response(method, entity) {
         const token = sessionStorage.getItem('access_token')
-        let path = this.baseUrl + method
+        let path = this.baseUrl + method+ '?' + this.name + 'Id=' + entity
         let m = method.toUpperCase()
         if(m === 'DELETE')
         {
@@ -52,7 +52,7 @@ export class simpleService {
                 'Content-Type': 'application/json',
                 'Authorization': 'bearer ' + token
             },
-            body: JSON.stringify(entity)
+           // body: JSON.stringify(entity)
         })
         let data = await response.json()
         return data
