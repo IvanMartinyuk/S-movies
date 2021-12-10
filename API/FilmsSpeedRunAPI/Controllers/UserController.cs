@@ -49,7 +49,8 @@ namespace FilmsSpeedRunAPI.Controllers
             var response = new
             {
                 access_token = accessToken,
-                username = claim.Name
+                username = claim.Name,
+                id= service.GetId(user.Login, user.PasswordHash)
             };
             return Json(response);
         }

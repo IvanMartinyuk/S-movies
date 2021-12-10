@@ -11,6 +11,7 @@ import Directors from './pages/Directors';
 import Producer from './pages/Producer';
 import Popular from './pages/Popular';
 import Selection from './pages/Selections';
+import Lists from './pages/Lists';
 class Home extends React.Component {
   constructor(props)
   {
@@ -27,6 +28,7 @@ class Home extends React.Component {
           <Switch>
             <Route exact path='/' component={() =><Index ></Index>} ></Route>
             <Route path='/login' component={Login}></Route> 
+            <Route path='/lists' component={Lists}></Route> 
             <Route path='/registration' component={Registration}></Route>
             <Route path='/actors/:id' component={Actor}></Route>
             <Route path='/directors/:id' component={Directors}></Route>

@@ -15,7 +15,7 @@ class NavBar extends React.Component {
     sessionStorage.setItem('isLogin', false)
     sessionStorage.setItem('access_token', '')
     this.setState({items: NavBar.check(this.logout)})
-    
+    document.location.href = "/";
   }
   static check(logout) {
     let b = '' + sessionStorage.getItem('isLogin')
@@ -25,8 +25,8 @@ class NavBar extends React.Component {
           
         </a>
         <ul className="dropdown-menu dropdown-menu-dark dm" aria-labelledby="navbarDropdown">
-          <li><a className="dropdown-item" href="#">Profile</a></li>
-          <li><a className="dropdown-item" href="#">Saved</a></li>
+          <li><a className="dropdown-item" href="changepsw">Change Password</a></li>
+          <li><a className="dropdown-item" href="/lists">Selections</a></li>
           <li><hr className="dropdown-divider"/></li>
           <li><button className="dropdown-item" onClick={() => logout()}>Log out</button></li>
         </ul>
@@ -38,8 +38,8 @@ class NavBar extends React.Component {
           
         </a>
         <ul className="dropdown-menu dropdown-menu-dark dm" aria-labelledby="navbarDropdown">
-          <li><a className="dropdown-item" href="Login">Login</a></li>
-          <li><a className="dropdown-item" href="Registration">Register</a></li>
+          <li><a className="dropdown-item" href="/Login">Login</a></li>
+          <li><a className="dropdown-item" href="/Registration">Register</a></li>
         </ul>
       </div>)
      

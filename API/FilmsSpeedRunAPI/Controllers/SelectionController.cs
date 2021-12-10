@@ -32,7 +32,7 @@ namespace FilmsSpeedRunAPI.Controllers
         }
         [HttpDelete]
         [Authorize]
-        public async Task<IActionResult> Delete([FromBody] int selectionId)
+        public async Task<IActionResult> Delete( int selectionId)
         {
             if (selectionId == null || selectionId == 0)
                 return BadRequest(new { error = "no actor id" });
@@ -64,6 +64,14 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(all);
         }
         [HttpGet]
+        public async Task<IActionResult> UsersSelections(int selectionId)
+        {
+            var all = service.GetAll().Where(x=>x.UserId== selectionId);
+            if (all == null)
+                return NotFound(new { error = "no data" });
+            return Json(all);
+        }
+        [HttpGet]
         public async Task<IActionResult> AllAdmin()
         {
             var all = service.GetAll().Where(x=>x.UserId==1);
@@ -81,5 +89,6 @@ namespace FilmsSpeedRunAPI.Controllers
                 return NotFound(new { error = "no data" });
             return Json(all);
         }
+       
     }
 }

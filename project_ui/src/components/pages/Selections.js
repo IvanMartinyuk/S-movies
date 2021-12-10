@@ -7,25 +7,40 @@ import { simpleService } from "../../services/simpleService";
 class Selection extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.state = {
-     mas:[]
-    };
 
+    this.state = {
+      mas: [],
+      name: "",
+    };
   }
   componentDidMount() {
     const id1 = this.props.match.params.id;
     this.id = id1;
 
-    let t = new simpleService("selection")
-    t.response('films',id1).then(x=>{this.setState({mas:x})});
+    let t = new simpleService("selection");
+    t.response("films", id1).then((x) => {
+        t.response("get", id1).then((xx) => {
+            this.setState({ mas: x,name:xx.name });
+          });
+    });
   }
 
   render() {
-    console.log(this.state.mas)
+    console.log(this.state.mas);
     return (
       <>
-           <div
+        <div
+          style={{
+            color: "white",
+            fontSize: "3vw",
+            width: "40vw",
+            marginLeft: "17vw",
+            textShadow: "5px 2px rgba(0,00,0,0.5)",
+          }}
+        >
+          Selection {this.state.name}
+        </div>
+        <div
           style={{
             marginTop: "100px",
             marginLeft: "10vw",
@@ -72,7 +87,7 @@ class Selection extends React.Component {
             );
           })}
         </div>
-       </>
+      </>
     );
   }
 }

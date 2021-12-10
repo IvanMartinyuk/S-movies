@@ -23,6 +23,10 @@ namespace BLL.Services
                 return true;
             return false;
         }
+        public int GetId(string login, string passwordHash)
+        {
+            return GetAll().Where(user => user.Login == login && user.PasswordHash == passwordHash).FirstOrDefault().Id;
+        }
 
         public bool ValidateUserName(string login)
         {

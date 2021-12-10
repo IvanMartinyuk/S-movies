@@ -3,6 +3,7 @@ import hash from "./passwordService"
 export default class userService {
     static isLogin = false
     static login = ''
+    static id = 0
     static isAdmin = false;
     baseUrl = 'https://localhost:44325/user/'
     async login(login, password) {
@@ -17,16 +18,20 @@ export default class userService {
             },
             body: JSON.stringify(user)
         })
-        console.log(1)
         let data = await response.json()
         if(response.ok === true)
         {
             userService.isLogin = response.ok
             userService.login = data.username
+            userService.id = data.id
+            sessionStorage.setItem('id', data.id)
             sessionStorage.setItem('access_token', data.access_token)
             sessionStorage.setItem("isLogin",true)
             this.setIsAdmin(data.username)
         }
+
+
+        
         return {ok: response.ok, error: data.error}
     }
     async registration(login, email, password) {

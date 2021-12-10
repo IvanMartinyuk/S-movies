@@ -140,7 +140,36 @@ input[type="color"]:focus,
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.075) inset, 0 0 18px rgba(126, 239, 104, 0.6);
     border-radius: 25px  ; 
 }
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed; /* Оставаться на месте */
+    z-index: 1; /* Сидеть на вершине */
+    left: 0;
+    top: 0;
+    width: 100%; /* Полная ширина */
+    height: 100%; /* Полная высота */
+    overflow: auto; /* Включите прокрутку, если это необходимо */
+    background-color: rgba(0, 0, 0, 0.664); /* Черный с непрозрачностью */
+    
+  }
   
+  /* Модальное содержание/коробка */
+ 
+  
+  /* Кнопка закрытия */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
   .infodiv:hover {
     bottom: 0px;
   }
@@ -175,3 +204,11 @@ input[type="color"]:focus,
     display: none;
     height: min-content;
 }
+.modal-conten {
+    background-color: #826bbe;
+    margin: 30% auto; 
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%; /* Может быть больше или меньше, в зависимости от размера экрана */
+   
+  }

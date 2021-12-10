@@ -3,6 +3,15 @@ import React from "react";
 import userService from "../../services/userService";
 import filmService from "../../services/filmService";
 import { Link } from "react-router-dom";
+import { simpleService } from "../../services/simpleService";
+function contains(arr, pred) {
+  for (var i = 0; i < arr.length; i++) {
+      if (arr[i].id===pred) {
+          return true;
+      }
+  }
+  return false;
+}
 class Film extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +27,7 @@ class Film extends React.Component {
     this.Selections = [];
     this.Directors = [];
     this.CompanyId = 0;
+    this.Selections1=[];
     this.state = {
       id: 0,
       Title: "",
@@ -31,54 +41,81 @@ class Film extends React.Component {
       Selections: [],
       Directors: [],
       CompanyId: 0,
+      Selections: this.Selections,
+      Selections1: this.Selections1,
+
     };
+    this.Add=this.Add.bind(this)
+    this.AddToSelection=this.AddToSelection.bind(this)
+    this.DeleteFromSelection=this.DeleteFromSelection.bind(this)
+    
+  }
+  AddToSelection(x){
+    let uss = new simpleService("selection");
+    uss.response("Films",x).then(xx=>{
+      let news = []
+      let a ;
+      for(let i = 0;i<xx.length;i++)
+          if(xx[i].id!==x)
+             news.push(xx[i])
+             else a= xx[i];
+      
+      uss.response('put',{news})
+    })
+  }
+  DeleteFromSelection(x){
+
   }
   componentDidMount() {
     const id1 = this.props.match.params.id;
     this.id = id1;
+    let uss = new simpleService("selection");
+    uss.response("UsersSelections", sessionStorage.getItem("id")).then((x) => {
 
-    let us = new filmService();
-    us.getFilm(id1).then((x) => {
-      this.Title = x.title;
-      this.Rating = x.rating;
-      this.DateOfPublishing = x.dateOfPublishing;
-      this.Description = x.description;
-      this.Image = x.image;
-      console.log(this.Rating);
-
-      this.CompanyId = x.CompanyId;
-
-      this.Actors = [];
-      this.Genres = [];
-      this.Producers = [];
-      this.Selections = [];
-      this.Directors = [];
-
-      us.getActors(id1).then((xx) => {
-        this.Actors = xx;
-        us.getGenres(id1).then((xxx) => {
-          this.Genres = xxx;
-          console.log(xxx);
-          us.getProducers(id1).then((xxxx) => {
-            this.Producers = xxxx;
-
-            us.getSelections(id1).then((xxxxc) => {
-              this.Selections = xxxxc;
-
-              us.getDirectors(id1).then((xxxxcc) => {
-                this.Directors = xxxxcc;
-                this.setState({
-                  id: this.id,
-                  Title: this.Title,
-                  Rating: this.Rating,
-                  DateOfPublishing: this.DateOfPublishing.substr(0, 10),
-                  Description: this.Description,
-                  Image: this.Image,
-                  Actors: this.Actors,
-                  Genres: this.Genres,
-                  Producers: this.Producers,
-                  Selections: this.Selections,
-                  Directors: this.Directors,
+      this.Selections1 = x
+     
+      let us = new filmService();
+      us.getFilm(id1).then((x) => {
+        this.Title = x.title;
+        this.Rating = x.rating;
+        this.DateOfPublishing = x.dateOfPublishing;
+        this.Description = x.description;
+        this.Image = x.image;
+  
+        this.CompanyId = x.CompanyId;
+  
+        this.Actors = [];
+        this.Genres = [];
+        this.Producers = [];
+        this.Selections = [];
+        this.Directors = [];
+  
+        us.getActors(id1).then((xx) => {
+          this.Actors = xx;
+          us.getGenres(id1).then((xxx) => {
+            this.Genres = xxx;
+            us.getProducers(id1).then((xxxx) => {
+              this.Producers = xxxx;
+  
+              us.getSelections(id1).then((xxxxc) => {
+                this.Selections = xxxxc;
+  
+                us.getDirectors(id1).then((xxxxcc) => {
+                  this.Directors = xxxxcc;
+                  this.setState({
+                    id: this.id,
+                    Title: this.Title,
+                    Rating: this.Rating,
+                    DateOfPublishing: this.DateOfPublishing.substr(0, 10),
+                    Description: this.Description,
+                    Image: this.Image,
+                    Actors: this.Actors,
+                    Genres: this.Genres,
+                    Producers: this.Producers,
+                    Selections: this.Selections,
+                    Directors: this.Directors,
+                    Selections1:this.Selections1
+                  });
                 });
               });
             });
@@ -86,10 +123,23 @@ class Film extends React.Component {
         });
       });
     });
-  }
 
+ 
+  }
+  Add(){
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+      modal.style.display = "block";
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  }
   render() {
-      console.log(this.state.Selections)
     return (
       <>
         <div
@@ -165,6 +215,13 @@ class Film extends React.Component {
                   </div>
                 );
               })}
+              { '' + sessionStorage.getItem('isLogin')==='true' &&
+              <div className="d-flex justify-content-end">
+               <button style={{ }} onClick={this.Add} className="btn text-light bg-dark"> Add </button>
+
+
+              </div>
+               }
             </div>
           </div>
 
@@ -326,6 +383,51 @@ class Film extends React.Component {
      </div>
       }
       <div style={{marginTop:"100px"}}></div>
+      <div id="myModal" class="modal">
+
+ 
+  <div class="modal-conten">
+    <div className="d-flex justify-content-end">
+    <span class="close">&times;</span>
+    </div>
+    {this.state.Selections1.map((x) => (
+              <div style={{ margin:'10px'}} key={x.id} className="d-flex justify-content-between">
+                <div 
+                  style={{
+                    color: "white",
+                    fontSize: "20px",
+                    textShadow: "0.3vw 2px rgba(0,00,0,0.5)",
+                    alignSelf: "center",
+                    textAlign: "center",
+                   
+                  }}
+                >
+                  {x.name}
+                </div>
+                {contains(this.state.Selections,x.id)==true &&
+                <button className="btn btn-danger" onClick={()=>this.DeleteFromSelection(x.id)} style={{width:'40px',height:'40px',marginLeft:"10px", textAlign:'center'}}>-</button>
+                }
+                {contains(this.state.Selections,x.id)==false &&
+                <button className="btn btn-success" onClick={()=>this.AddToSelection(x.id)} style={{width:'40px',height:'40px',marginLeft:"10px", textAlign:'center'}}>+</button>
+                }
+              </div>
+            ))}
+    {this.state.Selections1.length==0 &&
+       <div
+       style={{
+         color: "white",
+         fontSize: "2vw",
+         textShadow: "0.3vw 2px rgba(0,00,0,0.5)",
+         marginLeft:"22vw"
+       }}
+      
+     >
+       There are not selections.
+     </div>
+      }
+    </div>
+  </div>
+  
       </>
     );
   }
