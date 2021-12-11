@@ -12,6 +12,7 @@ import Producer from './pages/Producer';
 import Popular from './pages/Popular';
 import Selection from './pages/Selections';
 import Lists from './pages/Lists';
+import Changepass from './pages/changepass/changepass';
 class Home extends React.Component {
   constructor(props)
   {
@@ -32,11 +33,12 @@ class Home extends React.Component {
             <Route path='/registration' component={Registration}></Route>
             <Route path='/actors/:id' component={Actor}></Route>
             <Route path='/directors/:id' component={Directors}></Route>
-             <Route path='/producers/:id' component={Producer}></Route>
-             <Route path='/Populars' component={Popular}></Route>
-             <Route path='/selections/:id' component={Selection}></Route> 
+            <Route path='/producers/:id' component={Producer}></Route>
+            <Route path='/Populars' component={Popular}></Route>
+            <Route path='/selections/:id' component={Selection}></Route> 
             <Route path="/films/:id" component={Film}/> 
-            </Switch>
+            <Route path="/changepass" component={Changepass}/> 
+          </Switch>
       </Router></>
     );
   }

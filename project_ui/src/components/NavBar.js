@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 class NavBar extends React.Component {
   constructor(props)
@@ -26,7 +27,7 @@ class NavBar extends React.Component {
           
         </a>
         <ul className="dropdown-menu dropdown-menu-dark dm" aria-labelledby="navbarDropdown">
-          <li><a className="dropdown-item" href="changepsw">Change Password</a></li>
+          <li><a className="dropdown-item" href="/changepass">Change Password</a></li>
           <li><a className="dropdown-item" href="/lists">Selections</a></li>
           <li><hr className="dropdown-divider"/></li>
           <li><button className="dropdown-item" onClick={() => logout()}>Log out</button></li>

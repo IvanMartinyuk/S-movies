@@ -27,6 +27,7 @@ export default class userService {
             sessionStorage.setItem('id', data.id)
             sessionStorage.setItem('access_token', data.access_token)
             sessionStorage.setItem("isLogin",true)
+            sessionStorage.setItem("username", data.username)
             this.setIsAdmin(data.username)
         }
 
@@ -65,5 +66,23 @@ export default class userService {
             sessionStorage.setItem('isAdmin', true)
         else
             sessionStorage.setItem('isAdmin', false)
+    }
+    async changepassword(pass)
+    {
+        let user = {
+            login: sessionStorage.getItem('username'),
+            passwordHash: hash(pass)
+        }
+        const token = sessionStorage.getItem('access_token')
+        let response = await fetch(this.baseUrl + 'changePassword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer ' + token
+            },
+            body: JSON.stringify(user)
+        })
+        console.log(response.ok)
+        return response.ok
     }
 }

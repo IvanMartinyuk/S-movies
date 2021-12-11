@@ -23,12 +23,14 @@ namespace DAL.Repositories
 
         public async Task<T> GetAsync(int id)
         {
-            return await table.FindAsync(id);
+            var entity = await table.FindAsync(id);
+            context.Entry(entity).State = EntityState.Detached;
+            return entity;
         }
 
         public IEnumerable<T> GetAll()
         {
-            return table;
+            return table.AsNoTracking();
         }
 
         public async Task RemoveAsync(T entity)

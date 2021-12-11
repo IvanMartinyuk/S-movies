@@ -18,21 +18,22 @@ export class simpleService {
         return data
     }
     async response(method, entity) {
+        console.log(method)
         const token = sessionStorage.getItem('access_token')
         let path = this.baseUrl + method+ '?' + this.name + 'Id=' + entity
         let m = method.toUpperCase()
         if(m === 'DELETE')
         {
             path = this.baseUrl + method + '?' + this.name + 'Id=' + entity
+            console.log(token)
             let response = await fetch(path, {
                 method: m,
-                header: {
+                headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'bearer ' + token
                 }
             })
-            let data = await response.json()
-            return data
+            return response.ok
         }
         if(m !== 'POST' && m !== 'PUT' && m !== 'DELETE')
         {
@@ -46,65 +47,66 @@ export class simpleService {
             let data = await response.json()
             return data
         }
+        path = this.baseUrl + method
         let response = await fetch(path, {
             method: m,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'bearer ' + token
             },
-           // body: JSON.stringify(entity)
+            body: JSON.stringify(entity)
         })
         let data = await response.json()
         return data
     }
-    async POST( entity){
-        let path = this.baseUrl +'post'
-        const token = sessionStorage.getItem('access_token')
-        console.log(path)
-        console.log(entity)
-        let response = await fetch(path, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "*",
-                'Authorization': 'bearer ' + token
-            },
-            body: JSON.stringify(entity)
-        })
-        let data = await response.ok
-        return data
-    }
-    async PUT(entity){
-        let path = this.baseUrl +'put'
-        const token = sessionStorage.getItem('access_token')
-        console.log(path)
-        console.log(entity)
-        let response = await fetch(path, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "*",
-                'Authorization': 'bearer ' + token
-            },
-            body: JSON.stringify(entity)
-        })
-        let data = await response.ok
-        return data
-    }
-    async DELETE( entity){
-        let path = this.baseUrl +'delete?'+this.name+'Id='+entity
-        const token = sessionStorage.getItem('access_token')
-        console.log(path)
-        console.log(entity)
-        let response = await fetch(path, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'bearer ' + token
-            }
+    // async POST( entity){
+    //     let path = this.baseUrl +'post'
+    //     const token = sessionStorage.getItem('access_token')
+    //     console.log(path)
+    //     console.log(entity)
+    //     let response = await fetch(path, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             "Access-Control-Allow-Origin": "*",
+    //             'Authorization': 'bearer ' + token
+    //         },
+    //         body: JSON.stringify(entity)
+    //     })
+    //     let data = await response.ok
+    //     return data
+    // }
+    // async PUT(entity){
+    //     let path = this.baseUrl +'put'
+    //     const token = sessionStorage.getItem('access_token')
+    //     console.log(path)
+    //     console.log(entity)
+    //     let response = await fetch(path, {
+    //         method: 'PUT',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             "Access-Control-Allow-Origin": "*",
+    //             'Authorization': 'bearer ' + token
+    //         },
+    //         body: JSON.stringify(entity)
+    //     })
+    //     let data = await response.ok
+    //     return data
+    // }
+    // async DELETE( entity){
+    //     let path = this.baseUrl +'delete?'+this.name+'Id='+entity
+    //     const token = sessionStorage.getItem('access_token')
+    //     console.log(path)
+    //     console.log(entity)
+    //     let response = await fetch(path, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': 'bearer ' + token
+    //         }
            
-        })
-        let data = await response.ok
-        return data
-    }
+    //     })
+    //     let data = await response.ok
+    //     return data
+    // }
 }

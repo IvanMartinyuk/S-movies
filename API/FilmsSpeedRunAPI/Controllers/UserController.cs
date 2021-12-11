@@ -90,6 +90,7 @@ namespace FilmsSpeedRunAPI.Controllers
             if (u == null)
                 return NotFound(new { error = "User not found" });
             u.PasswordHash = user.PasswordHash;
+            await service.UpdateAsync(u);
             return Ok();
         }
     }

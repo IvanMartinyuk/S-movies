@@ -19,7 +19,6 @@ class Lists extends React.Component {
     let us = new simpleService("selection");
     us.response("UsersSelections", sessionStorage.getItem("id")).then((x) => {
       this.selections = x;
-
       this.setState({
         selections: this.selections,
       });
@@ -28,7 +27,7 @@ class Lists extends React.Component {
   Create() {
     let us = new simpleService("selection");
     console.log();
-    us.POST({
+    us.response('post', {
       name: document.getElementById("inp").value,
       userId: sessionStorage.getItem("id"),
     }).then((xx) =>{
@@ -44,7 +43,7 @@ class Lists extends React.Component {
   Delete(X){
     let us = new simpleService("selection");
     console.log();
-    us.DELETE(X
+    us.response('delete', X
     ).then((xx) =>{
       us.response("UsersSelections", sessionStorage.getItem("id")).then((x) => {
         console.log(x);
