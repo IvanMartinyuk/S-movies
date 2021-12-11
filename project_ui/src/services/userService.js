@@ -29,11 +29,22 @@ export default class userService {
             sessionStorage.setItem("isLogin",true)
             sessionStorage.setItem("username", data.username)
             this.setIsAdmin(data.username)
-        }
-
-
-        
+        }        
         return {ok: response.ok, error: data.error}
+    }
+    static async retoken() {
+        let login = sessionStorage.getItem("username")
+        const token = sessionStorage.getItem('access_token')
+        console.log(token)
+        let response = await fetch('https://localhost:44325/user/retoken?login=' + login, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer ' + token                
+            }
+        })
+        let data = await response.json()
+        sessionStorage.setItem('access_token', data.token)
     }
     async registration(login, email, password) {
         let user = {

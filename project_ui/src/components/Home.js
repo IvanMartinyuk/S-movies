@@ -13,6 +13,9 @@ import Popular from './pages/Popular';
 import Selection from './pages/Selections';
 import Lists from './pages/Lists';
 import Changepass from './pages/changepass/changepass';
+import Test from '../services/test';
+import userService from '../services/userService';
+
 class Home extends React.Component {
   constructor(props)
   {
@@ -24,6 +27,9 @@ class Home extends React.Component {
     
   }
   render(){
+    console.log(sessionStorage.getItem('isLogin'))
+    if(sessionStorage.getItem('isLogin') == 'true')
+      setInterval(() => userService.retoken(), 299990)
     return ( <>
       <Router>
           <Switch>

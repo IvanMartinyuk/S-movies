@@ -33,8 +33,21 @@ namespace FilmsSpeedRunAPI.Controllers
             if (!service.Login(user.Login, user.PasswordHash))
                 return BadRequest(new { error = "Invalid login or password" });
 
-            var claim = await GetClaimsIdentity(user.Login, user.PasswordHash);
+            var claim = await GetClaimsIdentity(user.Login);
 
+            string accessToken = GetToken(claim);
+
+            var response = new
+            {
+                access_token = accessToken,
+                username = claim.Name,
+                id= service.GetId(user.Login, user.PasswordHash)
+            };
+            return Json(response);
+        }
+        [NonAction]
+        public string GetToken(ClaimsIdentity claim)
+        {
             var now = DateTime.Now;
             var jwt = new JwtSecurityToken(
                 issuer: AuthOptions.ISSUER,
@@ -45,14 +58,14 @@ namespace FilmsSpeedRunAPI.Controllers
                 signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)
                 );
 
-            string accessToken = new JwtSecurityTokenHandler().WriteToken(jwt);
-            var response = new
-            {
-                access_token = accessToken,
-                username = claim.Name,
-                id= service.GetId(user.Login, user.PasswordHash)
-            };
-            return Json(response);
+            return new JwtSecurityTokenHandler().WriteToken(jwt);
+        }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Retoken(string login)
+        {
+            var claim = await GetClaimsIdentity(login);
+            return Json(new { token = GetToken(claim) });
         }
         [HttpPost]
         public async Task<IActionResult> Registration([FromBody] UserDTO user)
@@ -68,7 +81,7 @@ namespace FilmsSpeedRunAPI.Controllers
             return Ok();
         }
         [NonAction]
-        private async Task<ClaimsIdentity> GetClaimsIdentity(string login, string password)
+        private async Task<ClaimsIdentity> GetClaimsIdentity(string login)
         {
             var claims = new List<Claim>()
                 {

@@ -1,4 +1,5 @@
 import React from "react";
+import Test from "../../services/test";
 import userService from "../../services/userService";
 class Login extends React.Component {
   constructor(props)
@@ -16,7 +17,7 @@ class Login extends React.Component {
     let service = new userService()
     let response = await service.login(this.state.login, this.state.password)
     let islog = response.ok
-    if(islog === true){
+    if(islog === true) {
       document.location = '/'
     }
     else {
