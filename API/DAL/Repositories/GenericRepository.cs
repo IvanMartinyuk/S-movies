@@ -45,7 +45,15 @@ namespace DAL.Repositories
 
         public async Task SaveChanges()
         {
-            await context.SaveChangesAsync();
+            try
+            {
+                await context.SaveChangesAsync();
+
+            }
+            catch(Exception e)
+            {
+
+            }
         }
     }
 }

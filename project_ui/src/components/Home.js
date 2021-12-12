@@ -21,6 +21,7 @@ import AddActor from './pages/AddActor';
 import AddCompany from './pages/AddCompany';
 import AddDirector from './pages/AddDirector';
 import AddProducer from './pages/AddProducer';
+import AddGenre from './pages/AddGenre';
 
 class Home extends React.Component {
   constructor(props)
@@ -45,6 +46,7 @@ class Home extends React.Component {
             <Route path='/addactor' component={AddActor}></Route>
             <Route path='/addcompany' component={AddCompany}></Route>
             <Route path='/adddirector' component={AddDirector}></Route>
+            <Route path='/addgenre' component={AddGenre}></Route>
             <Route path='/addproducer' component={AddProducer}></Route>
             <Route path='/registration' component={Registration}></Route>
             <Route path='/actors/:id' component={Actor}></Route>

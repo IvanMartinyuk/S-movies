@@ -30,7 +30,7 @@ export default class userService {
             sessionStorage.setItem("username", data.username)
             sessionStorage.setItem("isAdmin",false)
             
-            this.setIsAdmin(data.username)
+            await this.setIsAdmin(data.username)
             console.log( sessionStorage.getItem("isAdmin"))
         }        
         return {ok: response.ok, error: data.error}
