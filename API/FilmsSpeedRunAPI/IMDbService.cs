@@ -37,7 +37,6 @@ namespace DAL
             {
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(body);
             }
         }
     }

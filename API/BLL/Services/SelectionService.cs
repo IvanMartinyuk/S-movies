@@ -16,5 +16,7 @@ namespace BLL.Services
             Repository = new SelectionRepository(context);
         }
         public List<Film> GetFilms(int id) => ((SelectionRepository)Repository).GetFilms(id);
+        public void AddFilm(int selId, int filmId) => ((SelectionRepository)Repository).AddFilm(selId, filmId);
+        public void RemoveFilm(int selId, int filmId) => ((SelectionRepository)Repository).RemoveFilm(selId, filmId);
     }
 }

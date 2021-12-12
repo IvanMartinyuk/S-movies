@@ -128,5 +128,10 @@ namespace FilmsSpeedRunAPI.Controllers
         {
             return Json(service.GetSortedPage(prop, page));
         }
+        [HttpGet]
+        public async Task<IActionResult> GetByFilter(int page, string prop = "base")
+        {
+            return Json(service.GetSortedPage(prop, page));
+        }
     }
 }

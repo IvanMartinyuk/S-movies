@@ -12,6 +12,20 @@ namespace DAL.Repositories
         public SelectionRepository(FilmContext context) : base(context) 
         { 
         }
+        public void AddFilm(int selectionId, int filmId)
+        {
+            FilmContext contx = (FilmContext)context;
+            Selection select = contx.Selections.Include(x => x.Films).FirstOrDefault(s => s.Id == selectionId);
+            select.Films.Add(contx.Films.Find(filmId));
+            contx.SaveChanges();
+        }
+        public void RemoveFilm(int selectionId, int filmId)
+        {
+            FilmContext contx = (FilmContext)context;
+            Selection select = contx.Selections.Include(x => x.Films).FirstOrDefault(s => s.Id == selectionId);
+            select.Films.Add(contx.Films.Find(filmId));
+            contx.SaveChanges();
+        }
         public List<Film> GetFilms(int id)
         {
             FilmContext contx = (FilmContext)context;

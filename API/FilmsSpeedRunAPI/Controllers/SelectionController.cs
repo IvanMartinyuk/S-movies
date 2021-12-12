@@ -82,13 +82,32 @@ namespace FilmsSpeedRunAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Films(int selectionId)
         {
-            if (selectionId == null || selectionId == 0)
+            if (selectionId == 0)
                 return BadRequest(new { error = "no actor id" });
             var all = service.GetFilms(selectionId);
             if (all == null)
                 return NotFound(new { error = "no data" });
             return Json(all);
         }
-       
+        [HttpPut]
+        public async Task<IActionResult> AddFilm(int selId, int filmId)
+        {
+            if (selId == 0)
+                return BadRequest(new { error = "bad selId" });
+            if (filmId == 0)
+                return BadRequest(new { error = "bad filmId" });
+            service.AddFilm(selId, filmId);
+            return Ok();
+        }
+        [HttpPut]
+        public async Task<IActionResult> RemoveFilm(int selId, int filmId)
+        {
+            if (selId == 0)
+                return BadRequest(new { error = "bad selId" });
+            if (filmId == 0)
+                return BadRequest(new { error = "bad filmId" });
+            service.RemoveFilm(selId, filmId);
+            return Ok();
+        }
     }
 }
