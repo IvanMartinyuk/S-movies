@@ -2,6 +2,7 @@
 using BLL.DTO;
 using DAL.Context;
 using DAL.Repositories;
+using FilmsSpeedRunAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,6 +68,21 @@ namespace BLL.Services
             if (end < 0)
                 end = 0;
             return films.GetRange(start, end);
+        }
+        public List<FilmDTO> SortedFilter(FilterOptions options)
+        {            
+            List<FilmDTO> fs = new List<FilmDTO>();
+            foreach(var film in films)
+            {
+                List<string> genres = GetGenres(film.Id).Select(x => x.Name).ToList();
+                if (film.DateOfPublishing >= options.DateTop 
+                    && film.DateOfPublishing <= options.DateLast
+                    && film.Rating >= options.RatingTop
+                    && film.Rating <= options.RatingLast
+                    && genres.Contains(options.Genre))
+                    fs.Add(film);
+            }
+            return fs;
         }
     }
 }
