@@ -15,6 +15,12 @@ import Lists from './pages/Lists';
 import Changepass from './pages/changepass/changepass';
 import Test from '../services/test';
 import userService from '../services/userService';
+import Admin from './pages/Admin';
+import AddFilm from './pages/AddFilm';
+import AddActor from './pages/AddActor';
+import AddCompany from './pages/AddCompany';
+import AddDirector from './pages/AddDirector';
+import AddProducer from './pages/AddProducer';
 
 class Home extends React.Component {
   constructor(props)
@@ -27,7 +33,6 @@ class Home extends React.Component {
     
   }
   render(){
-    console.log(sessionStorage.getItem('isLogin'))
     if(sessionStorage.getItem('isLogin') == 'true')
       setInterval(() => userService.retoken(), 299990)
     return ( <>
@@ -36,6 +41,11 @@ class Home extends React.Component {
             <Route exact path='/' component={() =><Index ></Index>} ></Route>
             <Route path='/login' component={Login}></Route> 
             <Route path='/lists' component={Lists}></Route> 
+            <Route path='/addfilm' component={AddFilm}></Route>
+            <Route path='/addactor' component={AddActor}></Route>
+            <Route path='/addcompany' component={AddCompany}></Route>
+            <Route path='/adddirector' component={AddDirector}></Route>
+            <Route path='/addproducer' component={AddProducer}></Route>
             <Route path='/registration' component={Registration}></Route>
             <Route path='/actors/:id' component={Actor}></Route>
             <Route path='/directors/:id' component={Directors}></Route>
@@ -44,6 +54,7 @@ class Home extends React.Component {
             <Route path='/selections/:id' component={Selection}></Route> 
             <Route path="/films/:id" component={Film}/> 
             <Route path="/changepass" component={Changepass}/> 
+            <Route path="/admin" component={Admin}/> 
           </Switch>
       </Router></>
     );
