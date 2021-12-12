@@ -23,7 +23,7 @@ namespace DAL.Repositories
         {
             FilmContext contx = (FilmContext)context;
             Selection select = contx.Selections.Include(x => x.Films).FirstOrDefault(s => s.Id == selectionId);
-            select.Films.Add(contx.Films.Find(filmId));
+            select.Films.Remove(contx.Films.Find(filmId));
             contx.SaveChanges();
         }
         public List<Film> GetFilms(int id)

@@ -32,7 +32,7 @@ namespace FilmsSpeedRunAPI.Controllers
         }
         [HttpDelete]
         [Authorize]
-        public async Task<IActionResult> Delete( int selectionId)
+        public async Task<IActionResult> Delete(int selectionId)
         {
             if (selectionId == null || selectionId == 0)
                 return BadRequest(new { error = "no actor id" });
