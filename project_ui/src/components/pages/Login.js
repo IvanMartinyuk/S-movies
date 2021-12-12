@@ -8,7 +8,8 @@ class Login extends React.Component {
     this.state = {
       login: '',
       password: '',
-      error: ''
+      error: '',
+      isl:'' + sessionStorage.getItem('isLogin')
     }
     this.login = this.login.bind(this)
   }
@@ -28,6 +29,8 @@ class Login extends React.Component {
   render() {
     return (
       <div style={{ "margin-top": "100px" }}>
+        { this.state.isl!=='true'&&
+        
         <div className="d-flex justify-content-center mt-4">
           <div style={{ width: "200px", textAlign: "center" }}>
             <div>
@@ -96,6 +99,21 @@ class Login extends React.Component {
             </button>
           </div>
         </div>
+        }
+        { this.state.isl==='true'&&
+        <div className="d-flex justify-content-center">
+  <div
+          style={{
+            color: "white",
+            fontSize: "3vw",
+            width: "40vw",
+            textShadow: "5px 2px rgba(0,00,0,0.5)",
+          }}
+        >
+          You are already logined
+        </div>
+        </div>
+           }
       </div>
       );
   }

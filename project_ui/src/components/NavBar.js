@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import userService from "../services/userService";
 class NavBar extends React.Component {
   constructor(props)
   {
@@ -15,13 +15,19 @@ class NavBar extends React.Component {
   logout() {
     sessionStorage.setItem('isLogin', false)
     sessionStorage.setItem('access_token', '')
+    sessionStorage.setItem('isAdmin' ,false)
     sessionStorage.removeItem("id")
     this.setState({items: NavBar.check(this.logout)})
     document.location.href = "/";
   }
   static check(logout) {
     let b = '' + sessionStorage.getItem('isLogin')
-    if(b === 'true'){      
+    let bs = ""+sessionStorage.getItem('isAdmin')
+    console.log(bs)
+
+    if(b === 'true'){ 
+       if(bs==='false')    {
+        
         return (<div className=" dropdown dropstart" >
         <a className="nav-link  userb"style={{color:"white"}} href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           
@@ -33,8 +39,27 @@ class NavBar extends React.Component {
           <li><button className="dropdown-item" onClick={() => logout()}>Log out</button></li>
         </ul>
       </div>)
-      
+       } 
+       
+      else{
+
+        return (<div className=" dropdown dropstart" >
+        <a className="nav-link  userb"style={{color:"white"}} href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          
+        </a>
+        <ul className="dropdown-menu dropdown-menu-dark dm" aria-labelledby="navbarDropdown">
+          <li><a className="dropdown-item" href="/changepass">Change Password</a></li>
+          <li><a className="dropdown-item" href="/admin">Actions</a></li>
+          <li><a className="dropdown-item" href="/lists">Selections</a></li>
+          <li><hr className="dropdown-divider"/></li>
+          <li><button className="dropdown-item" onClick={() => logout()}>Log out</button></li>
+        </ul>
+      </div>)
+      }
+       
     }
+    else
+   
       return (<div className=" dropdown dropstart" >
         <a className="nav-link  userb"style={{color:"white"}} href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           

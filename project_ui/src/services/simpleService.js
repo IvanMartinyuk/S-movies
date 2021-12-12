@@ -18,7 +18,7 @@ export class simpleService {
         return data
     }
     async response(method, entity) {
-        console.log(method)
+     
         const token = sessionStorage.getItem('access_token')
         let path = this.baseUrl + method+ '?' + this.name + 'Id=' + entity
         let m = method.toUpperCase()
