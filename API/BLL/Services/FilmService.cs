@@ -1,4 +1,5 @@
-﻿using BLL.DTO;
+﻿using AutoMapper;
+using BLL.DTO;
 using DAL.Context;
 using DAL.Repositories;
 using System;
@@ -17,6 +18,25 @@ namespace BLL.Services
         {
             Repository = new FilmRepository(context);
             films = GetAll().ToList();
+            MapperConfiguration config = new MapperConfiguration(con =>
+            {
+                con.CreateMap<Film, FilmDTO>().ReverseMap();
+                con.CreateMap<Actor, ActorDTO>().ReverseMap();
+                con.CreateMap<Producer, ProducerDTO>().ReverseMap();
+                con.CreateMap<Director, DirectorDTO>().ReverseMap();
+                con.CreateMap<Genre, GenreDTO>().ReverseMap();
+            });
+            Mapper = new Mapper(config);
+        }
+        public override async Task AddAsync(FilmDTO filmdto)
+        {
+            Film film = Mapper.Map<FilmDTO, Film>(filmdto);
+            film.Actors = Mapper.Map<List<ActorDTO>, List<Actor>>(filmdto.Actors);
+            film.Producers = Mapper.Map<List<ProducerDTO>, List<Producer>>(filmdto.Producers);
+            film.Directors = Mapper.Map<List<DirectorDTO>, List<Director>>(filmdto.Directors);
+            film.Genres = Mapper.Map<List<GenreDTO>, List<Genre>>(filmdto.Genres);
+            await Repository.AddAsync(film);
+            await Repository.SaveChanges();
         }
         public List<Actor> GetActors(int filmId) => ((FilmRepository)Repository).GetActors(filmId);
         public List<Producer> GetProducers(int filmId) => ((FilmRepository)Repository).GetProducers(filmId);
