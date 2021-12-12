@@ -28,7 +28,10 @@ export default class userService {
             sessionStorage.setItem('access_token', data.access_token)
             sessionStorage.setItem("isLogin",true)
             sessionStorage.setItem("username", data.username)
+            sessionStorage.setItem("isAdmin",false)
+            
             this.setIsAdmin(data.username)
+            console.log( sessionStorage.getItem("isAdmin"))
         }        
         return {ok: response.ok, error: data.error}
     }

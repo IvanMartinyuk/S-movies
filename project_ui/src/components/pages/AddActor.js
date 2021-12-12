@@ -11,7 +11,15 @@ class AddActor extends React.Component {
   }
   componentDidMount() {}
   Add(){
+    let us = new simpleService("actor");
 
+    us.POST( {
+      name: document.getElementById("n").value,
+      image:document.getElementById("i").value,
+    }).then(()=>{
+       document.getElementById("n").value=''
+      document.getElementById("i").value=''
+    })
   }
   render() {
     return (
@@ -32,11 +40,12 @@ class AddActor extends React.Component {
             <div className="d-flex justify-content-center mt-4">
           <div style={{ width: "200px", textAlign: "center" }}>
            
-            <div className="input-group mb-3">
+          <div className="input-group mb-3">
               <input
+              id="n"
                 onChange={event => {this.setState({login: event.target.value})}}
                 type="text"
-                placeholder="Login"
+                placeholder="Name"
                 className="form-control "
                 style={{
                   color: "white",
@@ -52,9 +61,10 @@ class AddActor extends React.Component {
             
             <div className="input-group mb-3">
               <input
-                onChange={event => this.setState({email: event.target.value})}
+              id="i"
+              onChange={event => this.setState({email: event.target.value})}
                 type="text"
-                placeholder="Email"
+                placeholder="Url Image"
                 className="form-control "
                 style={{
                   color: "white",

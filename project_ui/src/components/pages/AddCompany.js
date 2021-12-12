@@ -11,7 +11,15 @@ class AddCompany extends React.Component {
   }
   componentDidMount() {}
   Add(){
+    let us = new simpleService("Company");
 
+    us.POST( {
+      name: document.getElementById("n").value,
+      description:document.getElementById("d").value,
+    }).then(()=>{
+       document.getElementById("n").value=''
+       document.getElementById("d").value=''
+    })
   }
   render() {
     return (
@@ -34,9 +42,10 @@ class AddCompany extends React.Component {
            
             <div className="input-group mb-3">
               <input
+              id="n"
                 onChange={event => {this.setState({login: event.target.value})}}
                 type="text"
-                placeholder="Login"
+                placeholder="Name"
                 className="form-control "
                 style={{
                   color: "white",
@@ -51,19 +60,16 @@ class AddCompany extends React.Component {
 
             
             <div className="input-group mb-3">
-              <input
-                onChange={event => this.setState({email: event.target.value})}
-                type="text"
-                placeholder="Email"
-                className="form-control "
-                style={{
+           
+                <textarea class="form-control"
+                placeholder="Description"
+                 id="d" rows="3" style={{
                   color: "white",
                   background: "rgba(0, 0, 0, 0.3)",
                   border: "none",
-                }}
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-              ></input>
+                }}></textarea>
+
+              
             </div>
             
       

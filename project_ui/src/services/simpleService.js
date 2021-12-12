@@ -59,40 +59,37 @@ export class simpleService {
         let data = await response.json()
         return data
     }
-    // async POST( entity){
-    //     let path = this.baseUrl +'post'
-    //     const token = sessionStorage.getItem('access_token')
-    //     console.log(path)
-    //     console.log(entity)
-    //     let response = await fetch(path, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             "Access-Control-Allow-Origin": "*",
-    //             'Authorization': 'bearer ' + token
-    //         },
-    //         body: JSON.stringify(entity)
-    //     })
-    //     let data = await response.ok
-    //     return data
-    // }
-    // async PUT(entity){
-    //     let path = this.baseUrl +'put'
-    //     const token = sessionStorage.getItem('access_token')
-    //     console.log(path)
-    //     console.log(entity)
-    //     let response = await fetch(path, {
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             "Access-Control-Allow-Origin": "*",
-    //             'Authorization': 'bearer ' + token
-    //         },
-    //         body: JSON.stringify(entity)
-    //     })
-    //     let data = await response.ok
-    //     return data
-    // }
+    async POST( entity){
+        let path = this.baseUrl +'post'
+        const token = sessionStorage.getItem('access_token')
+        console.log(entity)
+        console.log(path)
+
+        let response = await fetch(path, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer ' + token
+            },
+            body: JSON.stringify(entity)
+        })
+        let data = await response.ok
+        return data
+    }
+    async PUTfilmselection(entity,method){
+        let path = this.baseUrl + method+"?selId="+entity.selId+"&filmId="+entity.filmId
+        const token = sessionStorage.getItem('access_token')
+        let response = await fetch(path, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                'Authorization': 'bearer ' + token
+            }
+        })
+        let data = await response.ok
+        return data
+    }
     // async DELETE( entity){
     //     let path = this.baseUrl +'delete?'+this.name+'Id='+entity
     //     const token = sessionStorage.getItem('access_token')
