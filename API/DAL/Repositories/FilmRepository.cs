@@ -90,5 +90,14 @@ namespace DAL.Repositories
             company.Films = null;
             return company;
         }
+        public Film GetFull(Film film)
+        {
+            FilmContext con = (FilmContext)context;
+            return con.Films.Include(x => x.Actors)
+                             .Include(x => x.Producers)
+                             .Include(x => x.Directors)
+                             .Include(x => x.Genres)
+                             .FirstOrDefault(x => x.Title == film.Title && x.DateOfPublishing == film.DateOfPublishing);
+        }
     }
 }

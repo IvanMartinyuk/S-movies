@@ -35,16 +35,16 @@ class AddFilm extends React.Component {
   }
   Add(){
     let us = new simpleService("film");
-    let v =[]
-    for(let i =0;i<this.state.Adedactors.length;i++)
-             v.push({name:this.state.Adedactors[i].name})
+    // let v =[]
+    // for(let i =0;i<this.state.Adedactors.length;i++)
+    //          v.push({name:this.state.Adedactors[i].name})
     us.POST( {
         title :document.getElementById("t").value,
           dateOfPublishing :document.getElementById("da").value,
           description :document.getElementById("d").value,
           rating :document.getElementById("r").value,
           image :document.getElementById("i").value,
-           actors : v,
+           actors : this.state.Adedactors,
            genres :this.state.Adedgenres,
            producers: this.state.Adedproducers,
            directors :this.state.Adeddirectors,

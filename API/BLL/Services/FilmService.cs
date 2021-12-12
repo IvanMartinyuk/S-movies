@@ -15,8 +15,10 @@ namespace BLL.Services
     {
         List<FilmDTO> films { get; set; }
         string Mode { get; set; } = "base";
+        FilmContext context;
         public FilmService(FilmContext context)
         {
+            this.context = context;
             Repository = new FilmRepository(context);
             films = GetAll().ToList();
             MapperConfiguration config = new MapperConfiguration(con =>
@@ -32,11 +34,26 @@ namespace BLL.Services
         public override async Task AddAsync(FilmDTO filmdto)
         {
             Film film = Mapper.Map<FilmDTO, Film>(filmdto);
-            film.Actors = Mapper.Map<List<ActorDTO>, List<Actor>>(filmdto.Actors);
-            film.Producers = Mapper.Map<List<ProducerDTO>, List<Producer>>(filmdto.Producers);
-            film.Directors = Mapper.Map<List<DirectorDTO>, List<Director>>(filmdto.Directors);
-            film.Genres = Mapper.Map<List<GenreDTO>, List<Genre>>(filmdto.Genres);
+            film.Actors.Clear();
+            film.Producers.Clear();
+            film.Directors.Clear();
+            film.Genres.Clear();
             await Repository.AddAsync(film);
+            await Repository.SaveChanges();
+            film = ((FilmRepository)Repository).GetFull(film);
+            film.Actors = new List<Actor>();
+            film.Producers = new List<Producer>();
+            film.Directors = new List<Director>();
+            film.Genres = new List<Genre>();
+            foreach (ActorDTO actor in filmdto.Actors)
+                film.Actors.Add(context.Actors.FirstOrDefault(x => x.Id == actor.Id));
+            foreach (ProducerDTO produce in filmdto.Producers)
+                film.Producers.Add(context.Producers.FirstOrDefault(x => x.Id == produce.Id));
+            foreach (DirectorDTO director in filmdto.Directors)
+                film.Directors.Add(context.Directors.FirstOrDefault(x => x.Id == director.Id));
+            foreach (GenreDTO genre in filmdto.Genres)
+                film.Genres.Add(context.Genres.FirstOrDefault(x => x.Id == genre.Id));
+            await Repository.UpdateAsync(film);
             await Repository.SaveChanges();
         }
         public List<Actor> GetActors(int filmId) => ((FilmRepository)Repository).GetActors(filmId);
