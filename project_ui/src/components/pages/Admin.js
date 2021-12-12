@@ -39,6 +39,16 @@ class Admin extends React.Component {
               Add Actor
             </Link>
             </div><div>
+            <Link to='addgenre'
+              style={{
+                color: "white",
+                fontSize: "3vw",
+                textShadow: "5px 2px rgba(0,00,0,0.5)",
+              }}
+            >
+              Add Genre
+            </Link>
+            </div><div>
 
             <Link to='addcompany'
               style={{

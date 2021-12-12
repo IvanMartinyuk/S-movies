@@ -4,17 +4,11 @@ import userService from "../../services/userService";
 import filmService from "../../services/filmService";
 import { Link } from "react-router-dom";
 import { simpleService } from "../../services/simpleService";
-function contains(arr, pred) {
-  for (var i = 0; i < arr.length; i++) {
-      if (arr[i].id===pred) {
-          return true;
-      }
-  }
-  return false;
-}
+
 class Film extends React.Component {
   constructor(props) {
     super(props);
+  
     this.id = 0;
     this.Title = "";
     this.Rating = 0.0;
@@ -43,28 +37,130 @@ class Film extends React.Component {
       CompanyId: 0,
       Selections: this.Selections,
       Selections1: this.Selections1,
-
+      i:0,
+      modal:[]
     };
     this.Add=this.Add.bind(this)
+    this.contains=this.contains.bind(this)
     this.AddToSelection=this.AddToSelection.bind(this)
     this.DeleteFromSelection=this.DeleteFromSelection.bind(this)
     
   }
   AddToSelection(x){
+    let us = new filmService();
+    let y=this.state.i+1;
     let uss = new simpleService("selection");
-    uss.response("Films",x).then(xx=>{
-      let news = []
-      let a ;
-      for(let i = 0;i<xx.length;i++)
-          if(xx[i].id!==x)
-             news.push(xx[i])
-             else a= xx[i];
+    uss.PUTfilmselection({selId:x,filmId:this.id},"AddFilm").then(
+     ()=>{
+      us.getSelections(this.id).then((xxxxc) => {
+        this.Selections = xxxxc;
+      uss.response("UsersSelections", sessionStorage.getItem("id")).then((x) => {
+
+        this.Selections1 = x
+        this.setState({
+          id: this.id,
+          Title: this.Title,
+          Rating: this.Rating,
+          DateOfPublishing: this.DateOfPublishing.substr(0, 10),
+          Description: this.Description,
+          Image: this.Image,
+          Actors: this.Actors,
+          Genres: this.Genres,
+          Producers: this.Producers,
+          Selections: this.Selections,
+          Directors: this.Directors,
+          Selections1:this.Selections1,
+          i:y,
+          modal: this.Selections1.map((x) => (
+            <div style={{ margin:'10px'}} key={x.id} className="d-flex justify-content-between">
+              <div 
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  textShadow: "0.3vw 2px rgba(0,00,0,0.5)",
+                  alignSelf: "center",
+                  textAlign: "center",
+                 
+                }}
+              >
+                {x.name}
+              </div>
+              {this.contains(this.Selections,x.id,this.state.i)==true &&
+              <button className="btn btn-danger" onClick={()=>this.DeleteFromSelection(x.id)} style={{width:'40px',height:'40px',marginLeft:"10px", textAlign:'center'}}>-</button>
+              }
+              {this.contains(this.Selections,x.id,this.state.i)==false &&
+              <button className="btn btn-success" onClick={()=>this.AddToSelection(x.id)} style={{width:'40px',height:'40px',marginLeft:"10px", textAlign:'center'}}>+</button>
+              }
+            </div>
+          ))
+        });
+      });
+      });
+     }
       
-      uss.response('put',{news})
-    })
+    )
+  }
+  contains(arr, pred,i) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].id===pred) {
+            return true;
+        }
+    }
+    return false;
   }
   DeleteFromSelection(x){
+    let y=this.state.i+1;
+    let us = new filmService();
 
+    let uss = new simpleService("selection");
+    uss.PUTfilmselection({selId:x,filmId:this.id},"RemoveFilm").then(
+      ()=>{
+        us.getSelections(this.id).then((xxxxc) => {
+          this.Selections = xxxxc;
+
+        uss.response("UsersSelections", sessionStorage.getItem("id")).then((x) => {
+  
+          this.Selections1 = x
+          this.setState({
+            id: this.id,
+            Title: this.Title,
+            Rating: this.Rating,
+            DateOfPublishing: this.DateOfPublishing.substr(0, 10),
+            Description: this.Description,
+            Image: this.Image,
+            Actors: this.Actors,
+            Genres: this.Genres,
+            Producers: this.Producers,
+            Selections: this.Selections,
+            Directors: this.Directors,
+            Selections1:this.Selections1,
+            i:y,
+            modal: this.Selections1.map((x) => (
+              <div style={{ margin:'10px'}} key={x.id} className="d-flex justify-content-between">
+                <div 
+                  style={{
+                    color: "white",
+                    fontSize: "20px",
+                    textShadow: "0.3vw 2px rgba(0,00,0,0.5)",
+                    alignSelf: "center",
+                    textAlign: "center",
+                   
+                  }}
+                >
+                  {x.name}
+                </div>
+                {this.contains(this.Selections,x.id,this.state.i)==true &&
+                <button className="btn btn-danger" onClick={()=>this.DeleteFromSelection(x.id)} style={{width:'40px',height:'40px',marginLeft:"10px", textAlign:'center'}}>-</button>
+                }
+                {this.contains(this.Selections,x.id,this.state.i)==false &&
+                <button className="btn btn-success" onClick={()=>this.AddToSelection(x.id)} style={{width:'40px',height:'40px',marginLeft:"10px", textAlign:'center'}}>+</button>
+                }
+              </div>
+            ))
+          });
+        }); });
+       }
+    )
   }
   componentDidMount() {
     const id1 = this.props.match.params.id;
@@ -117,7 +213,30 @@ class Film extends React.Component {
                     Producers: this.Producers,
                     Selections: this.Selections,
                     Directors: this.Directors,
-                    Selections1:this.Selections1
+                    Selections1:this.Selections1,
+                    i:0,
+                    modal: this.Selections1.map((x) => (
+                      <div style={{ margin:'10px'}} key={x.id} className="d-flex justify-content-between">
+                        <div 
+                          style={{
+                            color: "white",
+                            fontSize: "20px",
+                            textShadow: "0.3vw 2px rgba(0,00,0,0.5)",
+                            alignSelf: "center",
+                            textAlign: "center",
+                           
+                          }}
+                        >
+                          {x.name}
+                        </div>
+                        {this.contains(this.Selections,x.id,this.state.i)==true &&
+                        <button className="btn btn-danger" onClick={()=>this.DeleteFromSelection(x.id)} style={{width:'40px',height:'40px',marginLeft:"10px", textAlign:'center'}}>-</button>
+                        }
+                        {this.contains(this.Selections,x.id,this.state.i)==false &&
+                        <button className="btn btn-success" onClick={()=>this.AddToSelection(x.id)} style={{width:'40px',height:'40px',marginLeft:"10px", textAlign:'center'}}>+</button>
+                        }
+                      </div>
+                    ))
                   });
                 });
               });
@@ -171,7 +290,9 @@ class Film extends React.Component {
                     Producers: this.Producers,
                     Selections: this.Selections,
                     Directors: this.Directors,
-                    Selections1:this.Selections1
+                    Selections1:this.Selections1,
+                    i:0,
+                    modal:(<></>)
                   });
                 });
               });
@@ -447,28 +568,7 @@ class Film extends React.Component {
     <div className="d-flex justify-content-end">
     <span class="close">&times;</span>
     </div>
-    {this.state.Selections1.map((x) => (
-              <div style={{ margin:'10px'}} key={x.id} className="d-flex justify-content-between">
-                <div 
-                  style={{
-                    color: "white",
-                    fontSize: "20px",
-                    textShadow: "0.3vw 2px rgba(0,00,0,0.5)",
-                    alignSelf: "center",
-                    textAlign: "center",
-                   
-                  }}
-                >
-                  {x.name}
-                </div>
-                {contains(this.state.Selections,x.id)==true &&
-                <button className="btn btn-danger" onClick={()=>this.DeleteFromSelection(x.id)} style={{width:'40px',height:'40px',marginLeft:"10px", textAlign:'center'}}>-</button>
-                }
-                {contains(this.state.Selections,x.id)==false &&
-                <button className="btn btn-success" onClick={()=>this.AddToSelection(x.id)} style={{width:'40px',height:'40px',marginLeft:"10px", textAlign:'center'}}>+</button>
-                }
-              </div>
-            ))}
+    {this.state.modal}
     {this.state.Selections1.length==0 &&
        <div
        style={{

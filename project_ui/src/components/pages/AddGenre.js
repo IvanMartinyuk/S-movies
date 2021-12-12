@@ -1,26 +1,28 @@
 import { Link, NavLink } from "react-router-dom";
 import React from "react";
 import { simpleService } from "../../services/simpleService";
-class AddProducer extends React.Component {
+class AddGenre extends React.Component {
   constructor(props) {
     super(props);
     this.mas = [];
+   
     this.state = {
       isadmin: "" + sessionStorage.getItem("isAdmin"),
     };
   }
-  componentDidMount() {}
-  Add(){ 
-    let us = new simpleService("producer");
+  componentDidMount() {
+
+
+  }
+  Add(){
+    let us = new simpleService("genre");
 
     us.POST( {
       name: document.getElementById("n").value,
-      image:document.getElementById("i").value,
+     
     }).then(()=>{
        document.getElementById("n").value=''
-      document.getElementById("i").value=''
     })
-    
   }
   render() {
     return (
@@ -35,7 +37,7 @@ class AddProducer extends React.Component {
                 textShadow: "5px 2px rgba(0,00,0,0.5)",
               }}
             >
-              Add Producer:
+              Add Genre:
             </div>
 
             <div className="d-flex justify-content-center mt-4">
@@ -61,20 +63,7 @@ class AddProducer extends React.Component {
 
             
             <div className="input-group mb-3">
-              <input
-              id="i"
-              onChange={event => this.setState({email: event.target.value})}
-                type="text"
-                placeholder="Url Image"
-                className="form-control "
-                style={{
-                  color: "white",
-                  background: "rgba(0, 0, 0, 0.3)",
-                  border: "none",
-                }}
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default"
-              ></input>
+            
             </div>
             
       
@@ -120,4 +109,4 @@ class AddProducer extends React.Component {
     );
   }
 }
-export default AddProducer;
+export default AddGenre;

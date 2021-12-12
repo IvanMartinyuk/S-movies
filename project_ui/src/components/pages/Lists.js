@@ -26,8 +26,8 @@ class Lists extends React.Component {
   }
   Create() {
     let us = new simpleService("selection");
-    console.log();
-    us.response('post', {
+
+    us.POST( {
       name: document.getElementById("inp").value,
       userId: sessionStorage.getItem("id"),
     }).then((xx) =>{
