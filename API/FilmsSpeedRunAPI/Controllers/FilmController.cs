@@ -123,11 +123,6 @@ namespace FilmsSpeedRunAPI.Controllers
                 return NotFound(new { error = "no data" });
             return Json(all);
         }
-        //[HttpGet]
-        //public async Task<IActionResult> GetBy(int page, string prop = "base")
-        //{
-        //    return Json(service.GetSortedPage(prop, page));
-        //}
         [HttpPost]
         public async Task<IActionResult> GetByFilter([FromBody]FilterOptions options)
         {
@@ -137,6 +132,15 @@ namespace FilmsSpeedRunAPI.Controllers
         public async Task<IActionResult> GetFilmsCount()
         {
             return Json(new { count = service.GetCount() });
+        }
+        [HttpGet]
+        public async Task<IActionResult> Search(string search)
+        {
+            List<FilmDTO> list = service.GetAll().Where(x => x.Title.Contains(search)).ToList();
+            List<FilmDTO> result = new List<FilmDTO>();
+            for (int i = 0; i < list.Count() && i < 3; i++)
+                result.Add(list[i]);
+            return Json(result);
         }
     }
 }
