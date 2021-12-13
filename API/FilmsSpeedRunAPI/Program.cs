@@ -1,3 +1,4 @@
+using DAL;
 using DAL.Context;
 using DAL.Repositories;
 using Microsoft.AspNetCore.Hosting;
@@ -16,13 +17,24 @@ namespace FilmsSpeedRunAPI
     public class Program
     {
         public static void Main(string[] args)
-        {
+        { 
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
             {
+                IMDbService ser = new IMDbService();
                 var context = scope.ServiceProvider.GetRequiredService<FilmContext>();
-                if(context.Roles.Count() == 0)
-                    FillingData.Fill(context);
+                if (context.Roles.Count() == 0)
+                {
+                    //FillingData.Fill(context);
+                    try
+                    {
+                        ser.FillData(context).Wait();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
             }
             host.Run();
         }
