@@ -62,18 +62,22 @@ namespace BLL.Services
         public List<Director> GetDirectors(int filmId) => ((FilmRepository)Repository).GetDirectors(filmId);
         public List<Selection> GetSelections(int filmId) => ((FilmRepository)Repository).GetSelections(filmId);
         public Company GetCompany(int filmId) => ((FilmRepository)Repository).GetCompany(filmId);
-        public List<FilmDTO> GetSortedPage(string property, int page)
+        public int GetCount()
+        {
+            return context.Films.Count();
+        }
+        public List<FilmDTO> GetSortedPage(string property, int page, List<FilmDTO> fs)
         {
             
             if(property == "dateofpublishing" && Mode == property)
-                films.OrderByDescending(x => x.DateOfPublishing).ToList();
+                fs.OrderByDescending(x => x.DateOfPublishing).ToList();
             if(property == "rating" && Mode == property)
-                films.OrderByDescending(x => x.Rating).ToList();
+                fs.OrderByDescending(x => x.Rating).ToList();
             if (property == "title" && Mode == property)
-                films.OrderByDescending(x => x.Title).ToList();
+                fs.OrderByDescending(x => x.Title).ToList();
             if (property == "base" && Mode == property)
-                films = GetAll().ToList();
-            Mode = property;            
+                fs = GetAll().ToList();
+            Mode = property;
             int start = page * 10;
             if (start >= films.Count())
                 start = films.Count() - 11;
@@ -84,7 +88,7 @@ namespace BLL.Services
                 end = films.Count() - 1;
             if (end < 0)
                 end = 0;
-            return films.GetRange(start, end);
+            return fs.GetRange(start, end);
         }
         public List<FilmDTO> SortedFilter(FilterOptions options)
         {            
@@ -92,12 +96,23 @@ namespace BLL.Services
             foreach(var film in films)
             {
                 List<string> genres = GetGenres(film.Id).Select(x => x.Name).ToList();
-                if (film.DateOfPublishing >= options.DateTop 
+                if (options.Genre == "all")
+                {
+                    if (film.DateOfPublishing >= options.DateTop
+                    && film.DateOfPublishing <= options.DateLast
+                    && film.Rating >= options.RatingTop
+                    && film.Rating <= options.RatingLast)
+                        fs.Add(film);
+                }
+                else
+                {
+                    if (film.DateOfPublishing >= options.DateTop
                     && film.DateOfPublishing <= options.DateLast
                     && film.Rating >= options.RatingTop
                     && film.Rating <= options.RatingLast
                     && genres.Contains(options.Genre))
-                    fs.Add(film);
+                        fs.Add(film);
+                }
             }
             return fs;
         }

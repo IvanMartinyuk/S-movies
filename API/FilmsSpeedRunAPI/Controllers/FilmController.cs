@@ -123,16 +123,20 @@ namespace FilmsSpeedRunAPI.Controllers
                 return NotFound(new { error = "no data" });
             return Json(all);
         }
-        [HttpGet]
-        public async Task<IActionResult> GetBy(int page, string prop = "base")
-        {
-            return Json(service.GetSortedPage(prop, page));
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> GetBy(int page, string prop = "base")
+        //{
+        //    return Json(service.GetSortedPage(prop, page));
+        //}
         [HttpPost]
         public async Task<IActionResult> GetByFilter([FromBody]FilterOptions options)
         {
-            service.GetSortedPage(options.Prop, options.Page);
-            return Json(service.SortedFilter(options));
+            return Json(service.GetSortedPage(options.Prop, options.Page, service.SortedFilter(options)));
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetFilmsCount()
+        {
+            return Json(new { count = service.GetCount() });
         }
     }
 }
