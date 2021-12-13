@@ -19,6 +19,7 @@ namespace DAL
         List<Director> Directors { get; set; } = new List<Director>();
         Film Film { get; set; } = new Film();
         FilmContext context { get; set; }
+        string key = "7ef43245c4mshac5fc45f9e208c9p1f232fjsn3025f98d6bf2";
         public async Task FillData(FilmContext context)
         {
             this.context = context;
@@ -37,7 +38,7 @@ namespace DAL
                 Headers =
                     {
                         { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
-                        { "x-rapidapi-key", "7467395e30msh911943b787d67b4p1adf6djsncee5f2744cae" },
+                        { "x-rapidapi-key", key },
                     },
             };
             using (var response = await client.SendAsync(request))
@@ -60,7 +61,7 @@ namespace DAL
                     Film.Directors = Directors;
                     Film.Genres = Genres;
                     Film.Producers = Producers;
-                    //Film.Selections = new List<Selection>();
+                    Film.Selections = new List<Selection>();
                     context.Films.Update(Film);
                     context.SaveChanges();
                     Clear();
@@ -77,7 +78,7 @@ namespace DAL
                 Headers =
                     {
                         { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
-                        { "x-rapidapi-key", "7467395e30msh911943b787d67b4p1adf6djsncee5f2744cae" },
+                        { "x-rapidapi-key", key },
                     },
             };
             using (var response = await client.SendAsync(request))
@@ -90,7 +91,7 @@ namespace DAL
                 Film.Image = obj[id]["title"]["image"]["url"].ToString();
                 foreach (string name in obj[id]["genres"])
                 {
-                    if (context.Genres.Any(x => x.Name == name))
+                    if (!context.Genres.Any(x => x.Name == name))
                         Genres.Add(new Genre() { Name = name });
                     else
                         Genres.Add(context.Genres.FirstOrDefault(x => x.Name == name));
@@ -107,7 +108,7 @@ namespace DAL
                 Headers =
                     {
                         { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
-                        { "x-rapidapi-key", "7467395e30msh911943b787d67b4p1adf6djsncee5f2744cae" },
+                        { "x-rapidapi-key", key },
                     },
             };
             using (var response = await client.SendAsync(request))
@@ -127,7 +128,7 @@ namespace DAL
                 Headers =
                     {
                         { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
-                        { "x-rapidapi-key", "7467395e30msh911943b787d67b4p1adf6djsncee5f2744cae" },
+                        { "x-rapidapi-key", key },
                     },
             };
             using (var response = await client.SendAsync(request))
@@ -149,7 +150,7 @@ namespace DAL
                         Headers =
                             {
                                 { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
-                                { "x-rapidapi-key", "7467395e30msh911943b787d67b4p1adf6djsncee5f2744cae" },
+                                { "x-rapidapi-key", key },
                             },
                     };
                     using (var resp = await client.SendAsync(request))
@@ -179,9 +180,9 @@ namespace DAL
                         Directors.Add(context.Directors.FirstOrDefault(x => x.Name == director["id"].ToString()));
                     else
                     {
-                        context.Actors.Add(new Actor() { Name = director["id"].ToString() });
+                        context.Directors.Add(new Director() { Name = director["id"].ToString() });
                         context.SaveChanges();
-                        Actors.Add(context.Actors.FirstOrDefault(x => x.Name == director["id"].ToString()));
+                        Directors.Add(context.Directors.FirstOrDefault(x => x.Name == director["id"].ToString()));
                     }
                     i++;
                 }
@@ -197,7 +198,7 @@ namespace DAL
                         Headers =
                         {
                             { "x-rapidapi-host", "imdb8.p.rapidapi.com" },
-                            { "x-rapidapi-key", "7467395e30msh911943b787d67b4p1adf6djsncee5f2744cae" },
+                            { "x-rapidapi-key", key },
                         },
                     };
                     using (var resp = await client.SendAsync(request))

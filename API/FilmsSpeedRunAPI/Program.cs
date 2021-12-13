@@ -25,15 +25,8 @@ namespace FilmsSpeedRunAPI
                 var context = scope.ServiceProvider.GetRequiredService<FilmContext>();
                 if (context.Roles.Count() == 0)
                 {
-                    //FillingData.Fill(context);
-                    try
-                    {
-                        ser.FillData(context).Wait();
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
+                    FillingData.Fill(context);
+                    ser.FillData(context).Wait();
                 }
             }
             host.Run();
