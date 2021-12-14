@@ -176,13 +176,13 @@ namespace DAL
                 {
                     if (i == 2)
                         break;
-                    if (context.Directors.Any(x => x.Name == director["id"].ToString()))
-                        Directors.Add(context.Directors.FirstOrDefault(x => x.Name == director["id"].ToString()));
+                    if (context.Directors.Any(x => x.Name == director["name"].ToString()))
+                        Directors.Add(context.Directors.FirstOrDefault(x => x.Name == director["name"].ToString()));
                     else
                     {
-                        context.Directors.Add(new Director() { Name = director["id"].ToString() });
+                        context.Directors.Add(new Director() { Name = director["name"].ToString() });
                         context.SaveChanges();
-                        Directors.Add(context.Directors.FirstOrDefault(x => x.Name == director["id"].ToString()));
+                        Directors.Add(context.Directors.FirstOrDefault(x => x.Name == director["name"].ToString()));
                     }
                     i++;
                 }
