@@ -10,11 +10,13 @@ namespace DAL.Context
     public class Film
     {
         public int Id { get; set; }
+        public string ImdbId { get; set; }
         public string Title { get; set; }
         public double Rating { get; set; }
         public DateTime DateOfPublishing { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
+        public string TrailerUrl { get; set; }
         public virtual List<Actor> Actors { get; set; }
         public virtual List<Genre> Genres { get; set; }
         public virtual List<Producer> Producers { get; set; }

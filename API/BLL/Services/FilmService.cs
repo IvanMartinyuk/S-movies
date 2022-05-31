@@ -68,15 +68,17 @@ namespace BLL.Services
         }
         public List<FilmDTO> GetSortedPage(string property, int page, List<FilmDTO> fs)
         {
-            
-            if(property == "dateofpublishing" && Mode == property)
-                fs.OrderByDescending(x => x.DateOfPublishing).ToList();
-            if(property == "rating" && Mode == property)
-                fs.OrderByDescending(x => x.Rating).ToList();
-            if (property == "title" && Mode == property)
-                fs.OrderByDescending(x => x.Title).ToList();
-            if (property == "base" && Mode == property)
-                fs = GetAll().ToList();
+            if (Mode == property)
+            {
+                if (property == "dateofpublishing")
+                    fs.OrderByDescending(x => x.DateOfPublishing).ToList();
+                if (property == "rating")
+                    fs.OrderByDescending(x => x.Rating).ToList();
+                if (property == "title")
+                    fs.OrderByDescending(x => x.Title).ToList();
+                if (property == "base")
+                    fs = GetAll().ToList();
+            }
             Mode = property;
             int start = page * 10;
             if (start >= films.Count())

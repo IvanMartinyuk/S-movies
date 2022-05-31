@@ -17,7 +17,7 @@ namespace FilmsSpeedRunAPI
     public class Program
     {
         public static void Main(string[] args)
-        { 
+        {
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
             {
@@ -26,8 +26,8 @@ namespace FilmsSpeedRunAPI
                 if (context.Roles.Count() == 0)
                 {
                     FillingData.Fill(context);
-                    ser.FillData(context).Wait();
-                }
+                    ser.FillData(context, 30).Wait();
+                }                
             }
             host.Run();
         }

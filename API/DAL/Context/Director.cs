@@ -10,6 +10,7 @@ namespace DAL.Context
     public class Director
     {
         public int Id { get; set; }
+        public string ImdbId { get; set; }
         public string Name { get; set; }
         public virtual List<Film> Films { get; set; } = new List<Film>();
     }
