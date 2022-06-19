@@ -18,6 +18,7 @@ namespace DAL.Context
         public DbSet<Role> Roles { get; set; }
         public DbSet<Selection> Selections { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Coment> Coments { get; set; }
         public FilmContext(DbContextOptions<FilmContext> options) : base(options)
         {
             Database.EnsureCreated();
@@ -27,6 +28,9 @@ namespace DAL.Context
             modelBuilder.Entity<Selection>()
                 .HasMany(x => x.Films)
                 .WithMany(y => y.Selections);
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Login)
+                .IsUnique();
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -30,7 +30,7 @@ namespace FilmsSpeedRunAPI
         {
             services.AddControllersWithViews();
             services.AddDbContext<FilmContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
-
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "FilmSpeedRunAPI", Version = "v1" }));
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -76,6 +76,8 @@ namespace FilmsSpeedRunAPI
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "FilmSpeedRunAPI v1"));
             app.UseHttpsRedirection();
             app.UseDefaultFiles();
             app.UseStaticFiles();
@@ -86,13 +88,13 @@ namespace FilmsSpeedRunAPI
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "/index.html");
-                endpoints.MapControllers();
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "/index.html");
+            //    endpoints.MapControllers();
+            //});
         }
     }
 }

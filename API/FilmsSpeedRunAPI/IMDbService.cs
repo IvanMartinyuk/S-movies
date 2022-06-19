@@ -19,7 +19,7 @@ namespace DAL
         List<Director> Directors { get; set; } = new List<Director>();
         Film Film { get; set; } = new Film();
         FilmContext context { get; set; }
-        string key = "d2d23a16a3msh5fb7621a01a3608p12bb1bjsnc29201ba0404";
+        string key = "36a979b383msh58c4184b01300a8p14d725jsn79815b6808db";
         HttpClient client = new HttpClient();
         public async Task FillData(FilmContext context, int max = 100)
         {
@@ -78,7 +78,8 @@ namespace DAL
                 response.EnsureSuccessStatusCode();
                 JObject obj = (JObject)JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
                 Film.Title = obj[id]["title"]["title"].ToString();
-                Film.Rating = Convert.ToDouble(obj[id]["ratings"]["rating"]);
+                Film.ImdbRating = Convert.ToDouble(obj[id]["ratings"]["rating"]);
+                Film.LocalRating = 10;
                 Film.DateOfPublishing = Convert.ToDateTime(obj[id]["releaseDate"]);
                 Film.Image = obj[id]["title"]["image"]["url"].ToString();
                 foreach (string name in obj[id]["genres"])

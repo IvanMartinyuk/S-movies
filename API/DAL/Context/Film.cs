@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAnnotationsExtensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,9 @@ namespace DAL.Context
         public int Id { get; set; }
         public string ImdbId { get; set; }
         public string Title { get; set; }
-        public double Rating { get; set; }
+        public double ImdbRating { get; set; }
+        [Max(10)]
+        public double LocalRating { get; set; }
         public DateTime DateOfPublishing { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }

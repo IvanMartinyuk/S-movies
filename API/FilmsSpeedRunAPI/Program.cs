@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace FilmsSpeedRunAPI
 {
@@ -18,19 +19,21 @@ namespace FilmsSpeedRunAPI
     {
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
+            var host = CreateHostBuilder(args).Build();            
             using (var scope = host.Services.CreateScope())
             {
                 IMDbService ser = new IMDbService();
                 var context = scope.ServiceProvider.GetRequiredService<FilmContext>();
                 if (context.Roles.Count() == 0)
                 {
-                    FillingData.Fill(context);
+                    FillingData.AddMainInfo(context);
+                    //FillingData.Fill(context);
                     ser.FillData(context, 30).Wait();
                 }                
             }
+            
             host.Run();
-        }
+        }        
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)

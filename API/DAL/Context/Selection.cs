@@ -12,6 +12,8 @@ namespace DAL.Context
         public int Id { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
+        public double Rating { get; set; }
+        public string Poster { get; set; }
         public virtual List<Film> Films { get; set; } = new List<Film>();
     }
 }
