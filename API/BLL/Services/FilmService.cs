@@ -25,7 +25,7 @@ namespace BLL.Services
             {
                 con.CreateMap<Film, FilmDTO>().ReverseMap();
                 con.CreateMap<Actor, ActorDTO>().ReverseMap();
-                con.CreateMap<Producer, ProducerDTO>().ReverseMap();
+                con.CreateMap<Writer, WriterDTO>().ReverseMap();
                 con.CreateMap<Director, DirectorDTO>().ReverseMap();
                 con.CreateMap<Genre, GenreDTO>().ReverseMap();
             });
@@ -35,20 +35,20 @@ namespace BLL.Services
         {
             Film film = Mapper.Map<FilmDTO, Film>(filmdto);
             film.Actors.Clear();
-            film.Producers.Clear();
+            film.Writers.Clear();
             film.Directors.Clear();
             film.Genres.Clear();
             await Repository.AddAsync(film);
             await Repository.SaveChanges();
             film = ((FilmRepository)Repository).GetFull(film);
             film.Actors = new List<Actor>();
-            film.Producers = new List<Producer>();
+            film.Writers = new List<Writer>();
             film.Directors = new List<Director>();
             film.Genres = new List<Genre>();
             foreach (ActorDTO actor in filmdto.Actors)
                 film.Actors.Add(context.Actors.FirstOrDefault(x => x.Id == actor.Id));
-            foreach (ProducerDTO produce in filmdto.Producers)
-                film.Producers.Add(context.Producers.FirstOrDefault(x => x.Id == produce.Id));
+            foreach (WriterDTO produce in filmdto.Writers)
+                film.Writers.Add(context.Writers.FirstOrDefault(x => x.Id == produce.Id));
             foreach (DirectorDTO director in filmdto.Directors)
                 film.Directors.Add(context.Directors.FirstOrDefault(x => x.Id == director.Id));
             foreach (GenreDTO genre in filmdto.Genres)
@@ -57,7 +57,7 @@ namespace BLL.Services
             await Repository.SaveChanges();
         }
         public List<Actor> GetActors(int filmId) => ((FilmRepository)Repository).GetActors(filmId);
-        public List<Producer> GetProducers(int filmId) => ((FilmRepository)Repository).GetProducers(filmId);
+        public List<Writer> GetWriters(int filmId) => ((FilmRepository)Repository).GetWriters(filmId);
         public List<Genre> GetGenres(int filmId) => ((FilmRepository)Repository).GetGenres(filmId);
         public List<Director> GetDirectors(int filmId) => ((FilmRepository)Repository).GetDirectors(filmId);
         public List<Selection> GetSelections(int filmId) => ((FilmRepository)Repository).GetSelections(filmId);

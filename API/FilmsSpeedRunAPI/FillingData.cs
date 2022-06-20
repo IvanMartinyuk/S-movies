@@ -44,11 +44,11 @@ namespace FilmsSpeedRunAPI
                             new Genre() { Name = "Фантастика" },
                             new Genre() { Name = "Приключения" }
                         },
-                    Producers = new List<Producer>() 
+                    Writers = new List<Writer>() 
                         {
-                            new Producer() { Name = "Зак Снайдер", Image = "https://m.media-amazon.com/images/M/MV5BMTMzMjUyNjk1MV5BMl5BanBnXkFtZTcwMDc2Mzk3NA@@._V1_UY317_CR11,0,214,317_AL_.jpg" },
-                            new Producer() { Name = "Джерри Сигел", Image = "https://m.media-amazon.com/images/M/MV5BMjY1MzJmMWUtNWQ1YS00MGNiLTljN2ItNGE5M2M2OTU5YjhiXkEyXkFqcGdeQXVyMTExNDQ2MTI@._V1_UY317_CR22,0,214,317_AL_.jpg"},
-                            new Producer() { Name = "Джо Шустер", Image = "https://m.media-amazon.com/images/M/MV5BMDdmMzA2MGYtZjFiZS00Nzg5LWE5MTctNTI0NWM4ZjI0YzdmXkEyXkFqcGdeQXVyMTExNDQ2MTI@._V1_UY317_CR20,0,214,317_AL_.jpg"}
+                            new Writer() { Name = "Зак Снайдер", Image = "https://m.media-amazon.com/images/M/MV5BMTMzMjUyNjk1MV5BMl5BanBnXkFtZTcwMDc2Mzk3NA@@._V1_UY317_CR11,0,214,317_AL_.jpg" },
+                            new Writer() { Name = "Джерри Сигел", Image = "https://m.media-amazon.com/images/M/MV5BMjY1MzJmMWUtNWQ1YS00MGNiLTljN2ItNGE5M2M2OTU5YjhiXkEyXkFqcGdeQXVyMTExNDQ2MTI@._V1_UY317_CR22,0,214,317_AL_.jpg"},
+                            new Writer() { Name = "Джо Шустер", Image = "https://m.media-amazon.com/images/M/MV5BMDdmMzA2MGYtZjFiZS00Nzg5LWE5MTctNTI0NWM4ZjI0YzdmXkEyXkFqcGdeQXVyMTExNDQ2MTI@._V1_UY317_CR20,0,214,317_AL_.jpg"}
                         },
                     Company = new Company() { Name = "Warner Bros. Pictures", Description = "Warner Bros. Entertainment, Inc. (ранее Warner Bros. Pictures), (обычно называется Warner Bros., по-русски Братья Уо́рнер) — один из крупнейших концернов по производству фильмов и телесериалов в США. В настоящее время подразделение группы компаний WarnerMedia с офисом в Калифорнии"}
                 },
@@ -74,10 +74,10 @@ namespace FilmsSpeedRunAPI
                             new Actor() { Name = "Джон Фавро", Image = "https://www.google.com/search?q=%D0%94%D0%B6%D0%BE%D0%BD+%D0%A4%D0%B0%D0%B2%D1%80%D0%BE&rlz=1C1CHZN_ruUA957UA957&sxsrf=AOaemvI08Yo9Lfwc8EfeLjZmIq7j1_iXPA:1638990707652&tbm=isch&source=iu&ictx=1&fir=T__qJbfOjiSdMM%252C4gXTIenzB9veDM%252C%252Fm%252F01twdk%253B_lnNX-tZy78S4M%252C3lob3u9JHww0wM%252C_%253BYdc1Fjm1r-jDnM%252CrB9Ze6Nw7eS68M%252C_%253BiwbkgFYMReB9aM%252CrB9Ze6Nw7eS68M%252C_%253BHQc7fa7oExqaiM%252C_Gex8NDRefblsM%252C_%253B1bdvnT0bUFzWbM%252CrB9Ze6Nw7eS68M%252C_%253BBAMiTyCE0oDVSM%252CwB0Ks12E-zBtGM%252C_%253B6xteAJJ7IyMFQM%252CJLLSdAZNlv9ndM%252C_&vet=1&usg=AI4_-kTQiQr7A-DN-GJV6gEITT8UoDLlEA&sa=X&ved=2ahUKEwjW_ayX9NT0AhVI_7sIHaJ1Dd8Q_B16BAhLEAE#imgrc=T__qJbfOjiSdMM" }
                         },
                     Directors = new List<Director>() { new Director() { Name = "Джон Фавро" } },
-                    Producers = new List<Producer>()
+                    Writers = new List<Writer>()
                         {
-                            new Producer() { Name = "Кевин Файги", Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Kevin_Feige_%2848462887397%29_%28cropped%29.jpg/330px-Kevin_Feige_%2848462887397%29_%28cropped%29.jpg" },
-                            new Producer() { Name = "Ави Арад", Image = "https://upload.wikimedia.org/wikipedia/commons/7/77/Avi_Arad%2C_June_2012.jpg"}
+                            new Writer() { Name = "Кевин Файги", Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Kevin_Feige_%2848462887397%29_%28cropped%29.jpg/330px-Kevin_Feige_%2848462887397%29_%28cropped%29.jpg" },
+                            new Writer() { Name = "Ави Арад", Image = "https://upload.wikimedia.org/wikipedia/commons/7/77/Avi_Arad%2C_June_2012.jpg"}
                         },
                     Company = new Company() { Name = "Marvel Studios", Description = "Marvel Studios, LLC (первоначально известная как Marvel Films с 1993 до 1996 года) — американская киностудия, располагающаяся в The Walt Disney Studios, Бербанк, штат Калифорния. Является дочерней компанией Walt Disney Studios, которая принадлежит медиаконгломерату The Walt Disney Company. Президентом киностудии является кинопродюсер Кевин Файги. Ранее студия была дочерним предприятием Marvel Entertainment, пока The Walt Disney Company не реорганизовала компании в августе 2015 года."}
                 },
@@ -102,9 +102,9 @@ namespace FilmsSpeedRunAPI
                             new Actor() { Name = "Хьюго Уивинг", Image = "https://thumbs.dfs.ivi.ru/storage32/contents/8/0/99b133185f1cf29fcb43757f5401f9.jpg" }
                         },
                     Directors = new List<Director>() { new Director() { Name = "Джо Джонстон" } },
-                    Producers = new List<Producer>()
+                    Writers = new List<Writer>()
                         {
-                            new Producer() { Name = "Кевин Файги", Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Kevin_Feige_%2848462887397%29_%28cropped%29.jpg/330px-Kevin_Feige_%2848462887397%29_%28cropped%29.jpg" }
+                            new Writer() { Name = "Кевин Файги", Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Kevin_Feige_%2848462887397%29_%28cropped%29.jpg/330px-Kevin_Feige_%2848462887397%29_%28cropped%29.jpg" }
                         },
                     Company = new Company() { Name = "Marvel Studios", Description = "Marvel Studios, LLC (первоначально известная как Marvel Films с 1993 до 1996 года) — американская киностудия, располагающаяся в The Walt Disney Studios, Бербанк, штат Калифорния. Является дочерней компанией Walt Disney Studios, которая принадлежит медиаконгломерату The Walt Disney Company. Президентом киностудии является кинопродюсер Кевин Файги. Ранее студия была дочерним предприятием Marvel Entertainment, пока The Walt Disney Company не реорганизовала компании в августе 2015 года."}
                 },

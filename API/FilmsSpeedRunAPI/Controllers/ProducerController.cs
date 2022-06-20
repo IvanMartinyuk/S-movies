@@ -14,12 +14,12 @@ namespace FilmsSpeedRunAPI.Controllers
     [ApiController]
     [Route("[controller]/[action]")]
     [EnableCors("AllowOrigin")]
-    public class ProducerController : Controller
+    public class WriterController : Controller
     {
-        ProducerService service;
-        public ProducerController(FilmContext context)
+        WriterService service;
+        public WriterController(FilmContext context)
         {
-            service = new ProducerService(context);
+            service = new WriterService(context);
         }
         [HttpDelete]
         [Authorize]
@@ -29,37 +29,37 @@ namespace FilmsSpeedRunAPI.Controllers
         }
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Post([FromBody] ProducerDTO producer)
+        public async Task<IActionResult> Post([FromBody] WriterDTO writer)
         {
-            if (producer == null)
+            if (writer == null)
                 return BadRequest(new { error = "no actor" });
-            await service.AddAsync(producer);
+            await service.AddAsync(writer);
             return Ok();
         }
         [HttpDelete]
         [Authorize]
-        public async Task<IActionResult> Delete(int producerId)
+        public async Task<IActionResult> Delete(int writerId)
         {
-            if (producerId == null || producerId == 0)
+            if (writerId == null || writerId == 0)
                 return BadRequest(new { error = "no actor id" });
-            await service.RemoveAsync(producerId);
+            await service.RemoveAsync(writerId);
             return Ok();
         }
         [HttpPut]
         [Authorize]
-        public async Task<IActionResult> Put([FromBody] ProducerDTO producer)
+        public async Task<IActionResult> Put([FromBody] WriterDTO writer)
         {
-            if (producer == null)
+            if (writer == null)
                 return BadRequest(new { error = "no actor" });
-            await service.UpdateAsync(producer);
+            await service.UpdateAsync(writer);
             return Ok();
         }
         [HttpGet]
-        public async Task<IActionResult> Get(int producerId)
+        public async Task<IActionResult> Get(int writerId)
         {
-            if (producerId == null || producerId == 0)
+            if (writerId == null || writerId == 0)
                 return BadRequest(new { error = "no actor id" });
-            return Json(await service.Get(producerId));
+            return Json(await service.Get(writerId));
         }
         [HttpGet]
         public async Task<IActionResult> All()
@@ -70,11 +70,11 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(all);
         }
         [HttpGet]
-        public async Task<IActionResult> Films(int producerId)
+        public async Task<IActionResult> Films(int writerId)
         {
-            if (producerId == null || producerId == 0)
+            if (writerId == null || writerId == 0)
                 return BadRequest(new { error = "no actor id" });
-            var all = service.GetFilms(producerId);
+            var all = service.GetFilms(writerId);
             if (all == null)
                 return NotFound(new { error = "no data" });
             return Json(all);

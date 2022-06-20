@@ -17,7 +17,7 @@ namespace BLL.DTO
         public string Image { get; set; }
          public virtual List<ActorDTO> Actors { get; set; }
         public virtual List<GenreDTO> Genres { get; set; }
-        public virtual List<ProducerDTO> Producers { get; set; }
+        public virtual List<WriterDTO> Writers { get; set; }
         public virtual List<DirectorDTO> Directors { get; set; }
         public int CompanyId { get; set; }
     }

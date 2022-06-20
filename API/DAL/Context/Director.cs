@@ -12,6 +12,7 @@ namespace DAL.Context
         public int Id { get; set; }
         public string ImdbId { get; set; }
         public string Name { get; set; }
+        public string Image { get; set; }
         public virtual List<Film> Films { get; set; } = new List<Film>();
     }
 }

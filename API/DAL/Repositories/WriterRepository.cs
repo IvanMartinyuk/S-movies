@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class ProducerRepository : GenericRepository<Producer>
+    public class WriterRepository : GenericRepository<Writer>
     {
-        public ProducerRepository(FilmContext context) : base(context)
+        public WriterRepository(FilmContext context) : base(context)
         {
 
         }
         public List<Film> GetFilms(int id)
         {
             FilmContext contx = (FilmContext)context;
-            var list = contx.Producers.Include(x => x.Films)
+            var list = contx.Writers.Include(x => x.Films)
                                 .ToList()
                                 .Where(x => x.Id == id)
                                 .Select(x => x.Films)
                                 .ToList()[0]
                                 .ToList();
             foreach (Film film in list)
-                film.Producers = null;
+                film.Writers = null;
             return list;
         }
     }

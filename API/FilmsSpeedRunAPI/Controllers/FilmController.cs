@@ -84,11 +84,11 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(all);
         }
         [HttpGet]
-        public async Task<IActionResult> Producers(int filmId)
+        public async Task<IActionResult> Writers(int filmId)
         {
             if (filmId == null || filmId == 0)
                 return BadRequest(new { error = "no film id" });
-            var all = service.GetProducers(filmId);
+            var all = service.GetWriters(filmId);
             if (all == null)
                 return NotFound(new { error = "no data" });
             return Json(all);

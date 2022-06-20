@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DAL.Context
 {
     [Serializable]
-    public class Producer
+    public class Writer
     {
         public int Id { get; set; }
         public string ImdbId { get; set; }

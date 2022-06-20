@@ -14,7 +14,7 @@ namespace DAL.Context
         public DbSet<Company> Companies { get; set; }
         public DbSet<Director> Directors { get; set; }
         public DbSet<Genre> Genres { get; set; }
-        public DbSet<Producer> Producers { get; set; }
+        public DbSet<Writer> Writers { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Selection> Selections { get; set; }
         public DbSet<User> Users { get; set; }

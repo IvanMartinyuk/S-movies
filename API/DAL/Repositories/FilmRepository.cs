@@ -27,17 +27,17 @@ namespace DAL.Repositories
                 actor.Films = null;
             return list;
         }
-        public List<Producer> GetProducers(int filmId)
+        public List<Writer> GetWriters(int filmId)
         {
             FilmContext contx = (FilmContext)context;
-            var list = contx.Films.Include(x => x.Producers)
+            var list = contx.Films.Include(x => x.Writers)
                                 .ToList()
                        .Where(x => x.Id == filmId)
-                       .Select(x => x.Producers)
+                       .Select(x => x.Writers)
                        .ToList()[0]
                        .ToList();
-            foreach (Producer producer in list)
-                producer.Films = null;
+            foreach (Writer writer in list)
+                writer.Films = null;
             return list;
         }
         public List<Genre> GetGenres(int filmId)
@@ -94,7 +94,7 @@ namespace DAL.Repositories
         {
             FilmContext con = (FilmContext)context;
             return con.Films.Include(x => x.Actors)
-                             .Include(x => x.Producers)
+                             .Include(x => x.Writers)
                              .Include(x => x.Directors)
                              .Include(x => x.Genres)
                              .FirstOrDefault(x => x.Title == film.Title && x.DateOfPublishing == film.DateOfPublishing);
