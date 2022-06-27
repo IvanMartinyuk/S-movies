@@ -28,6 +28,7 @@ namespace DAL.Context
         public virtual List<Writer> Writers { get; set; }
         public virtual List<Selection> Selections { get; set; }
         public virtual List<Director> Directors { get; set; }
+        public virtual List<Comment> Comments { get; set; }
         public int CompanyId { get; set; }
         public virtual Company Company { get; set; }
     }

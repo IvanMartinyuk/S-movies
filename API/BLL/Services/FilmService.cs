@@ -62,6 +62,8 @@ namespace BLL.Services
         public List<Director> GetDirectors(int filmId) => ((FilmRepository)Repository).GetDirectors(filmId);
         public List<Selection> GetSelections(int filmId) => ((FilmRepository)Repository).GetSelections(filmId);
         public Company GetCompany(int filmId) => ((FilmRepository)Repository).GetCompany(filmId);
+        public List<CommentDTO> GetComments(int filmId) => Mapper.Map<List<Comment>, List<CommentDTO>>
+                                                            (((FilmRepository)Repository).GetComments(filmId));
         public int GetCount()
         {
             return context.Films.Count();

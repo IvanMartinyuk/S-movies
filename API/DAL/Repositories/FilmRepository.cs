@@ -97,7 +97,16 @@ namespace DAL.Repositories
                              .Include(x => x.Writers)
                              .Include(x => x.Directors)
                              .Include(x => x.Genres)
-                             .FirstOrDefault(x => x.Title == film.Title && x.DateOfPublishing == film.DateOfPublishing);
+                             .FirstOrDefault(x => x.ImdbId == film.ImdbId);
+        }
+        public List<Comment> GetComments(int filmId)
+        {
+            FilmContext con = (FilmContext)context;
+            var list = con.Films.Include(x => x.Comments)
+                            .FirstOrDefault(x => x.Id == filmId)
+                            .Comments;
+            list.ForEach(x => x.CommentedFilm = null);
+            return list;
         }
     }
 }

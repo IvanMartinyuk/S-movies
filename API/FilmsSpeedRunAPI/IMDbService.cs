@@ -23,7 +23,6 @@ namespace DAL
         List<Director> Directors { get; set; } = new List<Director>();
         Film Film { get; set; } = new Film();
         FilmContext context { get; set; }
-        //string key = "36a979b383msh58c4184b01300a8p14d725jsn79815b6808db";
         HttpClient client = new HttpClient();
 
         string apikey = "k_pz8gcst4";

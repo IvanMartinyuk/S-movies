@@ -26,7 +26,7 @@ namespace FilmsSpeedRunAPI.Controllers
         public async Task<IActionResult> Post([FromBody] SelectionDTO selection)
         {
             if (selection == null)
-                return BadRequest(new { error = "no actor" });
+                return BadRequest(new { error = "no selection" });
             await service.AddAsync(selection);
             return Ok();
         }
@@ -35,7 +35,7 @@ namespace FilmsSpeedRunAPI.Controllers
         public async Task<IActionResult> Delete(int selectionId)
         {
             if (selectionId == null || selectionId == 0)
-                return BadRequest(new { error = "no actor id" });
+                return BadRequest(new { error = "no selection id" });
             await service.RemoveAsync(selectionId);
             return Ok();
         }
@@ -44,7 +44,7 @@ namespace FilmsSpeedRunAPI.Controllers
         public async Task<IActionResult> Put([FromBody] SelectionDTO selection)
         {
             if (selection == null)
-                return BadRequest(new { error = "no actor" });
+                return BadRequest(new { error = "no selection" });
             await service.UpdateAsync(selection);
             return Ok();
         }
@@ -52,7 +52,7 @@ namespace FilmsSpeedRunAPI.Controllers
         public async Task<IActionResult> Get(int selectionId)
         {
             if (selectionId == null || selectionId == 0)
-                return BadRequest(new { error = "no actor id" });
+                return BadRequest(new { error = "no selection id" });
             return Json(await service.Get(selectionId));
         }
         [HttpGet]
@@ -64,9 +64,9 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(all);
         }
         [HttpGet]
-        public async Task<IActionResult> UsersSelections(int selectionId)
+        public async Task<IActionResult> UsersSelections(int userId)
         {
-            var all = service.GetAll().Where(x=>x.UserId== selectionId);
+            var all = service.GetAll().Where(x=>x.UserId== userId);
             if (all == null)
                 return NotFound(new { error = "no data" });
             return Json(all);

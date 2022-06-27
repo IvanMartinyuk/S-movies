@@ -35,7 +35,7 @@ namespace FilmsSpeedRunAPI.Controllers
         public async Task<IActionResult> Delete(int filmId)
         {
             if (filmId == null || filmId == 0)
-                return BadRequest(new { error = "no actor id" });
+                return BadRequest(new { error = "no film id" });
             await service.RemoveAsync(filmId);
             return Ok();
         }
@@ -44,7 +44,7 @@ namespace FilmsSpeedRunAPI.Controllers
         public async Task<IActionResult> Put([FromBody] FilmDTO film)
         {
             if (film == null)
-                return BadRequest(new { error = "no actor" });
+                return BadRequest(new { error = "no film" });
             await service.UpdateAsync(film);
             return Ok();
         }
@@ -122,6 +122,14 @@ namespace FilmsSpeedRunAPI.Controllers
             if (all == null)
                 return NotFound(new { error = "no data" });
             return Json(all);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Comments(int filmId)
+        {
+            if (filmId == null || filmId == 0)
+                return BadRequest(new { error = "bad id" });
+            var comments = service.GetComments(filmId);
+            return comments == null ? NotFound(new { error = "no data" }) : Json(comments);
         }
         [HttpPost]
         public async Task<IActionResult> GetByFilter([FromBody]FilterOptions options)
