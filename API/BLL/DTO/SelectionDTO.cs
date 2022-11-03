@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace BLL.DTO
         public int Id { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
-        //public virtual IEnumerable<Film> Films { get; set; }
+        public double Rating { get; set; }
+        public int RatingVotes { get; set; }
+        public string Poster { get; set; }
     }
 }

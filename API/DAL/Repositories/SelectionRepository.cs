@@ -39,5 +39,14 @@ namespace DAL.Repositories
                 film.Selections = null;
             return list;
         }
+        public List<Selection> GetTop()
+        {
+            FilmContext contx = (FilmContext)context;
+            List<Selection> selections = contx.Selections
+                                              .OrderByDescending(x => x.Rating)
+                                              .Take(5)
+                                              .ToList();
+            return selections;
+        }
     }
 }

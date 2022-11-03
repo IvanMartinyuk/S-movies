@@ -56,6 +56,13 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(await service.Get(filmId));
         }
         [HttpGet]
+        public async Task<IActionResult> GetPage(int page)
+        {
+            if (page == null || page < 0)
+                return BadRequest(new { error = "invalid page" });
+            return Json(service.GetSortedPage(new FilterOptions() { Page = page }));
+        }
+        [HttpGet]
         public async Task<IActionResult> All()
         {
             var all = service.GetAll();

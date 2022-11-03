@@ -18,5 +18,6 @@ namespace BLL.Services
         public List<Film> GetFilms(int id) => ((SelectionRepository)Repository).GetFilms(id);
         public void AddFilm(int selId, int filmId) => ((SelectionRepository)Repository).AddFilm(selId, filmId);
         public void RemoveFilm(int selId, int filmId) => ((SelectionRepository)Repository).RemoveFilm(selId, filmId);
+        public List<SelectionDTO> GetTop() => Mapper.Map<List<Selection>, List<SelectionDTO>>(((SelectionRepository)Repository).GetTop());
     }
 }

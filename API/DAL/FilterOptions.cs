@@ -16,7 +16,7 @@ namespace FilmsSpeedRunAPI
         public DateTime DateTop { get; set; } = new DateTime(1800, 1, 1);
         public DateTime DateLast { get; set; } = DateTime.Now;
         public string Genre { get; set; } = "all";
-        public string SortBy { get; set; }
+        public string SortBy { get; set; } = "default";
     }
 }
 

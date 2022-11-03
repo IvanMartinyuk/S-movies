@@ -46,13 +46,21 @@ namespace DAL.Repositories
                     return SortAndFilter(options, x => x.ImdbRating);
                 case "title":
                     return SortAndFilter(options, x => x.Title);
+                case "default":
+                    return con.Films
+                                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
+                                .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
+                                .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
+                                .Skip((options.Page) * 10)
+                                .Take(10)
+                                .ToList();
                 default:
                     return con.Films
-                                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingTop)
+                                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
                                 .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
                                 .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
                                 .Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
-                                .Skip((options.Page - 1) * 10)
+                                .Skip((options.Page) * 10)
                                 .Take(10)
                                 .ToList();
             }
