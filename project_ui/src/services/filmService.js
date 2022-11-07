@@ -22,7 +22,7 @@ export default class filmService {
     } 
      async getGenres(id) {
         let response = await fetch(this.baseUrl+'Genres' + '?filmId='+id)
-        let data = await response.json()
+        let data = await response.json()    
         return data
     } 
      async getProducers(id) {

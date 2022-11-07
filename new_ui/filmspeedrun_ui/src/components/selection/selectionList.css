@@ -1,0 +1,25 @@
+.selectionPosterItem
+{
+    width: 200px;
+    height: 200px;
+    background-color: #2a334e;
+    
+}
+
+.selectionTitleItem
+{
+    text-align: center;
+}
+
+.selectionBox {
+    display: flex;
+
+}
+
+.selectionCard {
+    border-radius: 20px;
+    height: 250px;
+    background-color: #2a334e;
+    padding: 10px;
+    margin: 10px;
+}

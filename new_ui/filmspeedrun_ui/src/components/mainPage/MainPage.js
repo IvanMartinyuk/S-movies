@@ -1,4 +1,5 @@
 import React from "react";
+import SelectionList from "../selection/selectionList"
 
 class MainPage extends React.Component
 {
@@ -6,7 +7,7 @@ class MainPage extends React.Component
     {
         return(
             <div>
-                <SelectionItem></SelectionItem>
+                <SelectionList></SelectionList>
             </div>
         )
     }
