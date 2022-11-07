@@ -56,6 +56,13 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(await service.Get(filmId));
         }
         [HttpGet]
+        public async Task<IActionResult> GetPage(int page)
+        {
+            if (page == null || page < 0)
+                return BadRequest(new { error = "invalid page" });
+            return Json(service.GetSortedPage(new FilterOptions() { Page = page }));
+        }
+        [HttpGet]
         public async Task<IActionResult> All()
         {
             var all = service.GetAll();
@@ -134,7 +141,7 @@ namespace FilmsSpeedRunAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> GetByFilter([FromBody]FilterOptions options)
         {
-            return Json(service.GetSortedPage(options.Prop, options.Page, service.SortedFilter(options)));
+            return Json(service.GetSortedPage(options));
         }
         [HttpGet]
         public async Task<IActionResult> GetFilmsCount()
@@ -142,13 +149,13 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(new { count = service.GetCount() });
         }
         [HttpGet]
-        public async Task<IActionResult> Search(string search)
+        public async Task<IActionResult> Search(string search, int page)
         {
-            List<FilmDTO> list = service.GetAll().Where(x => x.Title.Contains(search)).ToList();
-            List<FilmDTO> result = new List<FilmDTO>();
-            for (int i = 0; i < list.Count() && i < 3; i++)
-                result.Add(list[i]);
-            return Json(result);
+            //List<FilmDTO> list = service.GetAll().Where(x => x.Title.Contains(search)).ToList();
+            //List<FilmDTO> result = new List<FilmDTO>();
+            //for (int i = 0; i < list.Count() && i < 3; i++)
+            //    result.Add(list[i]);
+            return Json(service.Search(search, page));
         }
     }
 }

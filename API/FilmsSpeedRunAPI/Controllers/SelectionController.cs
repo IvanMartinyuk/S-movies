@@ -56,6 +56,14 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(await service.Get(selectionId));
         }
         [HttpGet]
+        public async Task<IActionResult> GetTop()
+        {
+            var selections = service.GetTop();
+            if (selections == null)
+                return BadRequest(new { error = "no data" });
+            return Json(selections);
+        }
+        [HttpGet]
         public async Task<IActionResult> All()
         {
             var all = service.GetAll();
