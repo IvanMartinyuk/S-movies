@@ -1,14 +1,25 @@
 .selectionPosterItem
 {
     width: 200px;
-    height: 200px;
-    background-color: #2a334e;
-    
+    height: 200px;  
+    position: absolute;  
+    margin: auto;
 }
-
+.posterImg {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
 .selectionTitleItem
 {
-    text-align: center;
+    margin-top: 200px;
 }
 
 .selectionBox {
@@ -17,9 +28,21 @@
 }
 
 .selectionCard {
-    border-radius: 20px;
-    height: 250px;
-    background-color: #2a334e;
+    height: 220px;
+    width: 200px;
+    margin: 0px 20px;
     padding: 10px;
-    margin: 10px;
+}
+
+.ratingIcon {
+    width:100%;
+}
+
+.ratingDiv {
+    width: 16px;
+}
+
+.cardRating {
+    margin-top: 200px;
+    margin-left: 110px;
 }

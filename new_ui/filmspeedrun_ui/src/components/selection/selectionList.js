@@ -9,7 +9,7 @@ class SelectionList extends React.Component
         super(props);
         this.state = {
             selectionViews: []
-        }
+        }        
         this.updateState = this.updateState.bind(this)
     }
     componentDidMount()
@@ -20,26 +20,37 @@ class SelectionList extends React.Component
     }
     updateState(selections)
     {
+        this.setState({
+            selectionViews: this.convertSelection(selections)
+        })
+    }
+    convertSelection(selections)
+    {
         let selectionVs = []
         selections.forEach(selection => {
-            console.log(selection)
             selectionVs.push(
                 <div className="selectionCard">
                     <div className="selectionPosterItem">
-                        <img src={selection.poster}
-                             width="100%"></img>
+                        <img className="posterImg" src={selection.poster}></img>
                     </div>
-                    <h3 className="selectionTitleItem">{selection.name}</h3>
+                    <div className="flex ">
+                        <h3 className="selectionTitleItem">{selection.name}</h3>
+                        <div className="flex cardRating">
+                            <div>{selection.rating}</div>
+                            <div className="ratingDiv">
+                                <img className="ratingIcon" src="https://img.icons8.com/fluency/512/star.png"></img>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )
         });
-        this.setState({
-            selectionViews: selectionVs
-        })
+        return selectionVs;
     }
+    
     render()
     {
-        console.log("selectionsViews")
+        
         
         return (
             <div>
@@ -47,7 +58,6 @@ class SelectionList extends React.Component
                 <div className="selectionBox">
                     {this.state.selectionViews.map((i) =>
                     {
-                        console.log(i)
                         return i
                         })}
                 </div>

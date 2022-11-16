@@ -1,4 +1,5 @@
 import React from "react"
+import './nav.css'
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -7,7 +8,12 @@ class NavBar extends React.Component {
     render() {
         return (
         <nav className="navbar">
-            <h3>Hello</h3>
+            <div className="logoDiv">
+                {/* <img className="logo"></img> */}
+            </div>
+            <div className="navigation">Films</div>
+            <div className="navigation selected">Selections</div>
+            <div className="navigation">People</div>
         </nav>
         )
     }

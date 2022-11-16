@@ -19,6 +19,7 @@ namespace DAL.Context
         public DbSet<Selection> Selections { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Comment> Coments { get; set; }
+        public DbSet<Screenshot> Screenshots { get; set; }
         public FilmContext(DbContextOptions<FilmContext> options) : base(options)
         {
             Database.EnsureCreated();

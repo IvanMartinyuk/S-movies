@@ -23,6 +23,7 @@ namespace DAL.Context
         public string Description { get; set; }
         public string Image { get; set; }
         public string TrailerUrl { get; set; }
+        public virtual List<Screenshot> Screenshots { get; set; }
         public virtual List<Actor> Actors { get; set; }
         public virtual List<Genre> Genres { get; set; }
         public virtual List<Writer> Writers { get; set; }

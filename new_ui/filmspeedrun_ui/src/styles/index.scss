@@ -1,13 +1,31 @@
+$side-width: 20%;
+$base-background: rgb(25, 25, 32);
+
+
 body {
-  margin: 0;
-  background-color: #131722;
+  margin: 0px;
+  background-color: $base-background;
   color: white;
+  min-height: 100%;
+  padding: 0px;
+  max-width: 100vw;
 }
 
+.mainBox {
+  margin: 0px $side-width;
+}
+
+html {
+  padding: 0px;
+  margin: 0px;
+}
 
 div {
-  font-family: "DIN Pro", sans-serif;
-  background-color: #131722;
   color: white;
   font-size: 14px;
+  font-family: monospace;
+}
+
+.flex {
+  display: flex;
 }

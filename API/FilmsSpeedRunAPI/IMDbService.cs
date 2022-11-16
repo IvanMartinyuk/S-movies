@@ -16,7 +16,6 @@ namespace DAL
 {
     public class IMDbService
     {
-        
         List<Actor> Actors { get; set; } = new List<Actor>();
         List<Genre> Genres { get; set; } = new List<Genre>();
         List<Writer> Writers { get; set; } = new List<Writer>();
@@ -92,6 +91,8 @@ namespace DAL
                 Film.Image = film["image"].ToString();
                 Film.Description = film["plot"].ToString();
                 Film.TrailerUrl = film["trailer"]["linkEmbed"].ToString();
+                for (int i = 0; i < 5; i++)
+                    Film.Images.Add(film["images"]["items"][i]["image"]);
                 SetGenres(film["genreList"].ToString()).Wait();
                 SetCrew(film).Wait();
             }

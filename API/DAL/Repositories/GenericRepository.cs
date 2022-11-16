@@ -21,7 +21,7 @@ namespace DAL.Repositories
             await table.AddAsync(entity);
         }
 
-        public async Task<T> GetAsync(int id)
+        public virtual async Task<T> GetAsync(int id)
         {
             var entity = await table.FindAsync(id);
             context.Entry(entity).State = EntityState.Detached;

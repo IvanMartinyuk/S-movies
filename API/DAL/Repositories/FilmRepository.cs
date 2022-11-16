@@ -1,4 +1,4 @@
-﻿using DAL.Context;
+﻿ using DAL.Context;
 using FilmsSpeedRunAPI;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -67,16 +67,37 @@ namespace DAL.Repositories
         }
         List<Film> SortAndFilter(FilterOptions options, Expression<Func<Film, object>> selector)
         {
+            bool isGenre = options.Genre.Count() > 0;
             FilmContext con = (FilmContext)context;
-            return con.Films
-                        .OrderByDescending(selector)
-                        .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingTop)
-                        .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-                        .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                        .Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
-                        .Skip(options.Page * 10)
-                        .Take(10)
-                        .ToList();
+            var film = con.Films.Find(1);
+            var list = con.Films
+                            .OrderByDescending(selector)
+                            .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingTop)
+                            .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
+                            .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
+                            .Skip(options.Page * 10)
+                            .Take(10)
+                            .ToList();
+            return list;
+            //if (isGenre)
+            //    return con.Films
+            //                .OrderByDescending(selector)
+            //                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingTop)
+            //                .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
+            //                .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
+            //                .Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
+            //                .Skip(options.Page * 10)
+            //                .Take(10)
+            //                .ToList();
+            //else
+            //    return con.Films
+            //                .OrderByDescending(selector)
+            //                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingTop)
+            //                .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
+            //                .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
+            //                .Skip(options.Page * 10)
+            //                .Take(10)
+            //                .ToList();
         }
         public List<Actor> GetActors(int filmId)
         {
@@ -171,6 +192,11 @@ namespace DAL.Repositories
                             .Comments;
             list.ForEach(x => x.CommentedFilm = null);
             return list;
+        }
+        public List<string> GetImages(int filmId)
+        {
+            FilmContext con = (FilmContext)context;
+            return con.Screenshots.Where(x => x.FilmId == filmId).Select(x => x.Url).ToList();
         }
     }
 }

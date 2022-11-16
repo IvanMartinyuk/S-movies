@@ -15,8 +15,8 @@ namespace FilmsSpeedRunAPI.Config
         }
         static string title = "";
         public static string Title {
-            get => title + "/Trailer";
-            set => title = "https://imdb-api.com/en/API/Title/" + value;            
+            get => title + "/Images,Trailer,";
+            set => title = "https://imdb-api.com/en/API/Title/" + value;
         }
     }
 }
