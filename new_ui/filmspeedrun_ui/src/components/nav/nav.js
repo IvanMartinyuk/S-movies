@@ -1,5 +1,6 @@
 import React from "react"
 import './nav.css'
+import logo from './try13.png'
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class NavBar extends React.Component {
         return (
         <nav className="navbar">
             <div className="logoDiv">
-                {/* <img className="logo"></img> */}
+                <img src={logo} className="logo" ></img>
             </div>
             <div className="navigation">Films</div>
             <div className="navigation selected">Selections</div>

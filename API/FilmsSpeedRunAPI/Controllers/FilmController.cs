@@ -71,10 +71,20 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(all);
         }
         [HttpGet]
+        public async Task<IActionResult> Screenshots(int filmId)
+        {
+            if (filmId == null || filmId == 0)
+                return BadRequest(new { error = "no film id" });
+            var all = service.GetScreenshots(filmId);
+            if (all == null)
+                return NotFound(new { error = "no data" });
+            return Json(all);
+        }
+        [HttpGet]
         public async Task<IActionResult> Actors(int filmId)
         {
             if (filmId == null || filmId == 0)
-                return BadRequest(new { error = "no actor id" });
+                return BadRequest(new { error = "no film id" });
             var all = service.GetActors(filmId);
             if (all == null)
                 return NotFound(new { error = "no data" });

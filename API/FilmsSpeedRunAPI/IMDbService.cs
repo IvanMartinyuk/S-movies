@@ -20,6 +20,7 @@ namespace DAL
         List<Genre> Genres { get; set; } = new List<Genre>();
         List<Writer> Writers { get; set; } = new List<Writer>();
         List<Director> Directors { get; set; } = new List<Director>();
+        List<Screenshot> Screenshots { get; set; } = new List<Screenshot>();
         Film Film { get; set; } = new Film();
         FilmContext context { get; set; }
         HttpClient client = new HttpClient();
@@ -69,6 +70,7 @@ namespace DAL
                         Film.Genres = Genres;
                         Film.Writers = Writers;
                         Film.Selections = new List<Selection>();
+                        Film.Screenshots = Screenshots;
                         context.Films.Update(Film);
                         context.SaveChanges();
                         Clear();
@@ -91,10 +93,9 @@ namespace DAL
                 Film.Image = film["image"].ToString();
                 Film.Description = film["plot"].ToString();
                 Film.TrailerUrl = film["trailer"]["linkEmbed"].ToString();
-                for (int i = 0; i < 5; i++)
-                    Film.Images.Add(film["images"]["items"][i]["image"]);
                 SetGenres(film["genreList"].ToString()).Wait();
                 SetCrew(film).Wait();
+                SetScreenshots((JArray)film["images"]["items"]);
             }
             catch (HttpRequestException ex)
             {
@@ -102,6 +103,11 @@ namespace DAL
                     File.Create("errors.txt").Close();
                 File.AppendAllText("errors.txt", $"bad request - {ex.Message}");
             }
+        }
+        void SetScreenshots(JArray screenshots)
+        {
+            for (int i = 0; i < 5; i++)
+                Screenshots.Add(new Screenshot { Url = screenshots[i]["image"].ToString() });
         }
         async Task SetCrew(JObject film)
         {
@@ -183,6 +189,7 @@ namespace DAL
             this.Actors = new List<Actor>();
             this.Directors = new List<Director>();
             this.Writers = new List<Writer>();
+            this.Screenshots = new List<Screenshot>();
             Film = new Film();
         }
     }

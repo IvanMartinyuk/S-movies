@@ -14,7 +14,7 @@
 .navigation {
     padding: 5px 15px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 20px;
     font-family: monospace;
 }
 
@@ -23,14 +23,12 @@
 }
 
 .logoDiv {
-    width:38px;
+    width:110px;
     position: fixed;
-    left: 10px;
-    top: 5px;
+    left: 15px;
+    top: 10px;
 }
 
 .logo {
-    width: 100%;
-    height: 38px;
-    src: './logo.png';
+    width: 100%;   
 }

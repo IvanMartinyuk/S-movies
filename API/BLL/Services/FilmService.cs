@@ -61,6 +61,7 @@ namespace BLL.Services
         public Company GetCompany(int filmId) => ((FilmRepository)Repository).GetCompany(filmId);
         public List<CommentDTO> GetComments(int filmId) => Mapper.Map<List<Comment>, List<CommentDTO>>
                                                             (((FilmRepository)Repository).GetComments(filmId));
+        public List<string> GetScreenshots(int filmId) => ((FilmRepository)Repository).GetSCreenshots(filmId);
         public int GetCount()
         {
             return context.Films.Count();
@@ -72,6 +73,5 @@ namespace BLL.Services
         public List<FilmDTO> GetSortedPage(FilterOptions options) => Mapper.Map<List<Film>, List<FilmDTO>>(
                                                                                         ((FilmRepository)Repository)
                                                                                         .GetSortedFilter(options));
-        public List<string> GetImages(int filmId) => ((FilmRepository)Repository).GetImages(filmId);
     }
 }

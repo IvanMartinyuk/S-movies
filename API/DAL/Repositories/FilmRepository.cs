@@ -193,7 +193,7 @@ namespace DAL.Repositories
             list.ForEach(x => x.CommentedFilm = null);
             return list;
         }
-        public List<string> GetImages(int filmId)
+        public List<string> GetSCreenshots(int filmId)
         {
             FilmContext con = (FilmContext)context;
             return con.Screenshots.Where(x => x.FilmId == filmId).Select(x => x.Url).ToList();
