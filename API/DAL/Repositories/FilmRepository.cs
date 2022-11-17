@@ -26,20 +26,11 @@ namespace DAL.Repositories
         }
         public List<Film> GetSortedFilter(FilterOptions options)
         {
-            //also you need to think about non genre filter
             FilmContext con = (FilmContext)context;
             switch (options.SortBy.ToLower())
             {
                 case "releasedate":
-                    return con.Films
-                                .OrderByDescending(x => x.DateOfPublishing)
-                                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
-                                .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-                                .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                                //.Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
-                                .Skip(options.Page * 10)
-                                .Take(10)
-                                .ToList();
+                    return SortAndFilter(options, x => x.DateOfPublishing);
                 case "localrating":
                     return SortAndFilter(options, x => x.LocalRating);
                 case "imdbrating":
@@ -69,35 +60,25 @@ namespace DAL.Repositories
         {
             bool isGenre = options.Genre.Count() > 0;
             FilmContext con = (FilmContext)context;
-            var film = con.Films.Find(1);
-            var list = con.Films
+            if (isGenre)
+                return con.Films
                             .OrderByDescending(selector)
-                            .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingTop)
+                            .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
+                            .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
+                            .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
+                            .Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
+                            .Skip(options.Page * 10)
+                            .Take(10)
+                            .ToList();
+            else
+                return con.Films
+                            .OrderByDescending(selector)
+                            .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
                             .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
                             .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
                             .Skip(options.Page * 10)
                             .Take(10)
                             .ToList();
-            return list;
-            //if (isGenre)
-            //    return con.Films
-            //                .OrderByDescending(selector)
-            //                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingTop)
-            //                .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-            //                .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-            //                .Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
-            //                .Skip(options.Page * 10)
-            //                .Take(10)
-            //                .ToList();
-            //else
-            //    return con.Films
-            //                .OrderByDescending(selector)
-            //                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingTop)
-            //                .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-            //                .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-            //                .Skip(options.Page * 10)
-            //                .Take(10)
-            //                .ToList();
         }
         public List<Actor> GetActors(int filmId)
         {
