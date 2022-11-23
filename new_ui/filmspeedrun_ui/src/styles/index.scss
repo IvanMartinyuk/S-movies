@@ -1,4 +1,4 @@
-$side-width: 20%;
+$side-width: 0%;
 $base-background: rgb(32, 32, 43);
 
 
@@ -13,6 +13,7 @@ body {
 
 .mainBox {
   margin: 0px $side-width;
+  height: 100%;
 }
 
 html {
@@ -28,4 +29,31 @@ div {
 
 .flex {
   display: flex;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: black; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-button {
+    height: 20%;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: black;
+  border-radius: 10px; 
 }

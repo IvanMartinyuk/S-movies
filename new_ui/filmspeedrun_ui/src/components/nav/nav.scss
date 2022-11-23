@@ -1,0 +1,58 @@
+$side-margin: 10px;
+
+.navbar {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    padding: 15px 0px;
+    
+}
+
+.divTransparent {
+    background-color: transparent;
+}
+
+.navigation {
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: monospace;
+    margin: auto;
+    text-decoration: none;
+    color: white;
+}
+
+.selected {
+    background-color: black;
+}
+
+.logoDiv {
+    width:110px;
+    margin: auto;
+    margin-left: $side-margin;
+}
+
+.logo {
+    width: 100%;   
+}
+
+.userImgDiv {
+    width: 40px;
+}
+
+.userDiv {
+    margin-left: auto;
+    margin-right: $side-margin;
+}
+
+.userNick {
+    margin: auto;
+    margin-right: $side-margin;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.userImg {
+    width: 100%;
+    border-radius: 50%;
+}

@@ -1,0 +1,34 @@
+$base-background: rgb(32, 32, 43);
+$filter-background: rgb(27, 27, 39);
+$list-background: rgb(32, 32, 43);
+$film-card-width: 170px;
+
+.filter {
+    background-color: $filter-background;
+}
+
+.filmList {
+    background-color: $list-background;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filmPage {
+    height: 100px;
+}
+
+.poster {
+    width: $film-card-width;
+    height: 255px;
+}
+
+.posterImg {
+    width: 100%;
+    height: 100%;
+}
+
+.filmCard {
+    width: $film-card-width;
+    margin: 20px;
+    margin-top: 0px;
+}

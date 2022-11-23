@@ -21,6 +21,7 @@ namespace BLL.Services
             MapperConfiguration config = new MapperConfiguration(con =>
             {
                 con.CreateMap<Film, FilmDTO>().ReverseMap();
+                con.CreateMap<Film, ShortFilmDTO>().ReverseMap();
                 con.CreateMap<Actor, ActorDTO>().ReverseMap();
                 con.CreateMap<Writer, WriterDTO>().ReverseMap();
                 con.CreateMap<Director, DirectorDTO>().ReverseMap();
@@ -70,7 +71,7 @@ namespace BLL.Services
         {
             return Mapper.Map<List<Film>, List<FilmDTO>>(((FilmRepository)Repository).Search(title, page));
         }
-        public List<FilmDTO> GetSortedPage(FilterOptions options) => Mapper.Map<List<Film>, List<FilmDTO>>(
+        public List<ShortFilmDTO> GetSortedPage(FilterOptions options) => Mapper.Map<List<Film>, List<ShortFilmDTO>>(
                                                                                         ((FilmRepository)Repository)
                                                                                         .GetSortedFilter(options));
     }

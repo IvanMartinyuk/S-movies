@@ -1,5 +1,5 @@
 import React from "react";
-import { SelectionService } from "../../services/selectionService";
+import { SelectionService } from "../../../services/selectionService";
 import './selectionList.css'
 
 class SelectionList extends React.Component
@@ -30,9 +30,9 @@ class SelectionList extends React.Component
         selections.forEach(selection => {
             selectionVs.push(
                 <div className="selectionCard">
-                    <div className="selectionPosterItem">
-                        <img className="posterImg" src={selection.poster}></img>
-                    </div>
+                    {/* <div className="selectionLogoItem">
+                        <img className="logoImg" src={selection.poster}></img>
+                    </div> */}
                     <div className="flex ">
                         <h3 className="selectionTitleItem">{selection.name}</h3>
                         <div className="flex cardRating">

@@ -12,6 +12,7 @@ namespace DAL.Repositories
 {
     public class FilmRepository : GenericRepository<Film>
     {
+        int pageCount = 35;
         public FilmRepository(FilmContext context) : base(context)
         {
 
@@ -20,8 +21,8 @@ namespace DAL.Repositories
         {
             FilmContext con = (FilmContext)context;
             return con.Films.Where(x => x.Title.ToLower().Contains(title.ToLower()))
-                            .Skip(page * 10)
-                            .Take(10)
+                            .Skip(page * pageCount)
+                            .Take(pageCount)
                             .ToList();
         }
         public List<Film> GetSortedFilter(FilterOptions options)
@@ -42,8 +43,8 @@ namespace DAL.Repositories
                                 .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
                                 .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
                                 .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                                .Skip((options.Page) * 10)
-                                .Take(10)
+                                .Skip((options.Page) * pageCount)
+                                .Take(pageCount)
                                 .ToList();
                 default:
                     return con.Films
@@ -51,8 +52,8 @@ namespace DAL.Repositories
                                 .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
                                 .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
                                 .Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
-                                .Skip((options.Page) * 10)
-                                .Take(10)
+                                .Skip((options.Page) * pageCount)
+                                .Take(pageCount)
                                 .ToList();
             }
         }
@@ -67,8 +68,8 @@ namespace DAL.Repositories
                             .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
                             .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
                             .Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
-                            .Skip(options.Page * 10)
-                            .Take(10)
+                            .Skip(options.Page * pageCount)
+                            .Take(pageCount)
                             .ToList();
             else
                 return con.Films
@@ -76,8 +77,8 @@ namespace DAL.Repositories
                             .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
                             .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
                             .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                            .Skip(options.Page * 10)
-                            .Take(10)
+                            .Skip(options.Page * pageCount)
+                            .Take(pageCount)
                             .ToList();
         }
         public List<Actor> GetActors(int filmId)

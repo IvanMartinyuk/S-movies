@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -53,11 +54,16 @@ namespace DAL
                 using (HttpResponseMessage response = await client.GetAsync(new Uri(RequestOptions.Title)))
                 {
                     JObject film = (JObject)JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+                    if (film["id"].ToString().Count() == 0)
+                        if (!ChangeApiKey())
+                            return;
                     string filmid = items[i];
                     if (!context.Films.Any(x => x.ImdbId == filmid))
                     {
                         Film.ImdbId = filmid;
                         SetFilm(film);
+                        if (Film.Title == null || Film.Description == null || Film.Image == null)
+                            Clear();
 
                         Film.CompanyId = companyid;
                         context.Films.Add(Film);
@@ -78,6 +84,28 @@ namespace DAL
                 }
             }
         }
+        bool ChangeApiKey()
+        {
+            //Get main project folder(FilmSpeedRun)
+            var dir = Directory.GetParent(Assembly.GetExecutingAssembly().Location).Parent;
+            dir = dir.Parent;
+            dir = dir.Parent;
+
+            string keysPath = dir.FullName + "\\keys.txt";
+            if (File.Exists(keysPath))
+            {
+                string[] keys = File.ReadAllLines(keysPath);
+                for (int i = 0; i < keys.Length; i++)
+                    if (keys[i] == apikey && i + 1 < keys.Length)
+                    {
+                        apikey = keys[i + 1];
+                        return true;
+                    }
+                    else if (keys[i] != apikey && i + 1 >= keys.Length)
+                        return false;
+            }
+            return false;
+        }
         void SetFilm(JObject film)
         {
             try
@@ -93,6 +121,8 @@ namespace DAL
                 Film.Image = film["image"].ToString();
                 Film.Description = film["plot"].ToString();
                 Film.TrailerUrl = film["trailer"]["linkEmbed"].ToString();
+                if (Film.Title == null || Film.Description == null || Film.Image == null)
+                    return;
                 SetGenres(film["genreList"].ToString()).Wait();
                 SetCrew(film).Wait();
                 SetScreenshots((JArray)film["images"]["items"]);
@@ -103,6 +133,7 @@ namespace DAL
                     File.Create("errors.txt").Close();
                 File.AppendAllText("errors.txt", $"bad request - {ex.Message}");
             }
+            catch{}
         }
         void SetScreenshots(JArray screenshots)
         {

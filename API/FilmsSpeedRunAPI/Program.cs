@@ -29,7 +29,7 @@ namespace FilmsSpeedRunAPI
                 {
                     FillingData.AddMainInfo(context);
                     //FillingData.Fill(context);
-                    ser.Fill(context, 30).Wait();
+                    ser.Fill(context, 100).Wait();
                 }                
             }
             

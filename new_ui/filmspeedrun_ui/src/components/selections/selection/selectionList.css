@@ -1,11 +1,11 @@
-.selectionPosterItem
+/* .selectionLogoItem
 {
     width: 200px;
     height: 200px;  
     position: absolute;  
     margin: auto;
 }
-.posterImg {
+.logoImg {
     max-height: 100%;
     max-width: 100%;
     width: auto;
@@ -16,7 +16,7 @@
     left: 0;
     right: 0;
     margin: auto;
-}
+} */
 .selectionTitleItem
 {
     margin-top: 200px;
