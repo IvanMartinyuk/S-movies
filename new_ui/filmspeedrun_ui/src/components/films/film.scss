@@ -1,0 +1,95 @@
+$posterCol-width: 20%;
+
+.posterCol {
+    width: $posterCol-width;
+    text-align: center;
+}
+
+.contentCol {
+    width: 100% - $posterCol-width;
+}
+
+.filmPosterDiv {
+    width: 70%;
+    margin: auto;
+    box-shadow: 0 0 20px rgba(255,255,255,.6);
+}
+
+.vertivalLine {
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 0.4px;
+}
+
+.ratingBox {
+    margin: auto;
+    width: 40%;
+}
+
+.starDiv {
+    width: 15px;
+}
+
+.rating {
+    margin-right: 3px;
+}
+
+.ratingName {
+    font-size: 17px;
+    margin-right: auto;
+}
+
+.ratingCard {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.screenshotBox {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.screenshotBlock {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.screenshot {
+    height: 120px;
+}
+
+.screenshotImg {
+    max-height: 100%;
+}
+
+.contentBox {
+    width: 80%;
+    margin: auto;
+}
+
+.choosedScreenshot {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    margin: auto;
+}
+
+.choosedImg {
+    width: auto;
+    max-height: 100%;
+}
+
+.navigateImg {
+    font-size: 50px;
+    margin-top: auto;
+    margin-bottom: auto;
+    color: rgba(255, 255, 255, 0.55);
+    background-color: transparent;
+    border: none;
+    &:hover {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.55);
+    }
+}

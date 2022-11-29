@@ -27,22 +27,22 @@ div {
   font-family: monospace;
 }
 
+img {
+  width: 100%;
+}
+
 .flex {
   display: flex;
 }
 
-
-/* width */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: black; 
   border-radius: 10px;
@@ -52,7 +52,6 @@ div {
     height: 20%;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: black;
   border-radius: 10px; 

@@ -13,7 +13,7 @@ class FilmListPage extends React.Component {
     }
     componentDidMount() {
         let filmService = new FilmService();
-        filmService.GetPage(0).then(x => {
+        filmService.getPage(0).then(x => {
             this.updateState({
                 films: x
             })
@@ -28,7 +28,7 @@ class FilmListPage extends React.Component {
                 <div className="flex filmList">
                     {this.state.films.map((film) => {
                         return (
-                            <FilmCard image={film.image} title={film.title}></FilmCard>
+                            <FilmCard image={film.image} title={film.title} id={film.id}></FilmCard>
                         )
                     })}
                 </div>
