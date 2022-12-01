@@ -5,6 +5,7 @@ import SelectionListPage from "../selections/SelectionListPage.js";
 import FilmListPage from "../films/filmListPage.js";
 import HomePage from "../home/homePage";
 import PeoplePage from "../people/poeplePage";
+import Film from "../films/film.js";
 
 class Main extends React.Component {
     // constructor(props) {
@@ -20,6 +21,7 @@ class Main extends React.Component {
                         <Route path="/films" element={<FilmListPage/>}></Route>
                         <Route path="/selections" element={<SelectionListPage/>}></Route>
                         <Route path="/people" element={<PeoplePage/>}></Route>
+                        <Route path="/films/:id" element={<Film/>}></Route>
                     </Routes>
                 </Router>
             </div>
