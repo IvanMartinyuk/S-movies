@@ -13,7 +13,12 @@ class Film extends React.Component {
             localRating: 0.0,
             screenshots: [],
             choosedScreenshot: 0,
-            choosedIndex: 0
+            choosedIndex: 0,
+            description: '',
+            genres: [],
+            actors: [],
+            writers: [],
+            directors: []
         };
         this.getFilmInfo = this.getFilmInfo.bind(this);
     }
@@ -48,40 +53,82 @@ class Film extends React.Component {
                 </div>
                 <div className='vertivalLine'></div>
                 <div className='contentCol'>
+                    <button className='navigateImg' onClick={() => {
+                                        if(this.state.choosedIndex > 0)
+                                            this.setState({
+                                                choosedScreenshot: this.state.screenshots[this.state.choosedIndex - 1],
+                                                choosedIndex: this.state.choosedIndex - 1
+                                            })}
+                                    }>{ "<" }</button>  
                     <div className='contentBox'>
                         <div className='screenshotBlock'>
-                            <button className='navigateImg' onClick={() => {
-                                    if(this.state.choosedIndex > 0)
-                                        this.setState({
-                                            choosedScreenshot: this.state.screenshots[this.state.choosedIndex - 1],
-                                            choosedIndex: this.state.choosedIndex - 1
-                                        })}
-                                }>{ "<" }</button>
+                            
                             <div className='choosedScreenshot'>
                                 <img src={ this.state.choosedScreenshot } className="choosedImg"></img>
                             </div>
-                            <button className='navigateImg' onClick={() => {
+                            
+                        </div>
+                        
+                        <div className='detalBox flex'>
+                            <div className='castBox flex'>
+                                <div className='detailTable'>
+                                    <div className='row'>
+                                        <div className='cell'>Genres:</div>
+                                        <div>{this.detalItem(this.state.genres)}</div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className='cell'>Actors:</div>
+                                        <div>{this.detalItem(this.state.actors)}</div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className='cell'>Directors:</div>
+                                        <div>{this.detalItem(this.state.directors)}</div>
+                                    </div>
+                                    <div className='row'>
+                                        <div className='cell'>Writers:</div>
+                                        <div>{this.detalItem(this.state.writers)}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='descriptionText'>
+                                { this.state.description }
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button className='navigateImg' onClick={() => {
                                     if(this.state.choosedIndex < this.state.screenshots.length - 1)
                                         this.setState({
                                             choosedScreenshot: this.state.screenshots[this.state.choosedIndex + 1],
                                             choosedIndex: this.state.choosedIndex + 1
                                         })}
                                 }>{ ">" }</button>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        )
+    }
+    detalItem(items) {
+        console.log(items)
+        return (
+            <div className="detailItem">
+                <div className='detailDetails'>{ items.map((item) => { 
+                                            if (items.indexOf(item) == 0)
+                                                return item.name
+                                            else
+                                                return  "," + item.name}) }</div>
             </div>
         )
     }
     getFilmInfo() {
         let filmService = new FilmService();
-        filmService.getFilm(this.state.id).then(film => {
-            console.log(film)
+        filmService.getFilm(this.state.id).then(film => {            
             this.setState({
                 poster: film.image,
                 title: film.title,
                 imdbRating: film.imdbRating,
-                localRating: film.localRating
+                localRating: film.localRating,
+                description: film.description
             })
         })
         filmService.getScreenshots(this.state.id).then(screenshots => {
@@ -89,6 +136,26 @@ class Film extends React.Component {
                 screenshots: screenshots,
                 choosedScreenshot: screenshots[0],
                 choosedIndex: 0
+            })
+        })
+        filmService.getGenres(this.state.id).then(genres => {
+            this.setState({
+                genres: genres
+            })
+        })
+        filmService.getActors(this.state.id).then(actors => {
+            this.setState({
+                actors: actors
+            })
+        })
+        filmService.getWriters(this.state.id).then(writers => {
+            this.setState({
+                writers: writers
+            })
+        })
+        filmService.getDirectors(this.state.id).then(directors => {
+            this.setState({
+                directors: directors
             })
         })
     }

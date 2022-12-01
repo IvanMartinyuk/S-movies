@@ -3,10 +3,14 @@ $posterCol-width: 20%;
 .posterCol {
     width: $posterCol-width;
     text-align: center;
+    margin-top: 10px;
 }
 
 .contentCol {
     width: 100% - $posterCol-width;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 
 .filmPosterDiv {
@@ -43,36 +47,23 @@ $posterCol-width: 20%;
     margin-bottom: 5px;
 }
 
-.screenshotBox {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
 .screenshotBlock {
     display: flex;
     justify-content: center;
+    gap: 20px;
     padding: 10px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-}
-
-.screenshot {
-    height: 120px;
-}
-
-.screenshotImg {
-    max-height: 100%;
+    padding-top: 0px;
 }
 
 .contentBox {
     width: 80%;
-    margin: auto;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
 }
 
 .choosedScreenshot {
     height: 400px;
     display: flex;
-    justify-content: center;
+    justify-content: center;    
     margin-bottom: 15px;
     margin: auto;
 }
@@ -92,4 +83,42 @@ $posterCol-width: 20%;
     &:hover {
         text-shadow: 0 0 20px rgba(255, 255, 255, 0.55);
     }
+}
+
+.detalBox {
+    margin-top: 20px;
+}
+
+.castBox {
+    width: 50%;
+}
+
+.descriptionText {
+    width: 50%;
+    margin-right: 15px;
+}
+
+.detailItem {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+}
+
+.detailTable {
+    display: table;
+    margin-left: 15px;
+}
+
+.row {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+}
+
+.detailDetails {
+    color: rgba(255, 255, 255, 0.8);
+    display: table-cell;
 }

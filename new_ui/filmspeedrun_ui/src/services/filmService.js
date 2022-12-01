@@ -12,4 +12,16 @@ export class FilmService extends BaseService {
     {
         return this.Get(this.baseUrl + "screenshots?filmId=" + id);
     }
+    getGenres(id) {
+        return this.Get(this.baseUrl + "genres?filmId=" + id);
+    }
+    getActors(id) {
+        return this.Get(this.baseUrl + "actors?filmId=" + id);
+    }
+    getWriters(id) {
+        return this.Get(this.baseUrl + "writers?filmId=" + id);
+    }
+    getDirectors(id) {
+        return this.Get(this.baseUrl + "directors?filmId=" + id);
+    }
 }

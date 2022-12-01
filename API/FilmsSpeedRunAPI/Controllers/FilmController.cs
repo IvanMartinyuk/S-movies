@@ -161,10 +161,6 @@ namespace FilmsSpeedRunAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Search(string search, int page)
         {
-            //List<FilmDTO> list = service.GetAll().Where(x => x.Title.Contains(search)).ToList();
-            //List<FilmDTO> result = new List<FilmDTO>();
-            //for (int i = 0; i < list.Count() && i < 3; i++)
-            //    result.Add(list[i]);
             return Json(service.Search(search, page));
         }
     }
