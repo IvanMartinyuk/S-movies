@@ -6,6 +6,8 @@ import FilmListPage from "../films/filmListPage.js";
 import HomePage from "../home/homePage";
 import PeoplePage from "../people/poeplePage";
 import Film from "../films/film.js";
+import SignIn from "../sign/signIn.js";
+import SignUp from "../sign/signUp";
 
 class Main extends React.Component {
     // constructor(props) {
@@ -22,6 +24,8 @@ class Main extends React.Component {
                         <Route path="/selections" element={<SelectionListPage/>}></Route>
                         <Route path="/people" element={<PeoplePage/>}></Route>
                         <Route path="/films/:id" element={<Film/>}></Route>
+                        <Route path="/signin" element={<SignIn/>}></Route>
+                        <Route path="/signup" element={<SignUp/>}></Route>
                     </Routes>
                 </Router>
             </div>

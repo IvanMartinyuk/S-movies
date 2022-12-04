@@ -91,9 +91,12 @@ namespace FilmsSpeedRunAPI.Controllers
             return claimsIdentity;
         }
         [HttpGet]
-        public async Task<IActionResult> User(string login)
+        public async Task<IActionResult> CheckLogin(string login)
         {
-            return Json(service.GetAll().FirstOrDefault(x => x.Login == login));
+            if (service.GetAll().FirstOrDefault(x => x.Login == login) != null)
+                return BadRequest();
+            else
+                return Ok();
         }
         [HttpPost]
         [Authorize]

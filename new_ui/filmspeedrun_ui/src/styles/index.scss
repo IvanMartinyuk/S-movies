@@ -35,6 +35,11 @@ img {
   display: flex;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -55,4 +60,8 @@ img {
 ::-webkit-scrollbar-thumb:hover {
   background: black;
   border-radius: 10px; 
+}
+
+.margin-auto {
+  margin: auto;
 }
