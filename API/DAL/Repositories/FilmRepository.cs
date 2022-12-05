@@ -146,17 +146,6 @@ namespace DAL.Repositories
                 selection.Films = null;
             return list;
         }
-        public Company GetCompany(int filmId)
-        {
-            FilmContext contx = (FilmContext)context;
-            var company = contx.Films.Include(x => x.Company)
-                                .ToList()
-                        .Where(x => x.Id == filmId)
-                        .Select(x => x.Company)
-                        .ToList()[0];
-            company.Films = null;
-            return company;
-        }
         public Film GetFull(Film film)
         {
             FilmContext con = (FilmContext)context;
@@ -165,15 +154,6 @@ namespace DAL.Repositories
                              .Include(x => x.Directors)
                              .Include(x => x.Genres)
                              .FirstOrDefault(x => x.ImdbId == film.ImdbId);
-        }
-        public List<Comment> GetComments(int filmId)
-        {
-            FilmContext con = (FilmContext)context;
-            var list = con.Films.Include(x => x.Comments)
-                            .FirstOrDefault(x => x.Id == filmId)
-                            .Comments;
-            list.ForEach(x => x.CommentedFilm = null);
-            return list;
         }
         public List<string> GetSCreenshots(int filmId)
         {

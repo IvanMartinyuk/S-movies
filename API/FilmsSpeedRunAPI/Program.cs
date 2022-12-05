@@ -28,7 +28,6 @@ namespace FilmsSpeedRunAPI
                 if (context.Roles.Count() == 0)
                 {
                     FillingData.AddMainInfo(context);
-                    //FillingData.Fill(context);
                     ser.Fill(context, 100).Wait();
                 }                
             }

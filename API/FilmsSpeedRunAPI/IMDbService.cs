@@ -36,14 +36,6 @@ namespace DAL
         public async Task Fill(FilmContext context, int max = 100)
         {
             this.context = context;
-            if (!context.Companies.Any(x => x.Name == "none"))
-            {
-                context.Companies.Add(new Company() { Name = "none", Description = "none" });
-                context.SaveChanges();
-            }
-            Company companynone = context.Companies.FirstOrDefault(x => x.Name == "none");
-            int companyid = companynone.Id;
-            
             if (!File.Exists(path))
                 await CreateFilmList();
             List<string> items = File.ReadAllLines(path).ToList();
@@ -65,7 +57,6 @@ namespace DAL
                         if (Film.Title == null || Film.Description == null || Film.Image == null)
                             Clear();
 
-                        Film.CompanyId = companyid;
                         context.Films.Add(Film);
                         context.SaveChanges();
                         Film = context.Films.FirstOrDefault(x => x.Title == Film.Title

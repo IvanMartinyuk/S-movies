@@ -59,9 +59,6 @@ namespace BLL.Services
         public List<Genre> GetGenres(int filmId) => ((FilmRepository)Repository).GetGenres(filmId);
         public List<Director> GetDirectors(int filmId) => ((FilmRepository)Repository).GetDirectors(filmId);
         public List<Selection> GetSelections(int filmId) => ((FilmRepository)Repository).GetSelections(filmId);
-        public Company GetCompany(int filmId) => ((FilmRepository)Repository).GetCompany(filmId);
-        public List<CommentDTO> GetComments(int filmId) => Mapper.Map<List<Comment>, List<CommentDTO>>
-                                                            (((FilmRepository)Repository).GetComments(filmId));
         public List<string> GetScreenshots(int filmId) => ((FilmRepository)Repository).GetSCreenshots(filmId);
         public int GetCount()
         {

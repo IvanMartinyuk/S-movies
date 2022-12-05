@@ -130,24 +130,6 @@ namespace FilmsSpeedRunAPI.Controllers
                 return NotFound(new { error = "no data" });
             return Json(all);
         }
-        [HttpGet]
-        public async Task<IActionResult> Company(int filmId)
-        {
-            if (filmId == null || filmId == 0)
-                return BadRequest(new { error = "no film id" });
-            var all = service.GetCompany(filmId);
-            if (all == null)
-                return NotFound(new { error = "no data" });
-            return Json(all);
-        }
-        [HttpGet]
-        public async Task<IActionResult> Comments(int filmId)
-        {
-            if (filmId == null || filmId == 0)
-                return BadRequest(new { error = "bad id" });
-            var comments = service.GetComments(filmId);
-            return comments == null ? NotFound(new { error = "no data" }) : Json(comments);
-        }
         [HttpPost]
         public async Task<IActionResult> GetByFilter([FromBody]FilterOptions options)
         {
