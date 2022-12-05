@@ -32,7 +32,7 @@ class SignIn extends React.Component {
         if(sessionStorage.getItem('isRegistered') == 'true')
             {
                 document.getElementById('registered').classList.remove('unvisible');
-                sessionStorage.setItem('isRegistered', false)
+                sessionStorage.removeItem('isRegistered')
             }
     }
     login() {
@@ -49,6 +49,7 @@ class SignIn extends React.Component {
                 document.getElementById('loginError').classList.remove('unvisible');
             else
             {
+                sessionStorage.setItem('isLogin', true)
                 const { navigation } = this.props;
                 navigation('/films')
             }

@@ -1,16 +1,18 @@
 import React from "react"
 import './nav.scss'
 import logo from './logo.png'
+import Popup from 'reactjs-popup';
 
 class NavBar extends React.Component {
     constructor(props) {
         super(props);
+        this.exit = this.exit.bind(this);
         this.state = {
             userName: sessionStorage.getItem("username")
         }
     }
     componentDidMount() {
-        this.setSelected(); 
+        this.setSelected();
     }
     render() {
         return (
@@ -26,9 +28,32 @@ class NavBar extends React.Component {
             </div>
             <div className="userDiv flex">
                 <div className="userNick">{ this.state.userName }</div>
-                <a className="userImgDiv" href="/signin">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2202/2202112.png" className="userImg" ></img>
-                </a>
+                <Popup
+                    trigger={
+                        <a className="userImgDiv" href="/signin">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2202/2202112.png" className="userImg"></img>
+                        </a>
+                    }
+                    position='bottom right'
+                    on={['hover', 'focus']}
+                    arrow='bottom right'
+                >
+                    <div className="popup-menu">
+                        <div className="popup-item">
+                            <a className="popup-link" href="/newselection">New selection</a>
+                        </div>
+                        <div className="popup-item">
+                            <a className="popup-link" href="/signin">Sign in</a>
+                        </div>
+                        <div className="popup-item">
+                            <a className="popup-link" href="/signup">Sign up</a>
+                        </div>
+                        <div className="popup-item">
+                            <a className="popup-link" onClick={() => this.exit()}>Exit</a>
+                        </div>
+                    </div>
+                </Popup>
+                
             </div>
         </nav>
         )
@@ -40,6 +65,13 @@ class NavBar extends React.Component {
                     links[i].classList.add("selected");
     }
 
+    exit() {
+        sessionStorage.removeItem('username')
+        sessionStorage.removeItem('accessToken');
+        this.setState({
+            userName: ""
+        })
+    }
 }
 
 export default NavBar

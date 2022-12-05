@@ -12,6 +12,11 @@ class FilmListPage extends React.Component {
         this.updateState = this.updateState.bind(this)
     }
     componentDidMount() {
+        if(sessionStorage.getItem('isLogin'))
+        {
+            sessionStorage.removeItem('isLogin')
+            window.location.reload(false);
+        }
         let filmService = new FilmService();
         filmService.getPage(0).then(x => {
             this.updateState({

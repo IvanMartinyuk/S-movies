@@ -1,4 +1,5 @@
 $side-margin: 10px;
+$popup-background: rgb(26, 26, 38);
 
 .navbar {
     margin: 0px;
@@ -57,4 +58,36 @@ $side-margin: 10px;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.popup-menu {
+    background-color: $popup-background;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-link {
+    color: white;
+    text-decoration: none;
+    font-size: large;
+    
+}
+
+.popup-item {
+    padding: 0px 10px;
+    margin: 10px 0px;
+    border: none;
+    border-radius: 10px;
+    &::after 
+    {
+        border: none;
+    }
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+.popup-arrow {
+    color: $popup-background;
 }

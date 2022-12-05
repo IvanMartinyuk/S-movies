@@ -1,0 +1,47 @@
+$poster-size: 300px;
+
+.selPosterDiv {
+    max-width: $poster-size;
+    height: $poster-size;
+}
+
+.selPosterImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.selectionDescription {
+    min-width: 70vw;
+    height: $poster-size - 65px;
+    padding: 5px;
+    background-color: transparent;
+    font-size: large;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid rgb(113, 113, 125);
+    &:focus-visible {
+        outline: 0px;
+    }
+}
+
+.descTitle {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    font-family: monospace;
+    margin-bottom: 20px;
+}
+
+.mainInfoBox {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.selectionFilmBox {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}

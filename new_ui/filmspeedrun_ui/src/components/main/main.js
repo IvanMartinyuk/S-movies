@@ -8,6 +8,7 @@ import PeoplePage from "../people/poeplePage";
 import Film from "../films/film.js";
 import SignIn from "../sign/signIn.js";
 import SignUp from "../sign/signUp";
+import NewSelection from "../selections/newSelection";
 
 class Main extends React.Component {
     // constructor(props) {
@@ -26,6 +27,7 @@ class Main extends React.Component {
                         <Route path="/films/:id" element={<Film/>}></Route>
                         <Route path="/signin" element={<SignIn/>}></Route>
                         <Route path="/signup" element={<SignUp/>}></Route>
+                        <Route path="/newselection" element={<NewSelection></NewSelection>}></Route>
                     </Routes>
                 </Router>
             </div>
