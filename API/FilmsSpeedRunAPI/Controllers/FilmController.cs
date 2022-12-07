@@ -141,9 +141,9 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(new { count = service.GetCount() });
         }
         [HttpGet]
-        public async Task<IActionResult> Search(string search, int page)
+        public async Task<IActionResult> Search(string search)
         {
-            return Json(service.Search(search, page));
+            return Json(service.Search(search));
         }
     }
 }
