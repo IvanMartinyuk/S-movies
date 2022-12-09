@@ -19,6 +19,14 @@ namespace DAL.Repositories
             select.Films.Add(contx.Films.Find(filmId));
             contx.SaveChanges();
         }
+        public void AddFilms(int selectionId, List<int> filmIds)
+        {
+            FilmContext contx = (FilmContext)context;
+            Selection select = contx.Selections.Include(x => x.Films).FirstOrDefault(s => s.Id == selectionId);
+            foreach(var filmid in filmIds)
+                select.Films.Add(contx.Films.Find(filmid));
+            contx.SaveChanges();
+        }
         public void RemoveFilm(int selectionId, int filmId)
         {
             FilmContext contx = (FilmContext)context;
@@ -47,6 +55,11 @@ namespace DAL.Repositories
                                               .Take(5)
                                               .ToList();
             return selections;
+        }
+        public int GetLastId()
+        {
+            FilmContext contx = (FilmContext)context;
+            return contx.Selections.Max(x => x.Id);
         }
     }
 }

@@ -64,9 +64,9 @@ namespace BLL.Services
         {
             return context.Films.Count();
         }
-        public List<FilmDTO> Search(string title, int page = 0)
+        public List<ShortFilmDTO> Search(string title, int page = 0)
         {
-            return Mapper.Map<List<Film>, List<FilmDTO>>(((FilmRepository)Repository).Search(title, page));
+            return Mapper.Map<List<Film>, List<ShortFilmDTO>>(((FilmRepository)Repository).Search(title, page));
         }
         public List<ShortFilmDTO> GetSortedPage(FilterOptions options) => Mapper.Map<List<Film>, List<ShortFilmDTO>>(
                                                                                         ((FilmRepository)Repository)

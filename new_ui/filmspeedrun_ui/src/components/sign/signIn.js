@@ -39,7 +39,6 @@ class SignIn extends React.Component {
         let login = document.getElementById("login").value;        
         let passwordHash = document.getElementById("password").value;
         passwordHash = hash(passwordHash);
-        console.log(passwordHash)
         let userService = new UserService();
         userService.token({
             login: login,

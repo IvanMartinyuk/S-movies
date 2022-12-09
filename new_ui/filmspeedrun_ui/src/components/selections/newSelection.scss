@@ -1,8 +1,9 @@
-$poster-size: 300px;
+$poster-size: 250px;
+$sel-name-width: 30px;
 
 .selPosterDiv {
-    max-width: $poster-size;
-    height: $poster-size;
+    max-width: $poster-size - $sel-name-width + 10px;
+    height: $poster-size - $sel-name-width;
 }
 
 .selPosterImg {
@@ -13,7 +14,7 @@ $poster-size: 300px;
 
 .selectionDescription {
     min-width: 70vw;
-    height: $poster-size - 65px;
+    height: $poster-size - 45px;
     padding: 5px;
     background-color: transparent;
     font-size: large;
@@ -44,4 +45,34 @@ $poster-size: 300px;
     gap: 40px;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.selName {
+    font-weight: bold;
+    margin: 7px;
+}
+
+.selNameTextBox {
+    height: 16px;
+    margin-top: 5px;
+    background-color: transparent;
+    color: white;
+    border-radius: 5px;
+    padding: 0px 5px;
+    border: 1px solid rgb(113, 113, 125);
+    &:focus-visible {
+        outline: 0px;
+    }
+}
+
+.selCreateBtn {
+    background-color: rgb(26, 26, 38);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 20px;
+    &:active {
+      background-color: rgb(14, 14, 21);
+    }
 }

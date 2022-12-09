@@ -21,8 +21,8 @@ namespace DAL.Repositories
         {
             FilmContext con = (FilmContext)context;
             return con.Films.Where(x => x.Title.ToLower().Contains(title.ToLower()))
-                            .Skip(page * pageCount)
-                            .Take(pageCount)
+                            .Skip(page * 10)
+                            .Take(10)
                             .ToList();
         }
         public List<Film> GetSortedFilter(FilterOptions options)

@@ -24,4 +24,7 @@ export class FilmService extends BaseService {
     getDirectors(id) {
         return this.Get(this.baseUrl + "directors?filmId=" + id);
     }
+    async search(title) {
+        return await this.Get(this.baseUrl + 'search?search=' + title);
+    }     
 }

@@ -1,6 +1,9 @@
 export class BaseService
 {
-
+    baseHeaders = {
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer ' + sessionStorage.getItem("accessToken")
+    }
     async Get(url)
     {
         let response = await fetch(url);
@@ -28,21 +31,16 @@ export class BaseService
             });
         return response;
     }
-    // async Put(url, token, data)
-    // {
-    //     let response = await fetch(url,
-    //         {
-    //             method: "PUT",
-    //             headers:
-    //             {
-    //                 'Content-Type': 'application/json',
-    //                 'Authorization': 'bearer ' + token
-    //             },
-    //             body: JSON.stringify(data)
-    //         });
-    //     let data = await response.ok;
-    //     return data;
-    // }
+    async Put(url, headers, data)
+    {
+        let response = await fetch(url,
+            {
+                method: "PUT",
+                headers,
+                body: JSON.stringify(data)
+            });
+        return response;
+    }
     // async Delete(url, token)
     // {
     //     let response = await fetch(url,

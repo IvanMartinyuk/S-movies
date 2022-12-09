@@ -1,6 +1,7 @@
 ﻿using BLL.DTO;
 using BLL.Services;
 using DAL.Context;
+using FilmsSpeedRunAPI.Config;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,7 @@ namespace FilmsSpeedRunAPI.Controllers
             if (selection == null)
                 return BadRequest(new { error = "no selection" });
             await service.AddAsync(selection);
-            return Ok();
+            return Json(new { id = service.GetLastId() });
         }
         [HttpDelete]
         [Authorize]
@@ -98,7 +99,8 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(all);
         }
         [HttpPut]
-        public async Task<IActionResult> AddFilm(int selId, int filmId)
+        [Authorize]
+        public async Task<IActionResult> AddFilm([FromBody] int selId, int filmId)
         {
             if (selId == 0)
                 return BadRequest(new { error = "bad selId" });
@@ -108,7 +110,19 @@ namespace FilmsSpeedRunAPI.Controllers
             return Ok();
         }
         [HttpPut]
-        public async Task<IActionResult> RemoveFilm(int selId, int filmId)
+        [Authorize]
+        public async Task<IActionResult> AddFilms([FromBody]SelectionBody body)
+        {
+            if (body.SelId == 0)
+                return BadRequest(new { error = "bad selId" });
+            if (body.FilmIds.Count == 0)
+                return BadRequest(new { error = "bad filmIds" });
+            service.AddFilms(body.SelId, body.FilmIds);
+            return Ok();
+        }
+        [HttpPut]
+        [Authorize]
+        public async Task<IActionResult> RemoveFilm([FromBody]int selId, int filmId)
         {
             if (selId == 0)
                 return BadRequest(new { error = "bad selId" });

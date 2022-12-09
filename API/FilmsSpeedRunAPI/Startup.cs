@@ -28,6 +28,10 @@ namespace FilmsSpeedRunAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
             services.AddControllersWithViews();
             services.AddDbContext<FilmContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "FilmSpeedRunAPI", Version = "v1" }));
@@ -53,10 +57,7 @@ namespace FilmsSpeedRunAPI
 
             services.AddControllers();
 
-            services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            });
+            
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();
             services.AddHttpContextAccessor();
