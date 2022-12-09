@@ -1,0 +1,51 @@
+.posterBackground {
+    background-color: rgba(0, 0, 0, 0.258);
+    width: 170px;
+    height: 255px;
+    display: flex;
+    justify-content: center;
+}
+
+.posterPlus {    
+    margin: auto;
+    color: white;
+    background-color: transparent;
+    border: none;
+    font-size: 90px;
+}
+
+.selSearchBox {
+    height: 200px;
+}
+
+.selSearchPoster {
+    width: 150px;
+}
+
+.selSearchName {
+    font-size: 18px;
+    margin: 10px;
+    word-wrap: break-word;
+    width: 120px;
+}
+
+.filmPlus {
+    border: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.258);
+    margin: auto;
+    font-size: 16px;
+    border-radius: 32px;
+    padding: 8px;
+    height: 32px;
+    width: 32px;
+}
+
+.filmSearchResult {
+    height: 185px;
+    overflow-y: scroll;
+}
+
+.filmNameSearchResult {
+    word-wrap: break-word;
+}

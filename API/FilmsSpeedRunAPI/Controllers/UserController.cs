@@ -108,6 +108,6 @@ namespace FilmsSpeedRunAPI.Controllers
             u.PasswordHash = user.PasswordHash;
             await service.UpdateAsync(u);
             return Ok();
-        }
+        }        
     }
 }

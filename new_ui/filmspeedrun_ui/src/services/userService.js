@@ -1,7 +1,6 @@
 import { BaseService } from "./baseService";
 
-export class UserService extends BaseService {
-    static userId;
+export class UserService extends BaseService {    
     baseUrl = 'https://localhost:44325/user/'
     baseHeaders = {
         'Content-Type': 'application/json',
@@ -17,6 +16,7 @@ export class UserService extends BaseService {
         {
             sessionStorage.setItem('accessToken', data.access_token);
             sessionStorage.setItem('username', data.username);
+            sessionStorage.setItem('userId', data.id);
             return true;
         }
         else {

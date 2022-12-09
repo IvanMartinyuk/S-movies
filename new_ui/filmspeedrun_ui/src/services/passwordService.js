@@ -1,5 +1,4 @@
 function hash(pass) {
-    console.log(pass)
     var CryptoJS = require("crypto-js");
     return CryptoJS.MD5(pass).toString()
 }

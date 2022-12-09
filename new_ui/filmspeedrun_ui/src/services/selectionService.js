@@ -15,4 +15,14 @@ export class SelectionService extends BaseService
     {
         return this.Get(this.baseUrl + 'films?selectionId=' + id)
     }
+    create(selection) {
+        return this.Post(this.baseUrl + "post", this.baseHeaders, selection);
+    }
+    addFilms(selId, films) {
+        let data = {
+            selId: selId,
+            filmIds: films
+        }
+        return this.Put(this.baseUrl + 'addFilms', this.baseHeaders, data);
+    }
 }
