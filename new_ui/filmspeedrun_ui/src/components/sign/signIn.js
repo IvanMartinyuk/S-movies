@@ -14,9 +14,15 @@ class SignIn extends React.Component {
             <div className='signBox'>
                 <div className='registered unvisible' id='registered'>Sign up successful</div>
                 <h4 className='signText'>Login</h4>                    
-                <input type="text" id='login'></input>
+                <input type="text" id='login' onKeyDown={e => {
+                    if(e.code == "Enter")
+                        this.login()
+                }}></input>
                 <h4 className='signText'>Password</h4>
-                <input type='password' id='password'></input>
+                <input type='password' id='password' onKeyDown={e => {
+                    if(e.code == "Enter")
+                        this.login()
+                }}></input>
                 <div className='error unvisible' id='loginError'>invalid user data</div>
                 <div className='signBtns'>
                     <button className='signBtn' onClick={() => this.login()}>Sign in</button>

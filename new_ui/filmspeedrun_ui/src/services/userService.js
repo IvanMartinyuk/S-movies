@@ -2,10 +2,6 @@ import { BaseService } from "./baseService";
 
 export class UserService extends BaseService {    
     baseUrl = 'https://localhost:44325/user/'
-    baseHeaders = {
-        'Content-Type': 'application/json',
-        'Authorization': 'bearer ' + sessionStorage.getItem("accessToken")
-    }
     async token(user) {
         let data = await this.Post(this.baseUrl + 'token',
                                 {

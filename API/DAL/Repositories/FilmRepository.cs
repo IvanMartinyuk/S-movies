@@ -12,7 +12,7 @@ namespace DAL.Repositories
 {
     public class FilmRepository : GenericRepository<Film>
     {
-        int pageCount = 35;
+        int pageCount = 25;
         public FilmRepository(FilmContext context) : base(context)
         {
 
@@ -159,6 +159,18 @@ namespace DAL.Repositories
         {
             FilmContext con = (FilmContext)context;
             return con.Screenshots.Where(x => x.FilmId == filmId).Select(x => x.Url).ToList();
+        }
+        public int GetPageCount()
+        {
+            FilmContext con = (FilmContext)context;
+            return (con.Films.Count() / pageCount) + 1;
+        }
+        public void Vote(double vote, int filmId)
+        {
+            FilmContext con = (FilmContext)context;
+            var film = con.Films.Where(x => x.Id == filmId).FirstOrDefault();
+            film.LocalRating = (film.LocalRating + vote) / ++film.LocalRatingVotes;
+            con.SaveChanges();
         }
     }
 }

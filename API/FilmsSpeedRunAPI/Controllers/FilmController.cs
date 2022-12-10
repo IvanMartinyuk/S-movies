@@ -145,5 +145,14 @@ namespace FilmsSpeedRunAPI.Controllers
         {
             return Json(service.Search(search));
         }
+        [HttpGet]
+        public async Task<IActionResult> GetPageCount() => Json(service.GetPageCount());
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Vote(double vote, int filmId)
+        {
+            service.Vote(vote, filmId);
+            return Ok();
+        }
     }
 }

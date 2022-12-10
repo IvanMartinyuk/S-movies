@@ -71,5 +71,7 @@ namespace BLL.Services
         public List<ShortFilmDTO> GetSortedPage(FilterOptions options) => Mapper.Map<List<Film>, List<ShortFilmDTO>>(
                                                                                         ((FilmRepository)Repository)
                                                                                         .GetSortedFilter(options));
+        public int GetPageCount() => ((FilmRepository)Repository).GetPageCount();
+        public void Vote(double vote, int filmId) => ((FilmRepository)Repository).Vote(vote, filmId);
     }
 }

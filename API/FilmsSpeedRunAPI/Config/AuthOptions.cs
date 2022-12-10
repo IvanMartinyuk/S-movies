@@ -12,7 +12,7 @@ namespace FilmsSpeedRunAPI.Config
         public const string ISSUER = "MyServer";
         public const string AUDIENCE = "MyClient";
         const string KEY = "SomeKeySomeKeySomeKey";
-        public const int LIFETIME = 5;
+        public const int LIFETIME = 50;
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));

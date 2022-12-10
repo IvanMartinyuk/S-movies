@@ -122,3 +122,20 @@ $posterCol-width: 20%;
     color: rgba(255, 255, 255, 0.8);
     display: table-cell;
 }
+
+.voteText {
+    font-size: 19px;
+    margin-top: 40px;
+}
+
+.voteBtn {
+    background-color: rgb(26, 26, 38);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+    &:active {
+        background-color: rgb(14, 14, 21);
+    }
+}

@@ -7,13 +7,15 @@ $film-card-width: 170px;
     background-color: $filter-background;
 }
 
-.filmList {
+.list {
     background-color: $list-background;
+    width: 80%;
     flex-wrap: wrap;
     justify-content: center;
+    margin: auto;
 }
 
-.filmPage {
+.listPage {
     height: 100px;
 }
 
@@ -31,4 +33,34 @@ $film-card-width: 170px;
     width: $film-card-width;
     margin: 20px;
     margin-top: 0px;
+}
+
+.paginationNavigate {
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 0px;
+    margin: auto 0px;
+}
+
+.pagSymbol {
+    font-size: 18px;
+    margin: auto 0px;
+}
+
+.pagination {
+    gap: 10px;
+}
+
+.paginationItem {
+    height: 10px;
+    width: 10px;
+    border-radius: 15px;
+    background-color: rgb(34, 103, 240);
+    margin: auto 0px;
+}
+
+.selecteedPaginationItem {
+    border: 1px solid white;
 }

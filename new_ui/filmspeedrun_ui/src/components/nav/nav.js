@@ -6,7 +6,7 @@ import Popup from 'reactjs-popup';
 class NavBar extends React.Component {
     constructor(props) {
         super(props);
-        this.exit = this.exit.bind(this);
+        this.exit = this.exit.bind(this);        
         this.state = {
             userName: sessionStorage.getItem("username")
         }
