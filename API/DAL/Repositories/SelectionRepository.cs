@@ -61,5 +61,10 @@ namespace DAL.Repositories
             FilmContext contx = (FilmContext)context;
             return contx.Selections.Max(x => x.Id);
         }
+        public List<Selection> Search(string title)
+        {
+            FilmContext contxt = (FilmContext)context;
+            return contxt.Selections.Where(sel => sel.Name.ToLower().Contains(title.ToLower())).ToList();
+        } 
     }
 }

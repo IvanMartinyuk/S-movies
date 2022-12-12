@@ -12,5 +12,7 @@ namespace BLL.DTO
         public string Image { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public double ImdbRating { get; set; }
+        public double LocalRating { get; set; }
     }
 }

@@ -131,5 +131,14 @@ namespace FilmsSpeedRunAPI.Controllers
             service.RemoveFilm(selId, filmId);
             return Ok();
         }
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Search(string title)
+        {
+            if (title.Count() == 0)
+                return BadRequest(new { error = "write title!" });
+            var search = service.Search(title);
+            return Json(search);
+        }
     }
 }

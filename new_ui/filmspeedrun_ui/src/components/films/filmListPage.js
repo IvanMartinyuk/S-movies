@@ -22,9 +22,7 @@ class FilmListPage extends React.Component {
           {this.state.films.map((film) => {
             return (
               <FilmCard
-                image={film.image}
-                title={film.title}
-                id={film.id}
+                film={film}
               ></FilmCard>
             );
           })}
