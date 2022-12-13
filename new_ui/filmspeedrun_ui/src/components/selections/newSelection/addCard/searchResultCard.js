@@ -17,7 +17,7 @@ class SearchResultCard extends React.Component {
     render() {
         
         return(
-            <Popup trigger={<div className="flex filmNameSearchResult">
+            <Popup trigger={<div className="flex filmNameSearchResult popup-item">
                                 <div className="selSearchName">{ this.state.title }</div>
                                 <button className="filmPlus" onClick={() => 
                                 {

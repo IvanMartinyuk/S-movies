@@ -1,0 +1,17 @@
+$font-size: 16px;
+
+.selNameBtn {
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: $font-size;
+    margin: 5px;
+    color: white;
+}
+
+.ok {
+    margin: auto 0px;
+    padding: 5px;
+    font-size: $font-size;
+    border-radius: 20px;
+}

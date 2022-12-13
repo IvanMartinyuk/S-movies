@@ -9,14 +9,10 @@ $film-card-width: 170px;
 
 .list {
     background-color: $list-background;
-    width: 80%;
+    width: 70%;
     flex-wrap: wrap;
     justify-content: center;
     margin: auto;
-}
-
-.listPage {
-    height: 100px;
 }
 
 .poster {

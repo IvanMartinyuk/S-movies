@@ -35,10 +35,13 @@ class NavBar extends React.Component {
                         </a>
                     }
                     position='bottom right'
-                    on={['hover', 'focus']}
+                    on={['hover']}
                     arrow='bottom right'
                 >
                     <div className="popup-menu">
+                        <div>
+                            <a href="/hh" id="skipSelection"></a>
+                        </div>
                         <div className="popup-item">
                             <a className="popup-link" href="/newselection">New selection</a>
                         </div>
@@ -59,10 +62,11 @@ class NavBar extends React.Component {
         )
     }
     setSelected() {
-        let links = document.getElementsByTagName("a");
+        let links = document.getElementsByTagName("a");        
         for(let i = 0; i < links.length; i++)
             if(links[i].href === window.location.href && !links[i].classList.contains("userImgDiv"))
                     links[i].classList.add("selected");
+                    
     }
 
     exit() {

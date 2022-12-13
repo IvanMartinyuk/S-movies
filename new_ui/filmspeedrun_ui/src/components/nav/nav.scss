@@ -78,13 +78,12 @@ $popup-background: rgb(26, 26, 38);
     padding: 0px 10px;
     margin: 10px 0px;
     border: none;
-    border-radius: 10px;
     &::after 
     {
         border: none;
     }
     &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(123, 189, 233, 0.2);
     }
 }
 

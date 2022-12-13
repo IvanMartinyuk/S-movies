@@ -7,7 +7,8 @@ import PeoplePage from "../people/poeplePage";
 import Film from "../films/film.js";
 import SignIn from "../sign/signIn.js";
 import SignUp from "../sign/signUp";
-import NewSelection from "../selections/newSelection";
+import NewSelection from "../selections/newSelection/newSelection.js";
+import SelectionListaPage from "../selections/selectionListPage/selectionListPage.js";
 
 class Main extends React.Component {
     // constructor(props) {
@@ -21,7 +22,7 @@ class Main extends React.Component {
                     <Routes>
                         <Route exact path="/" element={<HomePage/>}></Route>
                         <Route path="/films" element={<FilmListPage/>}></Route>
-                        <Route path="/selections" element={<div>Hello</div>}></Route>
+                        <Route path="/selections" element={<SelectionListaPage></SelectionListaPage>}></Route>
                         <Route path="/people" element={<PeoplePage/>}></Route>
                         <Route path="/films/:id" element={<Film/>}></Route>
                         <Route path="/signin" element={<SignIn/>}></Route>

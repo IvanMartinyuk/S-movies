@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import Popup from "reactjs-popup";
-import { FilmService } from "../../../services/filmService";
+import { FilmService } from "../../../../services/filmService";
 import SearchResultCard from "./searchResultCard";
 import './addFilmCard.scss'
 

@@ -25,4 +25,11 @@ export class SelectionService extends BaseService
         }
         return this.Put(this.baseUrl + 'addFilms', this.baseHeaders, data);
     }
+    async search(title) {
+        let response = await fetch(this.baseUrl + 'search?title=' + title, {
+            method: 'GET',
+            headers: this.baseHeaders
+        })
+        return await response.json();
+    }
 }

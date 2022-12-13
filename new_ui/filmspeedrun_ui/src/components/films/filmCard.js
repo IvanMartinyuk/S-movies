@@ -1,9 +1,12 @@
 import React from "react"
 import { Link } from "react-router-dom";
 import Popup from "reactjs-popup";
+import { SelectionService } from "../../services/selectionService";
 import './filmCard.scss'
+import SelectionSearchCard from "./selectionSearchCard";
 
 class FilmCard extends React.Component {
+    selectionService = new SelectionService();
     constructor(props) {
         super(props);
         let shortDesc = props.film.description;
@@ -26,10 +29,13 @@ class FilmCard extends React.Component {
                 position='right top'>
                     <div className="popup-menu">
                         <input type='text' 
-                               id="selName" 
-                               onInput={() => {
+                               id="selName"
+                               autoComplete="off"
+                               onInput={e => {
                                    if(!sessionStorage.getItem('username'))
                                        document.getElementById('searchSelError').classList.remove('unvisible');
+                                    else
+                                        this.getSelections(e.target.value)
                                }}></input>
                         <div className="filmSearchResult">
                             <div className="error unvisible" 
@@ -87,6 +93,25 @@ class FilmCard extends React.Component {
                 </Link>
             </div>
         )    
+    }
+    getSelections(title) {
+        this.selectionService.search(title).then(data => {
+            this.setState({
+                selections: []
+            }, () => {
+                let selViews = [];
+                data.forEach(sel => {
+                    selViews.push(
+                        <SelectionSearchCard id={sel.id}
+                                             name={sel.name}
+                                             filmId={this.state.id}></SelectionSearchCard>
+                    )
+                })
+                this.setState({
+                    selections: selViews
+                })
+            })
+        })
     }
 }
 

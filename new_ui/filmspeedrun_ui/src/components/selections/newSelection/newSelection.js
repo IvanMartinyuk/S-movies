@@ -2,8 +2,8 @@ import React from "react";
 import './newSelection.scss'
 import AddFilmCard from "./addCard/addFilmCard";
 import SelectionFilmCard from "./filmCard/selectionFilmCard";
-import { UserService } from "../../services/userService";
-import { SelectionService } from "../../services/selectionService";
+import { UserService } from "../../../services/userService";
+import { SelectionService } from "../../../services/selectionService";
 import { normalizePathname } from "@remix-run/router";
 
 class NewSelection extends React.Component {
