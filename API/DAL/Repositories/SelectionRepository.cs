@@ -9,6 +9,7 @@ namespace DAL.Repositories
 {
     public class SelectionRepository : GenericRepository<Selection>
     {
+        int pageCount = 5;
         public SelectionRepository(FilmContext context) : base(context) 
         { 
         }
@@ -47,14 +48,20 @@ namespace DAL.Repositories
                 film.Selections = null;
             return list;
         }
-        public List<Selection> GetTop()
+        public List<Selection> GetTop(int page)
         {
             FilmContext contx = (FilmContext)context;
             List<Selection> selections = contx.Selections
                                               .OrderByDescending(x => x.Rating)
-                                              .Take(5)
+                                              .Skip(page * pageCount)                                              
+                                              .Take(pageCount)
                                               .ToList();
             return selections;
+        }
+        public int GetPageCount()
+        {
+            FilmContext con = (FilmContext)context;
+            return (con.Selections.Count() / pageCount) + 1;
         }
         public int GetLastId()
         {
@@ -65,6 +72,12 @@ namespace DAL.Repositories
         {
             FilmContext contxt = (FilmContext)context;
             return contxt.Selections.Where(sel => sel.Name.ToLower().Contains(title.ToLower())).ToList();
-        } 
+        }
+        public List<Selection> SearchByUser(string title, string login)
+        {
+            FilmContext contxt = (FilmContext)context;
+            int userId = contxt.Users.Where(x => x.Login == login).FirstOrDefault().Id;
+            return contxt.Selections.Where(sel => sel.Name.ToLower().Contains(title.ToLower()) && sel.UserId == userId).ToList();
+        }
     }
 }

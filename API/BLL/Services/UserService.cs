@@ -15,7 +15,7 @@ namespace BLL.Services
         {
             Repository = new UserRepository(context);
         }
-        public List<Selection> GetSelections(int id) => ((UserRepository)Repository).GetSelections(id);
+        public List<Selection> GetSelections(string login) => ((UserRepository)Repository).GetSelections(login);
 
         public bool Login(string login, string passwordHash)
         {

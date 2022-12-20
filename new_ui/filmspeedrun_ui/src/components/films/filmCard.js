@@ -95,7 +95,7 @@ class FilmCard extends React.Component {
         )    
     }
     getSelections(title) {
-        this.selectionService.search(title).then(data => {
+        this.selectionService.searchByUser(title).then(data => {
             this.setState({
                 selections: []
             }, () => {

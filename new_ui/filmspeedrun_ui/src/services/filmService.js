@@ -41,4 +41,15 @@ export class FilmService extends BaseService {
                         }
                     });
     }
+    async getByFilter(options) {
+        console.log(options);
+        let response = await fetch(this.baseUrl + "getByFilter",
+            {
+                method: "POST",
+                headers: this.baseHeaders,
+                body: JSON.stringify(options)
+            });
+        let responseData = response.json();
+        return responseData;
+    }
 }

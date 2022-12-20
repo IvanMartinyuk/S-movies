@@ -26,4 +26,13 @@ export class UserService extends BaseService {
     async registration(user) {
         return this.PostWithoutJson(this.baseUrl + 'registration', this.baseHeaders, user);
     }
+    async getSelections() {
+        console.log('selections')
+        let response = await fetch(this.baseUrl + "getSelections", {
+            methid: 'GET',
+            headers: this.baseHeaders
+        })
+        let data = response.json();
+        return data;
+    }
 }

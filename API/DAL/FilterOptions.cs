@@ -15,7 +15,7 @@ namespace FilmsSpeedRunAPI
         public double LocalRatingLast { get; set; } = 10;
         public DateTime DateTop { get; set; } = new DateTime(1800, 1, 1);
         public DateTime DateLast { get; set; } = DateTime.Now;
-        public string Genre { get; set; } = "all";
+        public string Genre { get; set; } = "";
         public string SortBy { get; set; } = "default";
     }
 }

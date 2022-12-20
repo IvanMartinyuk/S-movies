@@ -21,8 +21,8 @@
     font-size: 14px;
     border-radius: 30px;
     border: none;
-    box-shadow: 0 0 10px rgba(163, 174, 186, 0.6);я
-    &:hover {
+    box-shadow: 0 0 10px rgba(163, 174, 186, 0.6);
+    &:active {
         background-color: rgb(64, 69, 91);
     }
 }

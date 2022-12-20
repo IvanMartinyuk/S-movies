@@ -3,9 +3,9 @@ import { BaseService } from "./baseService";
 export class SelectionService extends BaseService
 {
     baseUrl = 'https://localhost:44325/selection/';
-    GetTop()
+    GetTop(page)
     {
-        return this.Get(this.baseUrl + 'gettop');
+        return this.Get(this.baseUrl + 'gettop?page=' + page);
     }
     GetSelection(id)
     {
@@ -31,5 +31,15 @@ export class SelectionService extends BaseService
             headers: this.baseHeaders
         })
         return await response.json();
+    }
+    async searchByUser(title) {
+        let response = await fetch(this.baseUrl + 'searchbyuser?title=' + title, {
+            method: 'GET',
+            headers: this.baseHeaders
+        })
+        return await response.json();
+    }
+    getPageCount() {
+        return this.Get(this.baseUrl + 'getpagecount');
     }
 }

@@ -20,7 +20,9 @@ namespace BLL.Services
         public void AddFilms(int selId, List<int> filmIds) => ((SelectionRepository)Repository).AddFilms(selId, filmIds);
         public void RemoveFilm(int selId, int filmId) => ((SelectionRepository)Repository).RemoveFilm(selId, filmId);
         public int GetLastId() => ((SelectionRepository)Repository).GetLastId();
-        public List<SelectionDTO> GetTop() => Mapper.Map<List<Selection>, List<SelectionDTO>>(((SelectionRepository)Repository).GetTop());
+        public List<SelectionDTO> GetTop(int page) => Mapper.Map<List<Selection>, List<SelectionDTO>>(((SelectionRepository)Repository).GetTop(page));
         public List<SelectionDTO> Search(string title) => Mapper.Map<List<Selection>, List<SelectionDTO>>(((SelectionRepository)Repository).Search(title));
+        public List<SelectionDTO> SearchByUser(string title, string login) => Mapper.Map<List<Selection>, List<SelectionDTO>>(((SelectionRepository)Repository).SearchByUser(title, login));
+        public int GetPageCount() => ((SelectionRepository)Repository).GetPageCount();
     }
 }

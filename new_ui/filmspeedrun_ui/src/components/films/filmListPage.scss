@@ -3,9 +3,7 @@ $filter-background: rgb(27, 27, 39);
 $list-background: rgb(32, 32, 43);
 $film-card-width: 170px;
 
-.filter {
-    background-color: $filter-background;
-}
+
 
 .list {
     background-color: $list-background;
@@ -56,6 +54,53 @@ $film-card-width: 170px;
     margin: auto 0px;
 }
 
-.selecteedPaginationItem {
+.selectedPaginationItem {
     border: 1px solid white;
+}
+
+.comboBoxList {
+    margin-left: 40px;
+    
+}
+
+.option {
+    margin-right: 20px;
+    padding: 5px;
+}
+
+.optionTitle {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.filter {
+    margin: 0px auto;
+    background-color: transparent;
+}
+
+.ratingInput {
+    width: 40px;
+}
+
+.ratingInputMin {
+    margin-right: 10px;
+}
+
+.filterBox {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.filterBtn {
+    background-color: rgb(41, 44, 59);
+    color: white;
+    font-family: monospace;
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 30px;
+    border: none;
+    margin-top: 10px;
+    &:active {
+        background-color: rgb(18, 19, 27);
+    }
 }

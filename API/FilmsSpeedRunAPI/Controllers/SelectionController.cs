@@ -57,9 +57,9 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(await service.Get(selectionId));
         }
         [HttpGet]
-        public async Task<IActionResult> GetTop()
+        public async Task<IActionResult> GetTop(int page)
         {
-            var selections = service.GetTop();
+            var selections = service.GetTop(page);
             if (selections == null)
                 return BadRequest(new { error = "no data" });
             return Json(selections);
@@ -132,7 +132,6 @@ namespace FilmsSpeedRunAPI.Controllers
             return Ok();
         }
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> Search(string title)
         {
             if (title.Count() == 0)
@@ -140,5 +139,16 @@ namespace FilmsSpeedRunAPI.Controllers
             var search = service.Search(title);
             return Json(search);
         }
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> SearchByUser(string title)
+        {
+            if (title.Count() == 0)
+                return BadRequest(new { error = "write title!" });
+            var search = service.SearchByUser(title, User.Identity.Name);
+            return Json(search);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetPageCount(int page) => Json(service.GetPageCount());
     }
 }

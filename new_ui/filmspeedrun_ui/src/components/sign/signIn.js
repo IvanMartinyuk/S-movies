@@ -54,6 +54,8 @@ class SignIn extends React.Component {
                 document.getElementById('loginError').classList.remove('unvisible');
             else
             {
+                // let service = new UserService();
+                // service.getSelections();
                 sessionStorage.setItem('isLogin', true)
                 const { navigation } = this.props;
                 navigation('/films')

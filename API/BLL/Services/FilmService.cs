@@ -50,7 +50,7 @@ namespace BLL.Services
             foreach (DirectorDTO director in filmdto.Directors)
                 film.Directors.Add(context.Directors.FirstOrDefault(x => x.Id == director.Id));
             foreach (GenreDTO genre in filmdto.Genres)
-                film.Genres.Add(context.Genres.FirstOrDefault(x => x.Id == genre.Id));
+                film.Genres.Add(context.Genres.FirstOrDefault(x => x.Name == genre.Name));
             await Repository.UpdateAsync(film);
             await Repository.SaveChanges();
         }

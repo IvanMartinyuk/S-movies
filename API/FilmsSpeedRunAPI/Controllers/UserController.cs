@@ -4,6 +4,8 @@ using DAL.Context;
 using FilmsSpeedRunAPI.Config;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -41,7 +43,7 @@ namespace FilmsSpeedRunAPI.Controllers
             {
                 access_token = accessToken,
                 username = claim.Name,
-                id= service.GetId(user.Login, user.PasswordHash)
+                id = service.GetId(user.Login, user.PasswordHash)
             };
             return Json(response);
         }
@@ -87,7 +89,7 @@ namespace FilmsSpeedRunAPI.Controllers
                 {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, login)
                 };
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);            
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             return claimsIdentity;
         }
         [HttpGet]
@@ -108,6 +110,13 @@ namespace FilmsSpeedRunAPI.Controllers
             u.PasswordHash = user.PasswordHash;
             await service.UpdateAsync(u);
             return Ok();
-        }        
+        }
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> GetSelections()
+        {
+            var userLogin = User.Identity.Name;
+            return Json(service.GetSelections(userLogin));
+        }
     }
 }

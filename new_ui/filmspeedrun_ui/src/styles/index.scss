@@ -65,3 +65,9 @@ img {
 .margin-auto {
   margin: auto;
 }
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+

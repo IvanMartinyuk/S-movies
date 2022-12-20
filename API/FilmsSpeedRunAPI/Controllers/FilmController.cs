@@ -1,6 +1,7 @@
 ﻿using BLL.DTO;
 using BLL.Services;
 using DAL.Context;
+using DAL.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -133,7 +134,12 @@ namespace FilmsSpeedRunAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> GetByFilter([FromBody]FilterOptions options)
         {
-            return Json(service.GetSortedPage(options));
+            var res = service.GetSortedPage(options);
+            return Json(new
+            {
+                Films = res,
+                PagesCount = FilmRepository.sortPageCount
+            });
         }
         [HttpGet]
         public async Task<IActionResult> GetFilmsCount()
