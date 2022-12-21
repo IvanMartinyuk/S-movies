@@ -73,5 +73,6 @@ namespace BLL.Services
                                                                                         .GetSortedFilter(options));
         public int GetPageCount() => ((FilmRepository)Repository).GetPageCount();
         public void Vote(double vote, int filmId) => ((FilmRepository)Repository).Vote(vote, filmId);
+        public DateTime GetOldestDate() => ((FilmRepository)Repository).GetOldestDate();
     }
 }

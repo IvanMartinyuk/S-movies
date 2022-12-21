@@ -17,6 +17,7 @@ namespace FilmsSpeedRunAPI
         public DateTime DateLast { get; set; } = DateTime.Now;
         public string Genre { get; set; } = "";
         public string SortBy { get; set; } = "default";
+        public bool isDecreace { get; set; } = false;
     }
 }
 

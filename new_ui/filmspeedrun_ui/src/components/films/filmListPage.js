@@ -13,8 +13,13 @@ class FilmListPage extends React.Component {
       selectedPage: 0,
       pageCount: 1,
       paginations: [],
-      genres: []
+      genres: [],
+      isFilter: false,
+      options: '',
+      oldestDate: new Date('01.01.1990'),
+      isDecreace: true
     };
+    console.log(this.state.oldestDate)
     this.updateState = this.updateState.bind(this);
   }
   render() {
@@ -42,20 +47,44 @@ class FilmListPage extends React.Component {
             <div className="option">
               <div className="optionTitle">imdb rating</div>
               <div className="flex">
-                <input type='number' max='10' min='0' placeholder='min' className="ratingInput ratingInputMin" id="imdbMin"></input>
-                <input type='number' max='10' min='0' placeholder='max' className="ratingInput" id="imdbMax"></input>
+                <input type='number' 
+                       max='10'
+                       min='0'
+                       placeholder='min'
+                       defaultValue={0}
+                       className="ratingInput ratingInputMin"
+                       id="imdbMin"></input>
+                <input type='number' 
+                       max='10'
+                       min='0'
+                       placeholder='max'
+                       defaultValue={10}
+                       className="ratingInput" 
+                       id="imdbMax"></input>
               </div>
             </div>
             <div className="option">
               <div className="optionTitle">local rating</div>
               <div className="flex">
-                <input type='number' max='10' min='0' placeholder='min' className="ratingInput ratingInputMin" id="localMin"></input>
-                <input type='number' max='10' min='0' placeholder='max' className="ratingInput" id="localMax"></input>
+                <input type='number' 
+                       max='10'
+                       min='0'
+                       placeholder='min'
+                       defaultValue={0}
+                       className="ratingInput ratingInputMin"
+                       id="localMin"></input>
+                <input type='number' 
+                       max='10'
+                       min='0'
+                       placeholder='max'
+                       defaultValue={10}
+                       className="ratingInput" 
+                       id="localMax"></input>
               </div>
             </div>
 
             <div className="option">
-              <div className="optionTitle">Sort by</div>
+                <div className="optionTitle">Sort by</div>
                 <select id='sortBox'>
                   <option>Default</option>
                   <option>Release date</option>
@@ -63,6 +92,7 @@ class FilmListPage extends React.Component {
                   <option>Local rating</option>
                   <option>Title</option>
                 </select>
+                <button onClick={e => this.setDecreace(e) } className="decreaceBtn">-</button>
             </div>
           </div>
 
@@ -121,8 +151,8 @@ class FilmListPage extends React.Component {
     
     this.filmService.getPage(0).then(films => {
       this.updateState({
-        films: films,
-      });
+        films: films
+      })
     });
     this.filmService.getPageCount().then(count => {
       this.updateState({
@@ -145,6 +175,14 @@ class FilmListPage extends React.Component {
   updateState(data, callback) {
     this.setState(data, callback);
   }
+  setDecreace(e) {
+    console.log(this.state.isDecreace);
+    console.log(this.state.isDecreace === true);
+    e.target.innerText = this.state.isDecreace == true ? '+' : '-';
+    this.updateState({
+      isDecreace: !this.state.isDecreace
+    });
+  }
   generatePagination() {
     let paginations = [];
     let pageLimit = 10;
@@ -161,7 +199,10 @@ class FilmListPage extends React.Component {
     return paginations;
   }
   loadPage(page) {
-    this.filmService.getPage(page).then(films => {
+    let response = this.filmService.getPage(page);
+    if(this.state.isFilter)
+      response = this.filmService.getByFilter(this.getOptions(page));
+    response.then(films => {
       this.updateState({
         films: [],
         selectedPage: page
@@ -193,18 +234,22 @@ class FilmListPage extends React.Component {
       this.loadPage(this.state.selectedPage - 1);
     }
   }
-  filter() {
-    let options = {
-      page: 0,
-      genre: document.getElementById('genreBox').value,
+  getOptions(page) {
+    return {
+      page: page,
+      genre: document.getElementById('genreBox').value == 'Any' ? '' : document.getElementById('genreBox').value,
       dateTop: document.getElementById('dateStart').value,
       dateLast: document.getElementById('dateEnd').value,
       imdbRatingTop: document.getElementById('imdbMin').value,
       imdbRatingLast: document.getElementById('imdbMax').value,
       localRatingTop: document.getElementById('localMin').value,
       localRatingLast: document.getElementById('localMax').value,
-      sortBy: document.getElementById('sortBox').value
+      sortBy: document.getElementById('sortBox').value,
+      isDecreace: !this.state.isDecreace
     }
+  }
+  filter() {
+    let options = this.getOptions(0);
 
     //changing format of sortBy
     let sort = options.sortBy;
@@ -215,10 +260,16 @@ class FilmListPage extends React.Component {
 
     this.filmService.getByFilter(options).then(result => {
       this.updateState({
-        films: []
+        films: [],
+        pageCount: 0,
+        selectedPage: 0
       }, () => {
+        console.log(result)
         this.updateState({
-          films: result.films
+          films: result.films,
+          pageCount: result.pagesCount,
+          options: options,
+          isFilter: true
         })
       })
     })

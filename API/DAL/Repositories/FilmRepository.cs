@@ -39,90 +39,39 @@ namespace DAL.Repositories
                     return SortAndFilter(options, x => x.ImdbRating);
                 case "title":
                     return SortAndFilter(options, x => x.Title);
-                case "default":
-                    {
-                        sortPageCount = (con.Films
-                                        .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
-                                        .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-                                        .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                                        .Count() / pageCount) + 1;
-                        return con.Films
-                                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
-                                .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-                                .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                                .Skip((options.Page) * pageCount)
-                                .Take(pageCount)
-                                .ToList();
-                    }
                 default:
-                    {
-                        sortPageCount = (con.Films
-                                        .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
-                                        .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-                                        .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                                        .Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
-                                        .Count() / pageCount) + 1;
-                        return con.Films
-                                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
-                                .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-                                .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                                .Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
-                                .Skip((options.Page) * pageCount)
-                                .Take(pageCount)
-                                .ToList();
-                    }
+                    return SortAndFilter(options, x => x.Id);
             }
         }
         List<Film> SortAndFilter(FilterOptions options, Expression<Func<Film, object>> selector)
         {
             bool isGenre = options.Genre.Count() > 0;
             FilmContext con = (FilmContext)context;
-            if (isGenre)
-            {
-                sortPageCount = (con.Films
-                                .OrderByDescending(selector)
-                                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
-                                .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-                                .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                                .Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
-                                .Count() / pageCount) + 1;
-                return con.Films
-                            .OrderByDescending(selector)
-                            .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
-                            .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-                            .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                            .Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)))
-                            .Skip(options.Page * pageCount)
-                            .Take(pageCount)
-                            .ToList();
-            }
+
+            IQueryable<Film> configure;
+            if (options.isDecreace)
+                configure = con.Films.OrderByDescending(selector);
             else
-            {
-                sortPageCount = (con.Films
-                                .OrderByDescending(selector)
-                                .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
-                                .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-                                .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                                .Count() / pageCount) + 1;
-                return con.Films
-                            .OrderByDescending(selector)
-                            .Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
-                            .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
-                            .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast)
-                            .Skip(options.Page * pageCount)
+                configure = con.Films.OrderBy(selector);
+            configure = configure.Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
+                                 .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
+                                 .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast);
+            if (isGenre)
+                configure = configure.Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)));
+            sortPageCount = (configure.Count() / pageCount) + 1;
+            return configure.Skip(options.Page * pageCount)
                             .Take(pageCount)
                             .ToList();
-            }
         }
         public List<Actor> GetActors(int filmId)
         {
             FilmContext contx = (FilmContext)context;
             var list = contx.Films.Include(x => x.Actors)
-                                .ToList()
-                       .Where(x => x.Id == filmId)
-                       .Select(x => x.Actors)
-                       .ToList()[0]
-                       .ToList();
+                                   .ToList()
+                                   .Where(x => x.Id == filmId)
+                                   .Select(x => x.Actors)
+                                   .ToList()[0]
+                                   .ToList();
             foreach (Actor actor in list)
                 actor.Films = null;
             return list;
@@ -204,6 +153,11 @@ namespace DAL.Repositories
             var film = con.Films.Where(x => x.Id == filmId).FirstOrDefault();
             film.LocalRating = (film.LocalRating + vote) / ++film.LocalRatingVotes;
             con.SaveChanges();
+        }
+        public DateTime GetOldestDate()
+        {
+            FilmContext con = (FilmContext)context;
+            return con.Films.Min(x => x.DateOfPublishing);
         }
     }
 }

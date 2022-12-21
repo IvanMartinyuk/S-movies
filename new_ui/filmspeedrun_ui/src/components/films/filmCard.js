@@ -23,7 +23,11 @@ class FilmCard extends React.Component {
     }
     render() {
         return (
-            <div className="relative">
+            <div className="relative"
+                onMouseLeave={() => {
+                    document.getElementById("hover" + this.state.id).style.visibility = 'hidden';
+                    document.getElementById("plus" + this.state.id).style.visibility = 'hidden';
+                }}>
                 <Popup trigger={<button className="plusToSelection" 
                                         id={"plus" + this.state.id}>+</button>}
                 position='right top'>

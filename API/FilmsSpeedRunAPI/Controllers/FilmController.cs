@@ -160,5 +160,10 @@ namespace FilmsSpeedRunAPI.Controllers
             service.Vote(vote, filmId);
             return Ok();
         }
+        [HttpGet]
+        public async Task<IActionResult> GetOldestDate()
+        {
+            return Json(service.GetOldestDate());
+        }
     }
 }
