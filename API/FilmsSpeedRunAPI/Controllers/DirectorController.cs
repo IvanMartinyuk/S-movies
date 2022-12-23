@@ -73,5 +73,10 @@ namespace FilmsSpeedRunAPI.Controllers
                 return NotFound(new { error = "no data" });
             return Json(all);
         }
+        [HttpGet]
+        public async Task<IActionResult> Search(string name)
+        {
+            return Json(service.Search(name));
+        }
     }
 }

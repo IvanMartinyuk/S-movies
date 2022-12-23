@@ -60,6 +60,5 @@ class AddFilmCard extends React.Component {
 
 export default function(props) {
   const reff = useRef();
-  const close = () => reff.current.close();
-  return <AddFilmCard {...props} reff={reff} close={close}></AddFilmCard>
+  return <AddFilmCard {...props} reff={reff}></AddFilmCard>
 }

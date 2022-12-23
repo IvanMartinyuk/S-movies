@@ -112,3 +112,28 @@ $film-card-width: 170px;
     border-radius: 5px;
     color: white;
 }
+
+.noneBtn {
+    border: none;
+    color: white;
+    background-color: transparent;
+}
+
+.popup-name {
+    padding: 0px 5px;
+    margin: 5px 0px;
+    border: none;
+    font-size: 14px;
+    &::after 
+    {
+        border: none;
+    }
+    &:hover {
+        background-color: rgba(123, 189, 233, 0.2);
+    }
+}
+
+.popup-people {
+    width: 170px;
+    word-wrap: break-word;
+}

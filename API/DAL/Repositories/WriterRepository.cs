@@ -27,5 +27,13 @@ namespace DAL.Repositories
                 film.Writers = null;
             return list;
         }
+        public List<Writer> Search(string name)
+        {
+            int limit = 10;
+            var contx = (FilmContext)context;
+            return contx.Writers.Where(x => x.Name.ToLower().Contains(name.ToLower()))
+                               .Take(10)
+                               .ToList();
+        }
     }
 }

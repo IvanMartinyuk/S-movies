@@ -147,9 +147,12 @@ namespace FilmsSpeedRunAPI.Controllers
             return Json(new { count = service.GetCount() });
         }
         [HttpGet]
-        public async Task<IActionResult> Search(string search)
+        public async Task<IActionResult> Search(string search, int page)
         {
-            return Json(service.Search(search));
+            return Json(new { 
+                                Films = service.Search(search, page),
+                                PagesCount = FilmRepository.sortPageCount
+                            });
         }
         [HttpGet]
         public async Task<IActionResult> GetPageCount() => Json(service.GetPageCount());

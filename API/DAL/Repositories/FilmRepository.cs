@@ -21,9 +21,12 @@ namespace DAL.Repositories
         public List<Film> Search(string title, int page = 0)
         {
             FilmContext con = (FilmContext)context;
+            sortPageCount = (con.Films
+                                    .Where(x => x.Title.ToLower().Contains(title.ToLower()))
+                                    .Count() / pageCount) + 1;
             return con.Films.Where(x => x.Title.ToLower().Contains(title.ToLower()))
-                            .Skip(page * 10)
-                            .Take(10)
+                            .Skip(page * pageCount)
+                            .Take(pageCount)
                             .ToList();
         }
         public List<Film> GetSortedFilter(FilterOptions options)
@@ -44,8 +47,7 @@ namespace DAL.Repositories
             }
         }
         List<Film> SortAndFilter(FilterOptions options, Expression<Func<Film, object>> selector)
-        {
-            bool isGenre = options.Genre.Count() > 0;
+        {           
             FilmContext con = (FilmContext)context;
 
             IQueryable<Film> configure;
@@ -56,8 +58,16 @@ namespace DAL.Repositories
             configure = configure.Where(x => x.ImdbRating >= options.ImdbRatingTop && x.ImdbRating <= options.ImdbRatingLast)
                                  .Where(x => x.LocalRating >= options.LocalRatingTop && x.LocalRating <= options.LocalRatingLast)
                                  .Where(x => x.DateOfPublishing >= options.DateTop && x.DateOfPublishing <= options.DateLast);
-            if (isGenre)
+            if (options.Genre.Count() > 0)
                 configure = configure.Where(x => x.Genres.Contains(con.Genres.FirstOrDefault(x => x.Name == options.Genre)));
+            if (options.Title.Count() > 0)
+                configure = configure.Where(x => x.Title.ToLower().Contains(options.Title.ToLower()));
+            if (options.ActorId != 0)
+                configure = configure.Where(x => x.Actors.Where(x => x.Id == options.ActorId).Count() > 0);
+            if (options.WriterId != 0)
+                configure = configure.Where(x => x.Writers.Where(x => x.Id == options.WriterId).Count() > 0);
+            if (options.DirectorId != 0)
+                configure = configure.Where(x => x.Directors.Where(x => x.Id == options.DirectorId).Count() > 0);
             sortPageCount = (configure.Count() / pageCount) + 1;
             return configure.Skip(options.Page * pageCount)
                             .Take(pageCount)

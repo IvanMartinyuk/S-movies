@@ -16,5 +16,6 @@ namespace BLL.Services
             Repository = new WriterRepository(context);
         }
         public List<Film> GetFilms(int id) => ((WriterRepository)Repository).GetFilms(id);
+        public List<WriterDTO> Search(string name) => Mapper.Map<List<Writer>, List<WriterDTO>>(((WriterRepository)Repository).Search(name));
     }
 }

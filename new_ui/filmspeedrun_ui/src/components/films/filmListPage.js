@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./filmListPage.scss";
 import { FilmService } from "../../services/filmService.js";
 import FilmCard from "./filmCard";
 import { GenreService } from "../../services/genreService";
+import Popup from "reactjs-popup";
+import { ActorService } from "../../services/actorService";
+import { WriterService } from "../../services/writerService";
+import { DirectorService } from "../../services/directorService";
 
 class FilmListPage extends React.Component {
   filmService = new FilmService();
+  actorService = new ActorService();
+  directorService = new DirectorService();
+  writerService = new WriterService();
   constructor(props) {
     super(props);
     this.state = {
@@ -17,9 +24,17 @@ class FilmListPage extends React.Component {
       isFilter: false,
       options: '',
       oldestDate: new Date('01.01.1990'),
-      isDecreace: true
+      isDecreace: true,
+      actors: [],
+      selectedActorId: 0,
+      directors: [],
+      selectedDirectorId: 0,
+      writers: [],
+      selectedWriterId: 0,
+      actorRef: props.actorRef,
+      directorRef: props.directorRef,
+      writerRef: props.writerRef
     };
-    console.log(this.state.oldestDate)
     this.updateState = this.updateState.bind(this);
   }
   render() {
@@ -103,15 +118,35 @@ class FilmListPage extends React.Component {
             </div>
             <div className="option">
               <div className="optionTitle">Actor</div>
-              <input type='text' id="actorBox"></input>
+              <Popup trigger={<input type='text' id="actorBox" onInput={e => this.searchActor(e.target.value)}></input>}
+                     position='bottom center'
+                     ref={this.state.actorRef}
+                     className="actorPopup">
+                <div className="popup-menu popup-people">
+                  { this.state.actors }
+                </div>
+              </Popup>
             </div>
             <div className="option">
               <div className="optionTitle">Writer</div>
-              <input type='text' id="writerBox"></input>
+              <Popup trigger={<input type='text' id="writerBox" onInput={e => this.searchWriter(e.target.value)}></input>}
+                     position='bottom center'
+                     ref={this.state.directorRef}
+                     className="writerPopup">
+                <div className="popup-menu popup-people">
+                  { this.state.writers }
+                </div>
+              </Popup>
             </div>
             <div className="option">
-              <div className="optionTitle">Producer</div>
-              <input type='text' id="producerBox"></input>
+              <div className="optionTitle">Director</div>
+              <Popup trigger={<input type='text' id="directorBox" onInput={e => this.searchDirector(e.target.value)}></input>}
+                     position='bottom center'
+                     ref={this.state.writerRef}>
+                <div className="popup-menu popup-people">
+                  { this.state.directors }
+                </div>
+              </Popup>
             </div>
             
           </div>
@@ -176,8 +211,6 @@ class FilmListPage extends React.Component {
     this.setState(data, callback);
   }
   setDecreace(e) {
-    console.log(this.state.isDecreace);
-    console.log(this.state.isDecreace === true);
     e.target.innerText = this.state.isDecreace == true ? '+' : '-';
     this.updateState({
       isDecreace: !this.state.isDecreace
@@ -245,7 +278,11 @@ class FilmListPage extends React.Component {
       localRatingTop: document.getElementById('localMin').value,
       localRatingLast: document.getElementById('localMax').value,
       sortBy: document.getElementById('sortBox').value,
-      isDecreace: !this.state.isDecreace
+      isDecreace: !this.state.isDecreace,
+      title: document.getElementById('titleBox').value,
+      actorId: this.state.selectedActorId,
+      writerId: this.state.selectedWriterId,
+      directorId: this.state.selectedDirectorId
     }
   }
   filter() {
@@ -264,7 +301,6 @@ class FilmListPage extends React.Component {
         pageCount: 0,
         selectedPage: 0
       }, () => {
-        console.log(result)
         this.updateState({
           films: result.films,
           pageCount: result.pagesCount,
@@ -274,6 +310,102 @@ class FilmListPage extends React.Component {
       })
     })
   }
+  searchActor(name) {
+    if(this.state.selectedActorId != 0)
+      this.updateState({
+        selectedActorId: 0
+    })
+    this.actorService.search(name).then(result => {
+      this.updateState({
+        actors: []
+      }, () => {
+        let actors = []
+        result.forEach(item => {
+            actors.push(
+              <div>
+                <button className="popup-name noneBtn" id={ item.id } onClick={e => {
+                  this.state.actorRef.current.close();
+                  document.getElementById('actorBox').value = e.target.innerText;
+                  this.updateState({
+                    selectedActorId: e.target.id
+                  })
+                }}>{ item.name }</button>
+              </div>
+            )
+        })
+        this.updateState({
+          actors: actors
+        })
+      })
+    })
+  }
+  searchDirector(name) {
+    if(this.state.selectedDirectorId != 0)
+      this.updateState({
+        selectedDirectorId: 0
+    })
+    this.directorService.search(name).then(result => {
+      this.updateState({
+        directors: []
+      }, () => {
+        let directors = []
+        result.forEach(item => {
+            directors.push(
+              <div>
+                <button className="popup-name noneBtn" id={ item.id } onClick={e => {
+                  this.state.directorRef.current.close();
+                  document.getElementById('directorBox').value = e.target.innerText;
+                  this.updateState({
+                    selectedDirectorId: e.target.id
+                  })
+                }}>{ item.name }</button>
+              </div>
+            )
+        })
+        this.updateState({
+          directors: directors
+        })
+      })
+    })
+  }
+  searchWriter(name) {
+    if(this.state.selectedWriterId != 0)
+      this.updateState({
+        selectedWriterId: 0
+    })
+    this.writerService.search(name).then(result => {
+      this.updateState({
+        writers: []
+      }, () => {
+        let writers = []
+        result.forEach(item => {
+            writers.push(
+              <div>
+                <button className="popup-name noneBtn" id={ item.id } onClick={e => {
+                  console.log(document.getElementsByClassName('writerPopup-content')[0].style.display = 'none');
+                  this.state.writerRef.current.close();
+                  document.getElementById('writerBox').value = e.target.innerText;
+                  this.updateState({
+                    selectedWriterId: e.target.id
+                  })
+                }}>{ item.name }</button>
+              </div>
+            )
+        })
+        this.updateState({
+          writers: writers
+        })
+      })
+    })
+  }
 }
 
-export default FilmListPage;
+export default function(props) {
+  const actorRef = useRef();
+  const directorRef = useRef();
+  const writerRef = useRef();
+  return <FilmListPage {...props} 
+                        actorRef={actorRef}
+                        directorRef={directorRef}
+                        writerRef={writerRef}></FilmListPage>
+}

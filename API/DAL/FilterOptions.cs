@@ -8,7 +8,6 @@ namespace FilmsSpeedRunAPI
     public class FilterOptions
     {
         public int Page { get; set; }
-        public string Prop { get; set; } = "base";
         public double ImdbRatingTop { get; set; } = 0;
         public double ImdbRatingLast { get; set; } = 10;
         public double LocalRatingTop { get; set; } = 0;
@@ -18,6 +17,10 @@ namespace FilmsSpeedRunAPI
         public string Genre { get; set; } = "";
         public string SortBy { get; set; } = "default";
         public bool isDecreace { get; set; } = false;
+        public string Title { get; set; } = "";
+        public int ActorId { get; set; } = 0;
+        public int WriterId { get; set; } = 0;
+        public int DirectorId { get; set; } = 0;
     }
 }
 
